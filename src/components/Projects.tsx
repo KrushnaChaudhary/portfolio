@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Gamepad2 } from "lucide-react";
+import { ExternalLink, Gamepad2, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import rannBhumiImg from "@/assets/rann-bhumi.jpg";
 import miniGolfImg from "@/assets/mini-golf.png";
 
 const projects = [
   {
+    slug: "rann-bhumi",
     title: "Rann Bhumi",
     subtitle: "5v5 Combat Title",
     description:
@@ -19,6 +21,7 @@ const projects = [
     ],
   },
   {
+    slug: "mini-golf",
     title: "Mini Golf",
     subtitle: "Multiplayer Roblox Game",
     description:
@@ -33,6 +36,7 @@ const projects = [
     ],
   },
   {
+    slug: "puzzles-and-cats",
     title: "Puzzles & Cats",
     subtitle: "LiveOps Mobile Game",
     description:
@@ -47,6 +51,7 @@ const projects = [
     ],
   },
   {
+    slug: "dominoes-logic",
     title: "Dominoes Logic",
     subtitle: "Live Puzzle Game",
     description:
@@ -61,6 +66,7 @@ const projects = [
     ],
   },
   {
+    slug: "looper",
     title: "Looper",
     subtitle: "Hybrid-Casual Overhaul",
     description:
@@ -105,63 +111,70 @@ const Projects = () => {
               transition={{ delay: index * 0.1 }}
               className="group"
             >
-              <div className="relative rounded-2xl border border-border bg-card/50 overflow-hidden hover:border-neon-cyan/50 transition-all duration-500">
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* Image */}
-                  <div className="relative aspect-video md:aspect-auto overflow-hidden">
-                    {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                    ) : (
-                      <div className="w-full h-full min-h-[300px] bg-gradient-to-br from-muted to-card flex items-center justify-center">
-                        <Gamepad2 className="w-16 h-16 text-muted-foreground/30" />
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 md:p-8 flex flex-col justify-center">
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="text-neon-cyan font-display text-sm tracking-wider">
-                        {project.subtitle}
-                      </span>
+              <Link to={`/project/${project.slug}`}>
+                <div className="relative rounded-2xl border border-border bg-card/50 overflow-hidden hover:border-neon-cyan/50 transition-all duration-500 cursor-pointer">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Image */}
+                    <div className="relative aspect-video md:aspect-auto overflow-hidden">
+                      {project.image ? (
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        />
+                      ) : (
+                        <div className="w-full h-full min-h-[300px] bg-gradient-to-br from-muted to-card flex items-center justify-center">
+                          <Gamepad2 className="w-16 h-16 text-muted-foreground/30" />
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
                     </div>
-                    <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4">
-                      {project.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-6">
-                      {project.description}
-                    </p>
 
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 text-xs font-medium rounded-full bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20"
-                        >
-                          {tag}
+                    {/* Content */}
+                    <div className="p-6 md:p-8 flex flex-col justify-center">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-neon-cyan font-display text-sm tracking-wider">
+                          {project.subtitle}
                         </span>
-                      ))}
-                    </div>
+                      </div>
+                      <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-neon-cyan transition-colors">
+                        {project.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-6">
+                        {project.description}
+                      </p>
 
-                    <ul className="grid grid-cols-2 gap-2">
-                      {project.highlights.map((highlight) => (
-                        <li
-                          key={highlight}
-                          className="flex items-center gap-2 text-sm text-muted-foreground"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-neon-purple" />
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1 text-xs font-medium rounded-full bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <ul className="grid grid-cols-2 gap-2 mb-6">
+                        {project.highlights.map((highlight) => (
+                          <li
+                            key={highlight}
+                            className="flex items-center gap-2 text-sm text-muted-foreground"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-neon-purple" />
+                            {highlight}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="flex items-center gap-2 text-neon-cyan font-display text-sm tracking-wider group-hover:gap-4 transition-all">
+                        <span>VIEW PROJECT</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
