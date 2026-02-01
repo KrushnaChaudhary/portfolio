@@ -37,58 +37,66 @@ export interface ProjectData {
   image: string | null;
   tags: string[];
   highlights: string[];
+  myRole: string[];
   fullDescription: string;
   youtubeId?: string;
   storeLinks?: { platform: string; url: string }[];
   gallery?: string[];
-  videos?: string[];
 }
 
 export const projectsData: Record<string, ProjectData> = {
   "rann-bhumi": {
     title: "Rann Bhumi",
-    subtitle: "5v5 Combat Title",
+    subtitle: "5v5 Combat Title • Totality Corp",
     description:
-      "A mythological combat game inspired by Kurukshetra. Developed class-based weapons, killstreak systems based on classical Indian godly weapons, and Photon PUN 2 networking with authoritative server logic.",
+      "A mythological 5v5 combat game inspired by Kurukshetra. Built class-based combat systems and multiplayer networking.",
     image: rannBhumiImg,
-    tags: ["Unity", "Photon PUN 2", "Combat", "Multiplayer", "NFT"],
+    tags: ["Unity", "Photon PUN 2", "Combat", "Multiplayer"],
     highlights: [
-      "5 unique character classes with different fighting styles",
-      "Killstreak system inspired by Call of Duty",
-      "NFT integration for in-game assets",
-      "60 FPS on mid-range devices",
-      "Authoritative server logic",
-      "Sound integration across the game",
+      "5v5 multiplayer combat",
+      "Mythological theme & weapons",
+      "Class-based fighting styles",
+      "Killstreak reward systems",
+      "60 FPS mobile performance",
     ],
-    fullDescription: `Developed gameplay mechanics inspired by the mythological war of Kurukshetra. Created unique mechanics for five character classes to different fighting styles while sticking closely to the theme.
+    myRole: [
+      "Developed class-based weapons for 5 unique character classes",
+      "Built killstreak system inspired by Call of Duty using Indian godly weapons",
+      "Implemented Photon PUN 2 networking with authoritative server logic",
+      "Handled state synchronization for real-time multiplayer",
+      "Optimized gameplay to maintain 60 FPS on mid-range devices",
+      "Integrated all sound effects and audio systems",
+      "Playtested and balanced character, weapon, and killstreak stats",
+    ],
+    fullDescription: `Rann Bhumi is a mythological combat game inspired by the epic war of Kurukshetra. Players engage in 5v5 battles using class-based characters, each with unique fighting styles rooted in Indian mythology.
 
-Built a killstreak system based on classical Indian godly weapons, similar to Call Of Duty. Collaborated with the design team to accommodate NFTs within Rannbhumi.
-
-Integrated all the sounds in the game. Playtested and balanced the game by tweaking character, weapon and killstreak stats, and attack behaviours.
-
-Technical highlights include authoritative server logic with Photon PUN 2, state synchronization, and optimization to maintain 60 FPS on mid-range devices.`,
+The game features a killstreak system similar to Call of Duty, but themed around classical Indian godly weapons like the Brahmastra and Sudarshana Chakra. Each class offers distinct combat mechanics that require different playstyles and strategies.`,
     youtubeId: "6MYYo47iuLM",
     gallery: [],
   },
   "grid-filler": {
     title: "Grid Filler: Shikaku Tiles",
-    subtitle: "Logic Puzzle Game",
+    subtitle: "Logic Puzzle Game • Kwalee",
     description:
-      "A clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning.",
+      "A satisfying logic puzzle where players fill grids with perfect rectangles. Built core gameplay, level tools, and meta-systems.",
     image: gridFillerCollage,
-    tags: ["Unity", "Puzzle", "Mobile", "LiveOps"],
+    tags: ["Unity", "Puzzle", "Mobile", "Level Tools"],
     highlights: [
-      "1000+ challenging levels",
-      "Daily puzzles with unique grids",
+      "1000+ handcrafted levels",
+      "Daily puzzle challenges",
       "Competitive leaderboards",
-      "Train your brain mechanics",
       "Clean, satisfying UX",
     ],
-    fullDescription: `Grid Filler: Shikaku Tiles is a clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning.
+    myRole: [
+      "Owned core gameplay logic and grid-filling mechanics",
+      "Built level editor tools for the design team",
+      "Developed meta-systems for progression and rewards",
+      "Optimized grid performance and visual feedback",
+      "Implemented spin-the-wheel reward system",
+    ],
+    fullDescription: `Grid Filler is a clean logic puzzle where players divide grids into perfect rectangles, ensuring each section matches its number exactly. Simple rules, but every decision matters—one misplaced tile can block the entire board.
 
-Divide each grid into squares and tiles, making sure every section matches its number exactly. The rules are simple, but every decision matters. One misplaced tile can block the whole board, while a smart move reveals a smooth, elegant solution.
-
-Features include 1000+ levels, daily puzzles, competitive leaderboards, and a spin-the-wheel reward system. The game focuses on training your brain through meaningful logic rather than random guessing.`,
+Features 1000+ levels, daily puzzles, competitive leaderboards, and a satisfying reward system. The game focuses on training your brain through meaningful logic rather than random guessing.`,
     storeLinks: [
       { platform: "App Store", url: "https://apps.apple.com/vn/app/grid-filler-shikaku-tiles/id6756872108" },
     ],
@@ -96,47 +104,54 @@ Features include 1000+ levels, daily puzzles, competitive leaderboards, and a sp
   },
   "puzzles-and-cats": {
     title: "Puzzles & Cats",
-    subtitle: "LiveOps Mobile Game",
+    subtitle: "LiveOps Mobile Game • Kwalee",
     description:
-      "Developed core meta-systems including Shop, Economy, and Procedural Logic. Built LiveOps pipelines using remote-configurable data for safe, no-build updates.",
+      "A match-3 puzzle game with cat collection mechanics. Built core meta-systems and LiveOps infrastructure.",
     image: puzzlesCatsCollage,
     tags: ["Unity", "LiveOps", "Meta-Systems", "Mobile"],
     highlights: [
-      "Remote-configurable updates",
-      "Economy system design",
-      "Procedural content generation",
-      "Shop integration",
-      "LiveOps pipeline development",
-      "No-build deployment capability",
+      "Cat collection & upgrades",
+      "Match-3 puzzle gameplay",
+      "LiveOps content updates",
+      "Economy & shop systems",
     ],
-    fullDescription: `Developed core meta-systems for this LiveOps mobile game, focusing on Shop, Economy, and Procedural Logic systems.
+    myRole: [
+      "Developed core meta-systems: Shop, Economy, and Progression",
+      "Built procedural logic for content generation",
+      "Created LiveOps pipelines using remote-configurable data",
+      "Enabled safe, no-build updates for live game changes",
+      "Reduced deployment risk and accelerated feature iteration",
+    ],
+    fullDescription: `Puzzles & Cats combines match-3 puzzle gameplay with a cat collection meta-game. Players solve puzzles to unlock and upgrade adorable cat characters, each with unique abilities and personalities.
 
-Built robust LiveOps pipelines using remote-configurable data, enabling safe updates without requiring new app builds. This approach significantly reduced deployment risk and accelerated feature iteration.`,
+The game features robust LiveOps infrastructure allowing the team to push content updates, balance changes, and new events without requiring app store updates.`,
     youtubeId: "gnA_2x3F1SU",
     gallery: [puzzlesCats1, puzzlesCats2, puzzlesCats3, puzzlesCats4, puzzlesCats5, puzzlesCats6, puzzlesCats7, puzzlesCats8, puzzlesCats9],
   },
   "boarding-rush": {
     title: "Boarding Rush",
-    subtitle: "Live Puzzle Game",
+    subtitle: "Live Puzzle Game • Kwalee",
     description:
-      "Developed dynamic grid generation, FTUE, and Level Editors. Owned full UI/UX and Analytics integration for the live title.",
+      "A satisfying tap puzzle where players sort passengers onto boats. Built dynamic grids, level tools, and full UI/UX.",
     image: boardingRushCollage,
     tags: ["Unity", "Puzzle", "Level Editor", "Analytics"],
     highlights: [
-      "Dynamic grid generation system",
-      "Custom level editor tools",
-      "FTUE (First Time User Experience)",
-      "Full analytics suite integration",
-      "Complete UI/UX ownership",
-      "Live title maintenance",
+      "Hex-grid puzzle mechanics",
+      "Color-matching gameplay",
+      "Dynamic level generation",
+      "Relaxing beach theme",
     ],
-    fullDescription: `Bring order to the busy dock as you sort passengers, fill colourful boats, and turn pure chaos into smooth progress in this satisfying tap puzzle adventure.
+    myRole: [
+      "Developed dynamic grid generation system for varied puzzle layouts",
+      "Built custom Level Editor tools for the design team",
+      "Implemented FTUE (First Time User Experience) flow",
+      "Owned full UI/UX design and implementation",
+      "Integrated comprehensive analytics for player behavior tracking",
+      "Maintained and updated the live title",
+    ],
+    fullDescription: `Boarding Rush is a satisfying tap puzzle where players sort colorful passengers onto matching boats at a busy dock. Each level brings new grid configurations, faster pace, and smart challenges.
 
-Arrange passengers in tricky 3D puzzles where every move counts! Plan routes, time your moves, and keep the queue flowing before the dock overflows. Each level brings a new mix of twists, faster pace, and smart challenges to test your reflexes and logic.
-
-Developed dynamic grid generation systems and created comprehensive Level Editors for the design team. Implemented the First Time User Experience (FTUE) flow to onboard new players effectively.
-
-Owned the full UI/UX design and implementation, along with deep Analytics integration to track player behavior and game performance metrics.`,
+The game features a relaxing beach theme with smooth animations and cheerful visuals. Players must plan routes and time their moves to keep the queue flowing before the dock overflows.`,
     storeLinks: [
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.boardingrush" },
     ],
@@ -144,26 +159,28 @@ Owned the full UI/UX design and implementation, along with deep Analytics integr
   },
   "dominoes-logic": {
     title: "Dominoes Logic",
-    subtitle: "Live Puzzle Game",
+    subtitle: "Live Puzzle Game • Kwalee",
     description:
-      "Developed dynamic grid generation, FTUE, and Level Editors. Owned full UI/UX and Analytics integration for the live title.",
+      "A number puzzle built around domino placement. Built dynamic grids, level tools, and full UI/UX.",
     image: dominoesCollage,
     tags: ["Unity", "Puzzle", "Level Editor", "Analytics"],
     highlights: [
-      "Dynamic grid generation system",
-      "Custom level editor tools",
-      "FTUE (First Time User Experience)",
-      "Full analytics suite integration",
-      "Complete UI/UX ownership",
-      "Live title maintenance",
+      "Number-matching puzzles",
+      "Domino tile mechanics",
+      "Dynamic level generation",
+      "Clean, minimal design",
     ],
-    fullDescription: `Every move matters. Place tiles carefully, align numbers, and watch the board come together, one smart decision at a time.
+    myRole: [
+      "Developed dynamic grid generation system for puzzle layouts",
+      "Built custom Level Editor tools for the design team",
+      "Implemented FTUE (First Time User Experience) flow",
+      "Owned full UI/UX design and implementation",
+      "Integrated comprehensive analytics for player behavior tracking",
+      "Maintained and updated the live title",
+    ],
+    fullDescription: `Dominoes Logic is a clean number puzzle where players place domino tiles to match numbers and clear the board. Every move matters—think ahead to find smooth, elegant solutions.
 
-Dominoes Logic is a clean number puzzle built around thoughtful domino placement and satisfying pattern completion. Each level challenges you to read the grid, think ahead, and fit the right tiles together to clear the board smoothly.
-
-Developed dynamic grid generation systems and created comprehensive Level Editors for the design team. Implemented the First Time User Experience (FTUE) flow to onboard new players effectively.
-
-Owned the full UI/UX design and implementation, along with deep Analytics integration to track player behavior and game performance metrics.`,
+Each level challenges you to read the grid, plan your moves, and fit the right tiles together. The game features a minimal design focused on satisfying puzzle-solving.`,
     storeLinks: [
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.dominodrop" },
     ],
@@ -171,26 +188,27 @@ Owned the full UI/UX design and implementation, along with deep Analytics integr
   },
   "looper": {
     title: "Looper",
-    subtitle: "Hybrid-Casual Overhaul",
+    subtitle: "Hybrid-Casual Overhaul • Kwalee",
     description:
-      "Led the transition from Hyper-casual to Hybrid-casual, implementing retention features and designer-facing economy structures to drive LTV.",
+      "A musical puzzle game with 10Cr+ downloads. Led the transition from Hyper-casual to Hybrid-casual.",
     image: looperCollage,
     tags: ["Unity", "Hybrid-Casual", "Retention", "Economy"],
     highlights: [
-      "10Cr+ downloads achieved",
-      "Hyper to Hybrid-casual transition",
-      "Retention feature implementation",
-      "Economy system architecture",
-      "LTV optimization strategies",
-      "Designer-facing tools",
+      "10Cr+ downloads",
+      "Musical rhythm gameplay",
+      "Timing-based puzzles",
+      "Hybrid-casual meta",
     ],
-    fullDescription: `Dive into Looper, the musical puzzle game that tests your timing and sense of harmony. Every tap sets a vibrant beat in motion, weaving through intricate constellations. Precision is crucial—mistimed taps could lead to a crash, but nail it, and bask in the gratifying loop of harmonious success.
+    myRole: [
+      "Led strategic transition from Hyper-casual to Hybrid-casual model",
+      "Implemented retention features to increase player engagement",
+      "Created designer-facing economy structures",
+      "Built meta-progression systems to drive LTV",
+      "Balanced casual accessibility with meaningful depth",
+    ],
+    fullDescription: `Looper is a musical puzzle game where every tap sets a vibrant beat in motion. Players navigate through intricate constellations, timing their moves precisely to create harmonious loops.
 
-This isn't just a rhythm game; it's a musical journey that resonates with the soul. Looper offers an array of meticulously crafted levels to satisfy your puzzle-solving cravings. Each level unfolds a new musical track, keeping the experience fresh and engaging.
-
-Led the strategic transition of Looper from a Hyper-casual to Hybrid-casual game model. This involved implementing retention features and creating designer-facing economy structures to drive long-term value (LTV).
-
-The transition required careful balance of maintaining casual accessibility while adding depth through meta-progression and engagement loops.`,
+With 10Cr+ downloads, the game successfully transitioned from Hyper-casual to Hybrid-casual, adding meta-progression and engagement loops while maintaining its accessible, pick-up-and-play appeal.`,
     storeLinks: [
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.looper" },
     ],
@@ -198,24 +216,29 @@ The transition required careful balance of maintaining casual accessibility whil
   },
   "mini-golf": {
     title: "Mini Golf",
-    subtitle: "Multiplayer Roblox Game",
+    subtitle: "Multiplayer Roblox Game • Totality Corp",
     description:
-      "Solo-developed a multiplayer Mini Golf title reaching 58K+ unique plays. Managed physics, networking, and UX iteration based on live player data.",
+      "A multiplayer Mini Golf title reaching 58K+ unique plays. Solo-developed all systems from scratch.",
     image: miniGolfImg,
     tags: ["Roblox", "Lua", "Multiplayer", "Physics"],
     highlights: [
-      "58K+ unique plays achieved",
-      "5 unique levels designed",
-      "Custom physics implementation",
-      "Live player data-driven iteration",
-      "Full UI and audio integration",
-      "Stylized environment design",
+      "58K+ unique plays",
+      "5 unique course designs",
+      "Multiplayer competition",
+      "Stylized visuals",
     ],
-    fullDescription: `Developed the game and implemented UI and audio effects. Designed and implemented 5 unique levels and the lobby for the game.
+    myRole: [
+      "Solo-developed the entire game from scratch",
+      "Built custom physics system for ball movement",
+      "Implemented multiplayer networking and lobbies",
+      "Designed and built 5 unique course levels",
+      "Created all UI and audio integration",
+      "Iterated on UX based on live player data",
+      "Revamped aesthetics with stylized props and environments",
+    ],
+    fullDescription: `Mini Golf is a multiplayer Roblox game where players compete across 5 unique course designs. The game features custom physics, stylized visuals, and competitive multiplayer.
 
-Revamped the aesthetics of the game through stylized props, environment setting, and colour scheme.
-
-Solo-developed this multiplayer Mini Golf title from scratch, managing physics, networking, and UX. Achieved 58K+ unique plays through continuous iteration based on live player data.`,
+Achieved 58K+ unique plays through continuous iteration based on live player feedback, improving UX and course designs over time.`,
     gallery: [],
   },
 };
