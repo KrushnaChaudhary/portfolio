@@ -3,9 +3,10 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Gamepad2, ExternalLink, Play } from "lucide-react";
 import rannBhumiImg from "@/assets/rann-bhumi.jpg";
 import miniGolfImg from "@/assets/mini-golf.png";
-import looperScreenshot from "@/assets/looper-screenshot.png";
-import dominoesScreenshot from "@/assets/dominoes-logic-screenshot.png";
+import looperThumbnail from "@/assets/looper-thumbnail.png";
+import dominoesThumbnail from "@/assets/dominoes-thumbnail.png";
 import gridFillerScreenshot from "@/assets/grid-filler-screenshot.png";
+import puzzlesCatsThumbnail from "@/assets/puzzles-cats-thumbnail.png";
 
 const projectsData: Record<string, {
   title: string;
@@ -97,7 +98,7 @@ Features include 1000+ levels, daily puzzles, competitive leaderboards, and a sp
     subtitle: "LiveOps Mobile Game",
     description:
       "Developed core meta-systems including Shop, Economy, and Procedural Logic. Built LiveOps pipelines using remote-configurable data for safe, no-build updates.",
-    image: null,
+    image: puzzlesCatsThumbnail,
     tags: ["Unity", "LiveOps", "Meta-Systems", "Mobile"],
     highlights: [
       "Remote-configurable updates",
@@ -118,7 +119,7 @@ Built robust LiveOps pipelines using remote-configurable data, enabling safe upd
     subtitle: "Live Puzzle Game",
     description:
       "Developed dynamic grid generation, FTUE, and Level Editors. Owned full UI/UX and Analytics integration for the live title.",
-    image: dominoesScreenshot,
+    image: dominoesThumbnail,
     tags: ["Unity", "Puzzle", "Level Editor", "Analytics"],
     highlights: [
       "Dynamic grid generation system",
@@ -145,7 +146,7 @@ Owned the full UI/UX design and implementation, along with deep Analytics integr
     subtitle: "Hybrid-Casual Overhaul",
     description:
       "Led the transition from Hyper-casual to Hybrid-casual, implementing retention features and designer-facing economy structures to drive LTV.",
-    image: looperScreenshot,
+    image: looperThumbnail,
     tags: ["Unity", "Hybrid-Casual", "Retention", "Economy"],
     highlights: [
       "10Cr+ downloads achieved",
