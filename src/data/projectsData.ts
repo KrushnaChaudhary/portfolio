@@ -126,7 +126,7 @@ Features 1000+ levels, daily puzzles, competitive leaderboards, and a satisfying
 
 The game features robust LiveOps infrastructure allowing the team to push content updates, balance changes, and new events without requiring app store updates.`,
     youtubeId: "gnA_2x3F1SU",
-    gallery: [puzzlesCats1, puzzlesCats2, puzzlesCats3, puzzlesCats4, puzzlesCats5, puzzlesCats6, puzzlesCats8, puzzlesCats9],
+    gallery: [puzzlesCats1, puzzlesCats2, puzzlesCats4, puzzlesCats5, puzzlesCats6, puzzlesCats8, puzzlesCats9],
   },
   "boarding-rush": {
     title: "Boarding Rush",
