@@ -4,6 +4,7 @@ import looperCollage from "@/assets/looper-collage.png";
 import dominoesCollage from "@/assets/dominoes-collage.png";
 import gridFillerCollage from "@/assets/grid-filler-collage.png";
 import puzzlesCatsCollage from "@/assets/puzzles-cats-collage.png";
+import boardingRushCollage from "@/assets/boarding-rush-collage.png";
 import looperStore1 from "@/assets/looper-store-1.png";
 import looperStore2 from "@/assets/looper-store-2.png";
 import looperStore3 from "@/assets/looper-store-3.png";
@@ -20,6 +21,15 @@ import puzzlesCats3 from "@/assets/puzzles-cats-3.png";
 import puzzlesCats4 from "@/assets/puzzles-cats-4.png";
 import puzzlesCats5 from "@/assets/puzzles-cats-5.png";
 import puzzlesCats6 from "@/assets/puzzles-cats-6.png";
+import puzzlesCats7 from "@/assets/puzzles-cats-7.png";
+import puzzlesCats8 from "@/assets/puzzles-cats-8.png";
+import puzzlesCats9 from "@/assets/puzzles-cats-9.png";
+import boardingRush1 from "@/assets/boarding-rush-1.webp";
+import boardingRush2 from "@/assets/boarding-rush-2.webp";
+import boardingRush3 from "@/assets/boarding-rush-3.webp";
+import boardingRush4 from "@/assets/boarding-rush-4.webp";
+import boardingRushVideo1 from "@/assets/boarding-rush-video-1.mp4";
+import boardingRushVideo2 from "@/assets/boarding-rush-video-2.mp4";
 
 export interface ProjectData {
   title: string;
@@ -32,6 +42,7 @@ export interface ProjectData {
   youtubeId?: string;
   storeLinks?: { platform: string; url: string }[];
   gallery?: string[];
+  videos?: string[];
 }
 
 export const projectsData: Record<string, ProjectData> = {
@@ -104,7 +115,35 @@ Features include 1000+ levels, daily puzzles, competitive leaderboards, and a sp
 
 Built robust LiveOps pipelines using remote-configurable data, enabling safe updates without requiring new app builds. This approach significantly reduced deployment risk and accelerated feature iteration.`,
     youtubeId: "gnA_2x3F1SU",
-    gallery: [puzzlesCats1, puzzlesCats2, puzzlesCats3, puzzlesCats4, puzzlesCats5, puzzlesCats6],
+    gallery: [puzzlesCats1, puzzlesCats2, puzzlesCats3, puzzlesCats4, puzzlesCats5, puzzlesCats6, puzzlesCats7, puzzlesCats8, puzzlesCats9],
+  },
+  "boarding-rush": {
+    title: "Boarding Rush",
+    subtitle: "Live Puzzle Game",
+    description:
+      "Developed dynamic grid generation, FTUE, and Level Editors. Owned full UI/UX and Analytics integration for the live title.",
+    image: boardingRushCollage,
+    tags: ["Unity", "Puzzle", "Level Editor", "Analytics"],
+    highlights: [
+      "Dynamic grid generation system",
+      "Custom level editor tools",
+      "FTUE (First Time User Experience)",
+      "Full analytics suite integration",
+      "Complete UI/UX ownership",
+      "Live title maintenance",
+    ],
+    fullDescription: `Bring order to the busy dock as you sort passengers, fill colourful boats, and turn pure chaos into smooth progress in this satisfying tap puzzle adventure.
+
+Arrange passengers in tricky 3D puzzles where every move counts! Plan routes, time your moves, and keep the queue flowing before the dock overflows. Each level brings a new mix of twists, faster pace, and smart challenges to test your reflexes and logic.
+
+Developed dynamic grid generation systems and created comprehensive Level Editors for the design team. Implemented the First Time User Experience (FTUE) flow to onboard new players effectively.
+
+Owned the full UI/UX design and implementation, along with deep Analytics integration to track player behavior and game performance metrics.`,
+    storeLinks: [
+      { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.boardingrush" },
+    ],
+    gallery: [boardingRush1, boardingRush2, boardingRush3, boardingRush4],
+    videos: [boardingRushVideo1, boardingRushVideo2],
   },
   "dominoes-logic": {
     title: "Dominoes Logic",
@@ -193,6 +232,10 @@ export const projectsList = [
   {
     slug: "puzzles-and-cats",
     ...projectsData["puzzles-and-cats"],
+  },
+  {
+    slug: "boarding-rush",
+    ...projectsData["boarding-rush"],
   },
   {
     slug: "grid-filler",

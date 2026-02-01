@@ -72,30 +72,51 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Gallery Section - Above About */}
-      {project.gallery && project.gallery.length > 0 && (
+      {/* Gallery Section - Horizontal Scrolling */}
+      {((project.gallery && project.gallery.length > 0) || (project.videos && project.videos.length > 0)) && (
         <section className="pb-12">
           <div className="container px-6">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
                 Gallery
               </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {project.gallery.map((img, idx) => (
-                  <motion.div 
-                    key={idx} 
-                    className="aspect-[9/16] rounded-xl overflow-hidden border border-border"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: idx * 0.1 }}
-                  >
-                    <img 
-                      src={img} 
-                      alt={`${project.title} screenshot ${idx + 1}`} 
-                      className="w-full h-full object-contain bg-card" 
-                    />
-                  </motion.div>
-                ))}
+              <div className="overflow-x-auto pb-4 -mx-6 px-6">
+                <div className="flex gap-4" style={{ width: 'max-content' }}>
+                  {/* Videos first */}
+                  {project.videos?.map((video, idx) => (
+                    <motion.div 
+                      key={`video-${idx}`} 
+                      className="flex-shrink-0 w-64 md:w-80 aspect-[9/16] rounded-xl overflow-hidden border border-border bg-card"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.1 }}
+                    >
+                      <video 
+                        src={video}
+                        className="w-full h-full object-contain bg-card"
+                        controls
+                        muted
+                        playsInline
+                      />
+                    </motion.div>
+                  ))}
+                  {/* Screenshots */}
+                  {project.gallery?.map((img, idx) => (
+                    <motion.div 
+                      key={`img-${idx}`} 
+                      className="flex-shrink-0 w-64 md:w-80 aspect-[9/16] rounded-xl overflow-hidden border border-border"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: (project.videos?.length || 0) * 0.1 + idx * 0.1 }}
+                    >
+                      <img 
+                        src={img} 
+                        alt={`${project.title} screenshot ${idx + 1}`} 
+                        className="w-full h-full object-contain bg-card" 
+                      />
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
