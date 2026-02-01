@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Gamepad2, ArrowRight } from "lucide-react";
+import { Gamepad2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import rannBhumiImg from "@/assets/rann-bhumi.jpg";
 import miniGolfImg from "@/assets/mini-golf.png";
@@ -99,14 +99,55 @@ const projects = [
   },
 ];
 
+// Animation variants for staggered reveals
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 60,
+    scale: 0.95,
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut" as const,
+    },
+  },
+};
+
+const imageVariants = {
+  hidden: { scale: 1.1, opacity: 0 },
+  visible: { 
+    scale: 1, 
+    opacity: 1,
+    transition: { duration: 0.8, ease: "easeOut" as const },
+  },
+};
+
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 relative">
-      <div className="container px-6">
+    <section id="projects" className="py-24 relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/20 to-transparent pointer-events-none" />
+      
+      <div className="container px-6 relative">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
@@ -118,83 +159,122 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="space-y-8">
+        <motion.div 
+          className="space-y-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              variants={cardVariants}
               className="group"
             >
               <Link to={`/project/${project.slug}`}>
-                <div className="relative rounded-2xl border border-border bg-card/50 overflow-hidden hover:border-neon-cyan/50 transition-all duration-500 cursor-pointer">
-                  <div className="grid md:grid-cols-2 gap-6">
+                <motion.div 
+                  className="relative rounded-2xl border border-border bg-card/50 overflow-hidden transition-colors duration-300 cursor-pointer hover:border-neon-cyan/50"
+                  whileHover={{ 
+                    scale: 1.01,
+                    transition: { duration: 0.3 }
+                  }}
+                >
+                  <div className={`grid md:grid-cols-2 gap-0 ${index % 2 === 1 ? 'md:grid-flow-dense' : ''}`}>
                     {/* Image */}
-                    <div className="relative aspect-video md:aspect-auto overflow-hidden">
+                    <div className={`relative h-64 md:h-80 overflow-hidden ${index % 2 === 1 ? 'md:col-start-2' : ''}`}>
                       {project.image ? (
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
+                        <motion.div
+                          className="w-full h-full"
+                          variants={imageVariants}
+                        >
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-700"
+                          />
+                        </motion.div>
                       ) : (
-                        <div className="w-full h-full min-h-[300px] bg-gradient-to-br from-muted to-card flex items-center justify-center">
-                          <Gamepad2 className="w-16 h-16 text-muted-foreground/30" />
+                        <div className="w-full h-full bg-gradient-to-br from-neon-purple/20 via-card to-neon-cyan/10 flex items-center justify-center">
+                          <motion.div
+                            initial={{ rotate: 0 }}
+                            whileHover={{ rotate: 15, scale: 1.1 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <Gamepad2 className="w-20 h-20 text-neon-purple/40" />
+                          </motion.div>
                         </div>
                       )}
-                      <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
                     </div>
 
                     {/* Content */}
-                    <div className="p-6 md:p-8 flex flex-col justify-center">
-                      <div className="flex items-center gap-3 mb-2">
-                        <span className="text-neon-cyan font-display text-sm tracking-wider">
-                          {project.subtitle}
-                        </span>
-                      </div>
-                      <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-neon-cyan transition-colors">
-                        {project.title}
-                      </h3>
-                      <p className="text-muted-foreground mb-6">
-                        {project.description}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 text-xs font-medium rounded-full bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20"
-                          >
-                            {tag}
+                    <div className={`p-6 md:p-8 flex flex-col justify-center ${index % 2 === 1 ? 'md:col-start-1 md:row-start-1' : ''}`}>
+                      <motion.div
+                        initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="text-neon-cyan font-display text-sm tracking-wider">
+                            {project.subtitle}
                           </span>
-                        ))}
-                      </div>
+                        </div>
+                        <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-neon-cyan transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                        <p className="text-muted-foreground mb-6 leading-relaxed">
+                          {project.description}
+                        </p>
 
-                      <ul className="grid grid-cols-2 gap-2 mb-6">
-                        {project.highlights.map((highlight) => (
-                          <li
-                            key={highlight}
-                            className="flex items-center gap-2 text-sm text-muted-foreground"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-neon-purple" />
-                            {highlight}
-                          </li>
-                        ))}
-                      </ul>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.tags.map((tag, tagIndex) => (
+                            <motion.span
+                              key={tag}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.3 + tagIndex * 0.05 }}
+                              className="px-3 py-1 text-xs font-medium rounded-full bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20"
+                            >
+                              {tag}
+                            </motion.span>
+                          ))}
+                        </div>
 
-                      <div className="flex items-center gap-2 text-neon-cyan font-display text-sm tracking-wider group-hover:gap-4 transition-all">
-                        <span>VIEW PROJECT</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </div>
+                        <ul className="grid grid-cols-2 gap-2 mb-6">
+                          {project.highlights.map((highlight, hIndex) => (
+                            <motion.li
+                              key={highlight}
+                              initial={{ opacity: 0, x: -10 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.4 + hIndex * 0.05 }}
+                              className="flex items-center gap-2 text-sm text-muted-foreground"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-neon-purple flex-shrink-0" />
+                              {highlight}
+                            </motion.li>
+                          ))}
+                        </ul>
+
+                        <motion.div 
+                          className="flex items-center gap-2 text-neon-cyan font-display text-sm tracking-wider"
+                          whileHover={{ x: 10 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <span>VIEW PROJECT</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </motion.div>
+                      </motion.div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </Link>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
