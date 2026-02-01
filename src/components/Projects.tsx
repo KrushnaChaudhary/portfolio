@@ -3,6 +3,8 @@ import { ExternalLink, Gamepad2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import rannBhumiImg from "@/assets/rann-bhumi.jpg";
 import miniGolfImg from "@/assets/mini-golf.png";
+import looperScreenshot from "@/assets/looper-screenshot.png";
+import dominoesScreenshot from "@/assets/dominoes-logic-screenshot.png";
 
 const projects = [
   {
@@ -36,6 +38,21 @@ const projects = [
     ],
   },
   {
+    slug: "grid-filler",
+    title: "Grid Filler: Shikaku Tiles",
+    subtitle: "Logic Puzzle Game",
+    description:
+      "A clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning. Features 1000+ levels, daily puzzles, and competitive leaderboards.",
+    image: null,
+    tags: ["Unity", "Puzzle", "Mobile", "LiveOps"],
+    highlights: [
+      "1000+ levels",
+      "Daily puzzles",
+      "Competitive leaderboards",
+      "App Store featured",
+    ],
+  },
+  {
     slug: "puzzles-and-cats",
     title: "Puzzles & Cats",
     subtitle: "LiveOps Mobile Game",
@@ -56,7 +73,7 @@ const projects = [
     subtitle: "Live Puzzle Game",
     description:
       "Developed dynamic grid generation, FTUE, and Level Editors. Owned full UI/UX and Analytics integration for the live title.",
-    image: null,
+    image: dominoesScreenshot,
     tags: ["Unity", "Puzzle", "Level Editor", "Analytics"],
     highlights: [
       "Dynamic grid generation",
@@ -71,12 +88,12 @@ const projects = [
     subtitle: "Hybrid-Casual Overhaul",
     description:
       "Led the transition from Hyper-casual to Hybrid-casual, implementing retention features and designer-facing economy structures to drive LTV.",
-    image: null,
+    image: looperScreenshot,
     tags: ["Unity", "Hybrid-Casual", "Retention", "Economy"],
     highlights: [
+      "10Cr+ downloads",
       "Hyper → Hybrid transition",
       "Retention features",
-      "Economy systems",
       "LTV optimization",
     ],
   },
