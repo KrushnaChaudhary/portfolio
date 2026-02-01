@@ -112,75 +112,53 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* Footer - Full width, separate from container */}
-      <motion.footer
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+      {/* Back to Top Button - Fixed position */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="mt-24 border-t border-border bg-card/30"
+        className="mt-24 flex justify-center"
       >
-        <div className="container px-6 py-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            {/* Logo & Tagline */}
-            <div className="flex items-center gap-4">
-              <div className="p-3 rounded-xl bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 border border-border">
-                <Gamepad2 className="w-8 h-8 text-neon-cyan" />
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-xl">
-                  <span className="text-neon-cyan">K</span>
-                  <span className="text-foreground">RUSHNA</span>
-                </h3>
-                <p className="text-sm text-muted-foreground">Game Developer</p>
-              </div>
-            </div>
+        <motion.button
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+          className="group relative p-6 rounded-full border border-border bg-card/80 backdrop-blur-sm hover:border-neon-cyan transition-all duration-500 cursor-pointer"
+          whileHover={{ 
+            scale: 1.1,
+            boxShadow: "0 0 40px rgba(0, 255, 255, 0.3)"
+          }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {/* Animated rings */}
+          <motion.div
+            className="absolute inset-0 rounded-full border border-neon-cyan/30"
+            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute inset-0 rounded-full border border-neon-purple/20"
+            animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          />
+          
+          {/* Icon container */}
+          <motion.div
+            className="relative z-10"
+            animate={{ y: [0, -4, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <ArrowUpRight className="w-8 h-8 text-foreground group-hover:text-neon-cyan transition-colors rotate-[-45deg]" />
+          </motion.div>
+        </motion.button>
+      </motion.div>
 
-            {/* Quick Links */}
-            <div className="flex items-center gap-8">
-              <a href="#projects" className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors">
-                Projects
-              </a>
-              <a href="#experience" className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors">
-                Experience
-              </a>
-              <a href="#skills" className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors">
-                Skills
-              </a>
-              <a href="#contact" className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors">
-                Contact
-              </a>
-            </div>
-
-            {/* Social Icons */}
-            <div className="flex items-center gap-4">
-              <a
-                href="https://linkedin.com/in/krushnachaudhary"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="mailto:krushnachaudhary.kc@gmail.com"
-                className="p-2 rounded-lg border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-
-          {/* Bottom bar */}
-          <div className="mt-8 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-sm text-muted-foreground">
-              © 2024 Krushna Chaudhary. Crafted with passion for games.
-            </p>
-            <p className="text-xs text-muted-foreground/60">
-              4+ years of game development experience
-            </p>
-          </div>
-        </div>
-      </motion.footer>
+      {/* Simple copyright */}
+      <div className="mt-12 pb-8 text-center">
+        <p className="text-sm text-muted-foreground/60">
+          © 2024 Krushna Chaudhary
+        </p>
+      </div>
     </section>
   );
 };
