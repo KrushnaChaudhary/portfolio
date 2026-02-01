@@ -302,10 +302,6 @@ Monster Mayhem is a cooperative PVE game where players fight hordes of zombies w
 // Project list for the main projects page (order matters)
 export const projectsList = [
   {
-    slug: "rann-bhumi",
-    ...projectsData["rann-bhumi"],
-  },
-  {
     slug: "puzzles-and-cats",
     ...projectsData["puzzles-and-cats"],
   },
@@ -324,6 +320,10 @@ export const projectsList = [
   {
     slug: "looper",
     ...projectsData["looper"],
+  },
+  {
+    slug: "rann-bhumi",
+    ...projectsData["rann-bhumi"],
   },
   {
     slug: "rummy-3d",

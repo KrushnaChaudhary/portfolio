@@ -106,13 +106,13 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Main Content - Gallery + About Side by Side */}
+      {/* Main Content - Gallery/Video + About Side by Side */}
       <section className="pb-12">
         <div className="container px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
-              {/* Auto-scrolling Gallery */}
-              {project.gallery && project.gallery.length > 0 && (
+              {/* Left side: Gallery OR YouTube Video */}
+              {project.gallery && project.gallery.length > 0 ? (
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -155,7 +155,27 @@ const ProjectDetail = () => {
                     </div>
                   </div>
                 </motion.div>
-              )}
+              ) : project.youtubeId ? (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="lg:sticky lg:top-24"
+                >
+                  <h2 className="font-display text-2xl font-bold text-foreground mb-6">
+                    Trailer
+                  </h2>
+                  <div className="aspect-video rounded-2xl overflow-hidden border border-border">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=0&rel=0`}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      title={`${project.title} trailer`}
+                    />
+                  </div>
+                </motion.div>
+              ) : null}
 
               {/* About + My Role + Features */}
               <motion.div
@@ -237,8 +257,8 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* YouTube Video */}
-      {project.youtubeId && (
+      {/* YouTube Video - Only show separately if there's a gallery (otherwise it's shown beside About) */}
+      {project.youtubeId && project.gallery && project.gallery.length > 0 && (
         <section className="pb-12">
           <div className="container px-6">
             <motion.div
@@ -248,7 +268,7 @@ const ProjectDetail = () => {
               className="max-w-5xl mx-auto"
             >
               <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
-                Gameplay Video
+                Trailer
               </h2>
               <div className="aspect-video rounded-2xl overflow-hidden border border-border">
                 <iframe
