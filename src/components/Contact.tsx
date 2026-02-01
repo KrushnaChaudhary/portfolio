@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Linkedin, Instagram, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Phone, Linkedin, ArrowUpRight } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -97,15 +97,6 @@ const Contact = () => {
                   >
                     <Linkedin className="w-5 h-5" />
                     <span className="font-medium">LinkedIn</span>
-                  </a>
-                  <a
-                    href="https://www.instagram.com/thekvcxo"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 p-4 rounded-xl border border-border hover:border-neon-pink hover:text-neon-pink transition-all duration-300 hover:box-glow-pink"
-                  >
-                    <Instagram className="w-5 h-5" />
-                    <span className="font-medium">Instagram</span>
                   </a>
                 </div>
 

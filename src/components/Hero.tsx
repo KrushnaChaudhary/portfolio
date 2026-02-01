@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronDown, Linkedin, Instagram, Mail } from "lucide-react";
+import { ChevronDown, Linkedin, Mail } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -85,14 +85,6 @@ const Hero = () => {
               className="p-3 rounded-full border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all duration-300 hover:box-glow-cyan"
             >
               <Linkedin className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.instagram.com/thekvcxo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-3 rounded-full border border-border hover:border-neon-pink hover:text-neon-pink transition-all duration-300 hover:box-glow-pink"
-            >
-              <Instagram className="w-5 h-5" />
             </a>
             <a
               href="mailto:krushnachaudhary.kc@gmail.com"
