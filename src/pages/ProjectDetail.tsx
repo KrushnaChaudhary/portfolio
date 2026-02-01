@@ -1,16 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { projectsData } from "@/data/projectsData";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? projectsData[slug] : null;
   const galleryRef = useRef<HTMLDivElement>(null);
-  const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-scroll gallery effect
+  // Auto-scroll gallery effect (continuous, no pause)
   useEffect(() => {
     if (!project?.gallery || project.gallery.length === 0) return;
     
@@ -22,7 +21,7 @@ const ProjectDetail = () => {
     const scrollSpeed = 0.5; // pixels per frame
 
     const animate = () => {
-      if (!isPaused && gallery) {
+      if (gallery) {
         scrollPosition += scrollSpeed;
         
         // Reset to start when reaching the end (seamless loop)
@@ -40,7 +39,7 @@ const ProjectDetail = () => {
     return () => {
       cancelAnimationFrame(animationId);
     };
-  }, [project?.gallery, isPaused]);
+  }, [project?.gallery]);
 
   if (!project) {
     return (
@@ -126,10 +125,6 @@ const ProjectDetail = () => {
                   <div 
                     ref={galleryRef}
                     className="overflow-hidden rounded-2xl border border-border bg-card/30"
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
-                    onTouchStart={() => setIsPaused(true)}
-                    onTouchEnd={() => setIsPaused(false)}
                   >
                     <div className="flex gap-4 p-4" style={{ width: 'max-content' }}>
                       {project.gallery.map((img, idx) => (
@@ -159,54 +154,69 @@ const ProjectDetail = () => {
                       ))}
                     </div>
                   </div>
-                  <p className="text-xs text-muted-foreground mt-2 text-center">
-                    Hover to pause
-                  </p>
                 </motion.div>
               )}
 
-              {/* About + Features */}
+              {/* About + My Role + Features */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
                 className="space-y-8"
               >
-                {/* About */}
+                {/* About the Game */}
                 <div>
-                  <h2 className="font-display text-2xl font-bold text-foreground mb-6">
-                    About the Project
+                  <h2 className="font-display text-2xl font-bold text-foreground mb-4">
+                    About the Game
                   </h2>
                   <div className="prose prose-invert max-w-none">
                     {project.fullDescription.split('\n\n').map((paragraph, idx) => (
-                      <p key={idx} className="text-muted-foreground mb-4 leading-relaxed">
+                      <p key={idx} className="text-muted-foreground mb-3 leading-relaxed">
                         {paragraph}
                       </p>
                     ))}
                   </div>
                 </div>
 
-                {/* Key Features */}
-                <div>
-                  <h2 className="font-display text-2xl font-bold text-foreground mb-6">
-                    Key Features
+                {/* My Role - Clear contribution section */}
+                <div className="p-6 rounded-2xl bg-neon-purple/5 border border-neon-purple/20">
+                  <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-neon-purple" />
+                    What I Worked On
                   </h2>
-                  <ul className="space-y-3">
-                    {project.highlights.map((highlight) => (
+                  <ul className="space-y-2">
+                    {project.myRole.map((item, idx) => (
                       <li
-                        key={highlight}
-                        className="flex items-start gap-3 text-muted-foreground"
+                        key={idx}
+                        className="flex items-start gap-3 text-muted-foreground text-sm"
                       >
-                        <span className="w-2 h-2 rounded-full bg-neon-purple mt-2 flex-shrink-0" />
-                        {highlight}
+                        <span className="text-neon-cyan mt-1">→</span>
+                        {item}
                       </li>
                     ))}
                   </ul>
                 </div>
 
+                {/* Game Features */}
+                <div>
+                  <h2 className="font-display text-lg font-bold text-foreground mb-4">
+                    Game Features
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {project.highlights.map((highlight) => (
+                      <span
+                        key={highlight}
+                        className="px-3 py-1.5 text-sm rounded-full bg-card border border-border text-muted-foreground"
+                      >
+                        {highlight}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
                 {/* Store Links */}
                 {project.storeLinks && project.storeLinks.length > 0 && (
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-4 pt-4">
                     {project.storeLinks.map((link) => (
                       <a
                         key={link.platform}
