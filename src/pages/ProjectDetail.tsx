@@ -7,6 +7,12 @@ import looperCollage from "@/assets/looper-collage.png";
 import dominoesCollage from "@/assets/dominoes-collage.png";
 import gridFillerCollage from "@/assets/grid-filler-collage.png";
 import puzzlesCatsThumbnail from "@/assets/puzzles-cats-thumbnail.png";
+import looperStore1 from "@/assets/looper-store-1.png";
+import looperStore2 from "@/assets/looper-store-2.png";
+import looperStore3 from "@/assets/looper-store-3.png";
+import dominoesStore1 from "@/assets/dominoes-store-1.png";
+import dominoesStore2 from "@/assets/dominoes-store-2.png";
+import dominoesStore3 from "@/assets/dominoes-store-3.png";
 
 const projectsData: Record<string, {
   title: string;
@@ -139,7 +145,7 @@ Owned the full UI/UX design and implementation, along with deep Analytics integr
     storeLinks: [
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.dominodrop" },
     ],
-    gallery: [],
+    gallery: [dominoesStore1, dominoesStore2, dominoesStore3],
   },
   "looper": {
     title: "Looper",
@@ -166,7 +172,7 @@ The transition required careful balance of maintaining casual accessibility whil
     storeLinks: [
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.looper" },
     ],
-    gallery: [],
+    gallery: [looperStore1, looperStore2, looperStore3],
   },
 };
 
