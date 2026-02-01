@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Gamepad2, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import { projectsData } from "@/data/projectsData";
 
 const ProjectDetail = () => {
@@ -44,7 +44,7 @@ const ProjectDetail = () => {
       </motion.header>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-12 relative">
+      <section className="pt-24 pb-8 relative">
         <div className="container px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -72,16 +72,49 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Main Image/Video */}
-      <section className="pb-16">
-        <div className="container px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="max-w-5xl mx-auto"
-          >
-            {project.youtubeId ? (
+      {/* Gallery Section - Above About */}
+      {project.gallery && project.gallery.length > 0 && (
+        <section className="pb-12">
+          <div className="container px-6">
+            <div className="max-w-5xl mx-auto">
+              <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
+                Gallery
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {project.gallery.map((img, idx) => (
+                  <motion.div 
+                    key={idx} 
+                    className="aspect-[9/16] rounded-xl overflow-hidden border border-border"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.1 }}
+                  >
+                    <img 
+                      src={img} 
+                      alt={`${project.title} screenshot ${idx + 1}`} 
+                      className="w-full h-full object-cover" 
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* YouTube Video - After Gallery */}
+      {project.youtubeId && (
+        <section className="pb-12">
+          <div className="container px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="max-w-5xl mx-auto"
+            >
+              <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
+                Gameplay Video
+              </h2>
               <div className="aspect-video rounded-2xl overflow-hidden border border-border">
                 <iframe
                   src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=0&rel=0`}
@@ -91,22 +124,10 @@ const ProjectDetail = () => {
                   title={`${project.title} trailer`}
                 />
               </div>
-            ) : project.image ? (
-              <div className="aspect-video rounded-2xl overflow-hidden border border-border">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ) : (
-              <div className="aspect-video rounded-2xl overflow-hidden border border-border bg-gradient-to-br from-muted to-card flex items-center justify-center">
-                <Gamepad2 className="w-24 h-24 text-muted-foreground/30" />
-              </div>
-            )}
-          </motion.div>
-        </div>
-      </section>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Store Links */}
       {project.storeLinks && project.storeLinks.length > 0 && (
@@ -177,37 +198,6 @@ const ProjectDetail = () => {
           </div>
         </div>
       </section>
-
-      {/* Gallery */}
-      {project.gallery && project.gallery.length > 0 && (
-        <section className="pb-24">
-          <div className="container px-6">
-            <div className="max-w-5xl mx-auto">
-              <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
-                Gallery
-              </h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {project.gallery.map((img, idx) => (
-                  <motion.div 
-                    key={idx} 
-                    className="aspect-[9/16] rounded-xl overflow-hidden border border-border"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                  >
-                    <img 
-                      src={img} 
-                      alt={`${project.title} screenshot ${idx + 1}`} 
-                      className="w-full h-full object-cover" 
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* CTA */}
       <section className="pb-24">
