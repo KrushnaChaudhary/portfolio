@@ -1,8 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Gamepad2, ExternalLink } from "lucide-react";
+import { ArrowLeft, Gamepad2, ExternalLink, Play } from "lucide-react";
 import rannBhumiImg from "@/assets/rann-bhumi.jpg";
 import miniGolfImg from "@/assets/mini-golf.png";
+import looperScreenshot from "@/assets/looper-screenshot.png";
+import dominoesScreenshot from "@/assets/dominoes-logic-screenshot.png";
 
 const projectsData: Record<string, {
   title: string;
@@ -13,6 +15,8 @@ const projectsData: Record<string, {
   highlights: string[];
   fullDescription: string;
   videoUrl?: string;
+  youtubeId?: string;
+  storeLinks?: { platform: string; url: string }[];
   gallery?: string[];
 }> = {
   "rann-bhumi": {
@@ -37,7 +41,7 @@ Built a killstreak system based on classical Indian godly weapons, similar to Ca
 Integrated all the sounds in the game. Playtested and balanced the game by tweaking character, weapon and killstreak stats, and attack behaviours.
 
 Technical highlights include authoritative server logic with Photon PUN 2, state synchronization, and optimization to maintain 60 FPS on mid-range devices.`,
-    videoUrl: undefined,
+    youtubeId: "6MYYo47iuLM",
     gallery: [],
   },
   "mini-golf": {
@@ -60,7 +64,31 @@ Technical highlights include authoritative server logic with Photon PUN 2, state
 Revamped the aesthetics of the game through stylized props, environment setting, and colour scheme.
 
 Solo-developed this multiplayer Mini Golf title from scratch, managing physics, networking, and UX. Achieved 58K+ unique plays through continuous iteration based on live player data.`,
-    videoUrl: undefined,
+    gallery: [],
+  },
+  "grid-filler": {
+    title: "Grid Filler: Shikaku Tiles",
+    subtitle: "Logic Puzzle Game",
+    description:
+      "A clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning.",
+    image: null,
+    tags: ["Unity", "Puzzle", "Mobile", "LiveOps"],
+    highlights: [
+      "1000+ challenging levels",
+      "Daily puzzles with unique grids",
+      "Competitive leaderboards",
+      "Train your brain mechanics",
+      "Clean, satisfying UX",
+      "Cross-platform support",
+    ],
+    fullDescription: `Grid Filler: Shikaku Tiles is a clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning.
+
+Divide each grid into squares and tiles, making sure every section matches its number exactly. The rules are simple, but every decision matters. One misplaced tile can block the whole board, while a smart move reveals a smooth, elegant solution.
+
+Features include 1000+ levels, daily puzzles, competitive leaderboards, and a spin-the-wheel reward system. The game focuses on training your brain through meaningful logic rather than random guessing.`,
+    storeLinks: [
+      { platform: "App Store", url: "https://apps.apple.com/vn/app/grid-filler-shikaku-tiles/id6756872108" },
+    ],
     gallery: [],
   },
   "puzzles-and-cats": {
@@ -81,7 +109,6 @@ Solo-developed this multiplayer Mini Golf title from scratch, managing physics, 
     fullDescription: `Developed core meta-systems for this LiveOps mobile game, focusing on Shop, Economy, and Procedural Logic systems.
 
 Built robust LiveOps pipelines using remote-configurable data, enabling safe updates without requiring new app builds. This approach significantly reduced deployment risk and accelerated feature iteration.`,
-    videoUrl: undefined,
     gallery: [],
   },
   "dominoes-logic": {
@@ -89,7 +116,7 @@ Built robust LiveOps pipelines using remote-configurable data, enabling safe upd
     subtitle: "Live Puzzle Game",
     description:
       "Developed dynamic grid generation, FTUE, and Level Editors. Owned full UI/UX and Analytics integration for the live title.",
-    image: null,
+    image: dominoesScreenshot,
     tags: ["Unity", "Puzzle", "Level Editor", "Analytics"],
     highlights: [
       "Dynamic grid generation system",
@@ -99,10 +126,16 @@ Built robust LiveOps pipelines using remote-configurable data, enabling safe upd
       "Complete UI/UX ownership",
       "Live title maintenance",
     ],
-    fullDescription: `Developed dynamic grid generation systems and created comprehensive Level Editors for the design team. Implemented the First Time User Experience (FTUE) flow to onboard new players effectively.
+    fullDescription: `Every move matters. Place tiles carefully, align numbers, and watch the board come together, one smart decision at a time.
+
+Dominoes Logic is a clean number puzzle built around thoughtful domino placement and satisfying pattern completion. Each level challenges you to read the grid, think ahead, and fit the right tiles together to clear the board smoothly.
+
+Developed dynamic grid generation systems and created comprehensive Level Editors for the design team. Implemented the First Time User Experience (FTUE) flow to onboard new players effectively.
 
 Owned the full UI/UX design and implementation, along with deep Analytics integration to track player behavior and game performance metrics.`,
-    videoUrl: undefined,
+    storeLinks: [
+      { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.dominodrop" },
+    ],
     gallery: [],
   },
   "looper": {
@@ -110,20 +143,26 @@ Owned the full UI/UX design and implementation, along with deep Analytics integr
     subtitle: "Hybrid-Casual Overhaul",
     description:
       "Led the transition from Hyper-casual to Hybrid-casual, implementing retention features and designer-facing economy structures to drive LTV.",
-    image: null,
+    image: looperScreenshot,
     tags: ["Unity", "Hybrid-Casual", "Retention", "Economy"],
     highlights: [
+      "10Cr+ downloads achieved",
       "Hyper to Hybrid-casual transition",
       "Retention feature implementation",
       "Economy system architecture",
       "LTV optimization strategies",
       "Designer-facing tools",
-      "Player engagement systems",
     ],
-    fullDescription: `Led the strategic transition of Looper from a Hyper-casual to Hybrid-casual game model. This involved implementing retention features and creating designer-facing economy structures to drive long-term value (LTV).
+    fullDescription: `Dive into Looper, the musical puzzle game that tests your timing and sense of harmony. Every tap sets a vibrant beat in motion, weaving through intricate constellations. Precision is crucial—mistimed taps could lead to a crash, but nail it, and bask in the gratifying loop of harmonious success.
+
+This isn't just a rhythm game; it's a musical journey that resonates with the soul. Looper offers an array of meticulously crafted levels to satisfy your puzzle-solving cravings. Each level unfolds a new musical track, keeping the experience fresh and engaging.
+
+Led the strategic transition of Looper from a Hyper-casual to Hybrid-casual game model. This involved implementing retention features and creating designer-facing economy structures to drive long-term value (LTV).
 
 The transition required careful balance of maintaining casual accessibility while adding depth through meta-progression and engagement loops.`,
-    videoUrl: undefined,
+    storeLinks: [
+      { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.looper" },
+    ],
     gallery: [],
   },
 };
@@ -137,8 +176,8 @@ const ProjectDetail = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-display text-foreground mb-4">Project Not Found</h1>
-          <Link to="/" className="text-neon-cyan hover:underline">
-            ← Back to Home
+          <Link to="/#projects" className="text-neon-cyan hover:underline">
+            ← Back to Projects
           </Link>
         </div>
       </div>
@@ -161,10 +200,10 @@ const ProjectDetail = () => {
             <ArrowLeft className="w-5 h-5" />
             <span className="font-display text-sm tracking-wider">BACK TO PROJECTS</span>
           </Link>
-          <span className="font-display font-bold text-xl">
+          <Link to="/" className="font-display font-bold text-xl">
             <span className="text-neon-cyan">K</span>
             <span className="text-foreground">C</span>
-          </span>
+          </Link>
         </div>
       </motion.header>
 
@@ -206,13 +245,14 @@ const ProjectDetail = () => {
             transition={{ delay: 0.2 }}
             className="max-w-5xl mx-auto"
           >
-            {project.videoUrl ? (
+            {project.youtubeId ? (
               <div className="aspect-video rounded-2xl overflow-hidden border border-border">
                 <iframe
-                  src={project.videoUrl}
+                  src={`https://www.youtube.com/embed/${project.youtubeId}`}
                   className="w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  title={`${project.title} trailer`}
                 />
               </div>
             ) : project.image ? (
@@ -231,6 +271,28 @@ const ProjectDetail = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* Store Links */}
+      {project.storeLinks && project.storeLinks.length > 0 && (
+        <section className="pb-8">
+          <div className="container px-6">
+            <div className="max-w-5xl mx-auto flex flex-wrap gap-4 justify-center">
+              {project.storeLinks.map((link) => (
+                <a
+                  key={link.platform}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-display font-semibold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 hover:bg-neon-cyan/20 transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  {link.platform}
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Content */}
       <section className="pb-24">
@@ -316,7 +378,7 @@ const ProjectDetail = () => {
               to="/#contact"
               className="inline-block py-3 px-8 rounded-xl font-display font-semibold bg-gradient-to-r from-neon-cyan to-neon-purple text-primary-foreground hover:opacity-90 transition-opacity"
             >
-              GET IN TOUCH
+              HIRE ME
             </Link>
           </motion.div>
         </div>

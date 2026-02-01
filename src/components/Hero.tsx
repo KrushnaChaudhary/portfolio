@@ -67,9 +67,9 @@ const Hero = () => {
             transition={{ delay: 0.6 }}
           >
             4+ years crafting immersive gameplay experiences. Specializing in{" "}
-            <span className="text-neon-cyan">AI Systems</span>,{" "}
-            <span className="text-neon-purple">Multiplayer Programming</span>, and{" "}
-            <span className="text-neon-gold">LiveOps</span>.
+            <span className="text-neon-cyan">Gameplay Programming</span>,{" "}
+            <span className="text-neon-purple">AI Systems</span>, and{" "}
+            <span className="text-neon-gold">Designer-Friendly Architecture</span>.
           </motion.p>
 
           <motion.div
