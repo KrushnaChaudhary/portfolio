@@ -3,7 +3,7 @@ import miniGolfImg from "@/assets/mini-golf.png";
 import looperCollage from "@/assets/looper-collage.png";
 import dominoesCollage from "@/assets/dominoes-collage.png";
 import gridFillerCollage from "@/assets/grid-filler-collage.png";
-import puzzlesCatsCollage from "@/assets/puzzles-cats-collage.png";
+import puzzlesCatsThumbnail from "@/assets/puzzles-cats-thumbnail.png";
 import looperStore1 from "@/assets/looper-store-1.png";
 import looperStore2 from "@/assets/looper-store-2.png";
 import looperStore3 from "@/assets/looper-store-3.png";
@@ -14,11 +14,6 @@ import gridFiller1 from "@/assets/grid-filler-1.webp";
 import gridFiller2 from "@/assets/grid-filler-2.webp";
 import gridFiller3 from "@/assets/grid-filler-3.webp";
 import gridFiller4 from "@/assets/grid-filler-4.webp";
-import puzzlesCats1 from "@/assets/puzzles-cats-1.png";
-import puzzlesCats2 from "@/assets/puzzles-cats-2.png";
-import puzzlesCats3 from "@/assets/puzzles-cats-3.png";
-import puzzlesCats4 from "@/assets/puzzles-cats-4.png";
-import puzzlesCats5 from "@/assets/puzzles-cats-5.png";
 
 export interface ProjectData {
   title: string;
@@ -89,7 +84,7 @@ Features include 1000+ levels, daily puzzles, competitive leaderboards, and a sp
     subtitle: "LiveOps Mobile Game",
     description:
       "Developed core meta-systems including Shop, Economy, and Procedural Logic. Built LiveOps pipelines using remote-configurable data for safe, no-build updates.",
-    image: puzzlesCatsCollage,
+    image: puzzlesCatsThumbnail,
     tags: ["Unity", "LiveOps", "Meta-Systems", "Mobile"],
     highlights: [
       "Remote-configurable updates",
@@ -103,7 +98,7 @@ Features include 1000+ levels, daily puzzles, competitive leaderboards, and a sp
 
 Built robust LiveOps pipelines using remote-configurable data, enabling safe updates without requiring new app builds. This approach significantly reduced deployment risk and accelerated feature iteration.`,
     youtubeId: "gnA_2x3F1SU",
-    gallery: [puzzlesCats1, puzzlesCats2, puzzlesCats3, puzzlesCats4, puzzlesCats5],
+    gallery: [],
   },
   "dominoes-logic": {
     title: "Dominoes Logic",
