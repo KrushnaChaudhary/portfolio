@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Gamepad2, ExternalLink, Play } from "lucide-react";
 import rannBhumiImg from "@/assets/rann-bhumi.jpg";
 import miniGolfImg from "@/assets/mini-golf.png";
-import looperThumbnail from "@/assets/looper-thumbnail.png";
-import dominoesThumbnail from "@/assets/dominoes-thumbnail.png";
-import gridFillerScreenshot from "@/assets/grid-filler-screenshot.png";
+import looperCollage from "@/assets/looper-collage.png";
+import dominoesCollage from "@/assets/dominoes-collage.png";
+import gridFillerCollage from "@/assets/grid-filler-collage.png";
 import puzzlesCatsThumbnail from "@/assets/puzzles-cats-thumbnail.png";
 
 const projectsData: Record<string, {
@@ -73,7 +73,7 @@ Solo-developed this multiplayer Mini Golf title from scratch, managing physics, 
     subtitle: "Logic Puzzle Game",
     description:
       "A clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning.",
-    image: gridFillerScreenshot,
+    image: gridFillerCollage,
     tags: ["Unity", "Puzzle", "Mobile", "LiveOps"],
     highlights: [
       "1000+ challenging levels",
@@ -119,7 +119,7 @@ Built robust LiveOps pipelines using remote-configurable data, enabling safe upd
     subtitle: "Live Puzzle Game",
     description:
       "Developed dynamic grid generation, FTUE, and Level Editors. Owned full UI/UX and Analytics integration for the live title.",
-    image: dominoesThumbnail,
+    image: dominoesCollage,
     tags: ["Unity", "Puzzle", "Level Editor", "Analytics"],
     highlights: [
       "Dynamic grid generation system",
@@ -146,7 +146,7 @@ Owned the full UI/UX design and implementation, along with deep Analytics integr
     subtitle: "Hybrid-Casual Overhaul",
     description:
       "Led the transition from Hyper-casual to Hybrid-casual, implementing retention features and designer-facing economy structures to drive LTV.",
-    image: looperThumbnail,
+    image: looperCollage,
     tags: ["Unity", "Hybrid-Casual", "Retention", "Economy"],
     highlights: [
       "10Cr+ downloads achieved",

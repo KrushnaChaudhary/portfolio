@@ -3,9 +3,9 @@ import { Gamepad2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import rannBhumiImg from "@/assets/rann-bhumi.jpg";
 import miniGolfImg from "@/assets/mini-golf.png";
-import looperThumbnail from "@/assets/looper-thumbnail.png";
-import dominoesThumbnail from "@/assets/dominoes-thumbnail.png";
-import gridFillerScreenshot from "@/assets/grid-filler-screenshot.png";
+import looperCollage from "@/assets/looper-collage.png";
+import dominoesCollage from "@/assets/dominoes-collage.png";
+import gridFillerCollage from "@/assets/grid-filler-collage.png";
 import puzzlesCatsThumbnail from "@/assets/puzzles-cats-thumbnail.png";
 
 const projects = [
@@ -25,27 +25,12 @@ const projects = [
     ],
   },
   {
-    slug: "mini-golf",
-    title: "Mini Golf",
-    subtitle: "Multiplayer Roblox Game",
-    description:
-      "Solo-developed a multiplayer Mini Golf title reaching 58K+ unique plays. Managed physics, networking, and UX iteration based on live player data.",
-    image: miniGolfImg,
-    tags: ["Roblox", "Lua", "Multiplayer", "Physics"],
-    highlights: [
-      "58K+ unique plays",
-      "5 unique levels",
-      "Custom physics system",
-      "Live data-driven iteration",
-    ],
-  },
-  {
     slug: "grid-filler",
     title: "Grid Filler: Shikaku Tiles",
     subtitle: "Logic Puzzle Game",
     description:
       "A clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning. Features 1000+ levels, daily puzzles, and competitive leaderboards.",
-    image: gridFillerScreenshot,
+    image: gridFillerCollage,
     tags: ["Unity", "Puzzle", "Mobile", "LiveOps"],
     highlights: [
       "1000+ levels",
@@ -75,7 +60,7 @@ const projects = [
     subtitle: "Live Puzzle Game",
     description:
       "Developed dynamic grid generation, FTUE, and Level Editors. Owned full UI/UX and Analytics integration for the live title.",
-    image: dominoesThumbnail,
+    image: dominoesCollage,
     tags: ["Unity", "Puzzle", "Level Editor", "Analytics"],
     highlights: [
       "Dynamic grid generation",
@@ -90,13 +75,28 @@ const projects = [
     subtitle: "Hybrid-Casual Overhaul",
     description:
       "Led the transition from Hyper-casual to Hybrid-casual, implementing retention features and designer-facing economy structures to drive LTV.",
-    image: looperThumbnail,
+    image: looperCollage,
     tags: ["Unity", "Hybrid-Casual", "Retention", "Economy"],
     highlights: [
       "10Cr+ downloads",
       "Hyper → Hybrid transition",
       "Retention features",
       "LTV optimization",
+    ],
+  },
+  {
+    slug: "mini-golf",
+    title: "Mini Golf",
+    subtitle: "Multiplayer Roblox Game",
+    description:
+      "Solo-developed a multiplayer Mini Golf title reaching 58K+ unique plays. Managed physics, networking, and UX iteration based on live player data.",
+    image: miniGolfImg,
+    tags: ["Roblox", "Lua", "Multiplayer", "Physics"],
+    highlights: [
+      "58K+ unique plays",
+      "5 unique levels",
+      "Custom physics system",
+      "Live data-driven iteration",
     ],
   },
 ];
