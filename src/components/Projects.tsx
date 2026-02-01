@@ -42,7 +42,7 @@ const imageVariants = {
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-24 relative overflow-x-hidden">
+    <section id="projects" className="py-24 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/20 to-transparent pointer-events-none" />
       

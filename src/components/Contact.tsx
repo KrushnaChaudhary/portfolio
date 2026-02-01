@@ -3,11 +3,11 @@ import { Mail, MapPin, Phone, Linkedin, ArrowUpRight, Gamepad2 } from "lucide-re
 
 const Contact = () => {
   return (
-    <section className="py-24 relative overflow-x-hidden">
+    <section className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 grid-pattern opacity-50" />
       
       {/* Glow effects */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[600px] h-[200px] md:h-[300px] bg-neon-cyan/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-neon-cyan/10 rounded-full blur-3xl" />
       
       <div className="container relative z-10 px-6">
         <motion.div
