@@ -92,7 +92,7 @@ const ProjectDetail = () => {
                     <img 
                       src={img} 
                       alt={`${project.title} screenshot ${idx + 1}`} 
-                      className="w-full h-full object-cover" 
+                      className="w-full h-full object-contain bg-card" 
                     />
                   </motion.div>
                 ))}

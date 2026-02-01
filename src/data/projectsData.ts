@@ -16,6 +16,10 @@ import gridFiller3 from "@/assets/grid-filler-3.webp";
 import gridFiller4 from "@/assets/grid-filler-4.webp";
 import puzzlesCats1 from "@/assets/puzzles-cats-1.png";
 import puzzlesCats2 from "@/assets/puzzles-cats-2.png";
+import puzzlesCats3 from "@/assets/puzzles-cats-3.png";
+import puzzlesCats4 from "@/assets/puzzles-cats-4.png";
+import puzzlesCats5 from "@/assets/puzzles-cats-5.png";
+import puzzlesCats6 from "@/assets/puzzles-cats-6.png";
 
 export interface ProjectData {
   title: string;
@@ -100,7 +104,7 @@ Features include 1000+ levels, daily puzzles, competitive leaderboards, and a sp
 
 Built robust LiveOps pipelines using remote-configurable data, enabling safe updates without requiring new app builds. This approach significantly reduced deployment risk and accelerated feature iteration.`,
     youtubeId: "gnA_2x3F1SU",
-    gallery: [puzzlesCats1, puzzlesCats2],
+    gallery: [puzzlesCats1, puzzlesCats2, puzzlesCats3, puzzlesCats4, puzzlesCats5, puzzlesCats6],
   },
   "dominoes-logic": {
     title: "Dominoes Logic",
@@ -187,12 +191,12 @@ export const projectsList = [
     ...projectsData["rann-bhumi"],
   },
   {
-    slug: "grid-filler",
-    ...projectsData["grid-filler"],
-  },
-  {
     slug: "puzzles-and-cats",
     ...projectsData["puzzles-and-cats"],
+  },
+  {
+    slug: "grid-filler",
+    ...projectsData["grid-filler"],
   },
   {
     slug: "dominoes-logic",
