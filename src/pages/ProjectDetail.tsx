@@ -55,7 +55,7 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Header */}
       <motion.header
         initial={{ opacity: 0, y: -20 }}
