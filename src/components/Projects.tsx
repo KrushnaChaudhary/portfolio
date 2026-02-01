@@ -41,6 +41,9 @@ const imageVariants = {
 };
 
 const Projects = () => {
+  // Skip first 3 projects as they're shown in hero
+  const remainingProjects = projectsList.slice(3);
+
   return (
     <section id="projects" className="py-24 relative overflow-hidden">
       {/* Background gradient */}
@@ -55,11 +58,11 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-foreground">FEATURED</span>{" "}
+            <span className="text-foreground">MORE</span>{" "}
             <span className="text-neon-purple text-glow-purple">PROJECTS</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Games and systems I've built across my career
+            Additional games and systems I've shipped
           </p>
         </motion.div>
 
@@ -70,7 +73,7 @@ const Projects = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {projectsList.map((project, index) => (
+          {remainingProjects.map((project, index) => (
             <motion.div
               key={project.title}
               variants={cardVariants}
