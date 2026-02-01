@@ -5,6 +5,7 @@ import rannBhumiImg from "@/assets/rann-bhumi.jpg";
 import miniGolfImg from "@/assets/mini-golf.png";
 import looperScreenshot from "@/assets/looper-screenshot.png";
 import dominoesScreenshot from "@/assets/dominoes-logic-screenshot.png";
+import gridFillerScreenshot from "@/assets/grid-filler-screenshot.png";
 
 const projectsData: Record<string, {
   title: string;
@@ -71,7 +72,7 @@ Solo-developed this multiplayer Mini Golf title from scratch, managing physics, 
     subtitle: "Logic Puzzle Game",
     description:
       "A clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning.",
-    image: null,
+    image: gridFillerScreenshot,
     tags: ["Unity", "Puzzle", "Mobile", "LiveOps"],
     highlights: [
       "1000+ challenging levels",
