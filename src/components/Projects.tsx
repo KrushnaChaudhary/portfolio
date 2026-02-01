@@ -1,105 +1,7 @@
 import { motion } from "framer-motion";
 import { Gamepad2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import rannBhumiImg from "@/assets/rann-bhumi.jpg";
-import miniGolfImg from "@/assets/mini-golf.png";
-import looperCollage from "@/assets/looper-collage.png";
-import dominoesCollage from "@/assets/dominoes-collage.png";
-import gridFillerCollage from "@/assets/grid-filler-collage.png";
-import puzzlesCatsThumbnail from "@/assets/puzzles-cats-thumbnail.png";
-
-const projects = [
-  {
-    slug: "rann-bhumi",
-    title: "Rann Bhumi",
-    subtitle: "5v5 Combat Title",
-    description:
-      "A mythological combat game inspired by Kurukshetra. Developed class-based weapons, killstreak systems based on classical Indian godly weapons, and Photon PUN 2 networking with authoritative server logic.",
-    image: rannBhumiImg,
-    tags: ["Unity", "Photon PUN 2", "Combat", "Multiplayer"],
-    highlights: [
-      "5 unique character classes",
-      "Killstreak system (CoD-inspired)",
-      "NFT integration",
-      "60 FPS on mid-range devices",
-    ],
-  },
-  {
-    slug: "grid-filler",
-    title: "Grid Filler: Shikaku Tiles",
-    subtitle: "Logic Puzzle Game",
-    description:
-      "A clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning. Features 1000+ levels, daily puzzles, and competitive leaderboards.",
-    image: gridFillerCollage,
-    tags: ["Unity", "Puzzle", "Mobile", "LiveOps"],
-    highlights: [
-      "1000+ levels",
-      "Daily puzzles",
-      "Competitive leaderboards",
-      "App Store featured",
-    ],
-  },
-  {
-    slug: "puzzles-and-cats",
-    title: "Puzzles & Cats",
-    subtitle: "LiveOps Mobile Game",
-    description:
-      "Developed core meta-systems including Shop, Economy, and Procedural Logic. Built LiveOps pipelines using remote-configurable data for safe, no-build updates.",
-    image: puzzlesCatsThumbnail,
-    tags: ["Unity", "LiveOps", "Meta-Systems", "Mobile"],
-    highlights: [
-      "Remote-configurable updates",
-      "Economy system",
-      "Procedural content",
-      "Shop integration",
-    ],
-  },
-  {
-    slug: "dominoes-logic",
-    title: "Dominoes Logic",
-    subtitle: "Live Puzzle Game",
-    description:
-      "Developed dynamic grid generation, FTUE, and Level Editors. Owned full UI/UX and Analytics integration for the live title.",
-    image: dominoesCollage,
-    tags: ["Unity", "Puzzle", "Level Editor", "Analytics"],
-    highlights: [
-      "Dynamic grid generation",
-      "Custom level editor",
-      "FTUE system",
-      "Full analytics suite",
-    ],
-  },
-  {
-    slug: "looper",
-    title: "Looper",
-    subtitle: "Hybrid-Casual Overhaul",
-    description:
-      "Led the transition from Hyper-casual to Hybrid-casual, implementing retention features and designer-facing economy structures to drive LTV.",
-    image: looperCollage,
-    tags: ["Unity", "Hybrid-Casual", "Retention", "Economy"],
-    highlights: [
-      "10Cr+ downloads",
-      "Hyper → Hybrid transition",
-      "Retention features",
-      "LTV optimization",
-    ],
-  },
-  {
-    slug: "mini-golf",
-    title: "Mini Golf",
-    subtitle: "Multiplayer Roblox Game",
-    description:
-      "Solo-developed a multiplayer Mini Golf title reaching 58K+ unique plays. Managed physics, networking, and UX iteration based on live player data.",
-    image: miniGolfImg,
-    tags: ["Roblox", "Lua", "Multiplayer", "Physics"],
-    highlights: [
-      "58K+ unique plays",
-      "5 unique levels",
-      "Custom physics system",
-      "Live data-driven iteration",
-    ],
-  },
-];
+import { projectsList } from "@/data/projectsData";
 
 // Animation variants for staggered reveals
 const containerVariants = {
@@ -168,7 +70,7 @@ const Projects = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {projects.map((project, index) => (
+          {projectsList.map((project, index) => (
             <motion.div
               key={project.title}
               variants={cardVariants}
@@ -246,7 +148,7 @@ const Projects = () => {
                         </div>
 
                         <ul className="grid grid-cols-2 gap-2 mb-6">
-                          {project.highlights.map((highlight, hIndex) => (
+                          {project.highlights.slice(0, 4).map((highlight, hIndex) => (
                             <motion.li
                               key={highlight}
                               initial={{ opacity: 0, x: -10 }}
