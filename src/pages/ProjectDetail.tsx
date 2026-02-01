@@ -268,7 +268,7 @@ const ProjectDetail = () => {
               className="max-w-5xl mx-auto"
             >
               <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
-                Trailer
+                Gameplay
               </h2>
               <div className="aspect-video rounded-2xl overflow-hidden border border-border">
                 <iframe
