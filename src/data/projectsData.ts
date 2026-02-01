@@ -5,6 +5,8 @@ import dominoesCollage from "@/assets/dominoes-collage.png";
 import gridFillerCollage from "@/assets/grid-filler-collage.png";
 import puzzlesCatsCollage from "@/assets/puzzles-cats-collage.png";
 import boardingRushCollage from "@/assets/boarding-rush-collage.png";
+import rummy3dImg from "@/assets/rummy-3d.png";
+import monsterMayhemImg from "@/assets/monster-mayhem.png";
 import looperStore1 from "@/assets/looper-store-1.png";
 import looperStore2 from "@/assets/looper-store-2.png";
 import looperStore3 from "@/assets/looper-store-3.png";
@@ -28,7 +30,6 @@ import boardingRush1 from "@/assets/boarding-rush-1.webp";
 import boardingRush2 from "@/assets/boarding-rush-2.webp";
 import boardingRush3 from "@/assets/boarding-rush-3.webp";
 import boardingRush4 from "@/assets/boarding-rush-4.webp";
-// Video imports removed - not needed currently
 
 export interface ProjectData {
   title: string;
@@ -241,6 +242,61 @@ With 10Cr+ downloads, the game successfully transitioned from Hyper-casual to Hy
 Achieved 58K+ unique plays through continuous iteration based on live player feedback, improving UX and course designs over time.`,
     gallery: [],
   },
+  "rummy-3d": {
+    title: "Rummy 3D",
+    subtitle: "NFT Card Game • Totality Corp",
+    description:
+      "A 3D multiplayer Rummy game with NFT avatar integration. Built core gameplay, matchmaking, and pay-to-earn systems.",
+    image: rummy3dImg,
+    tags: ["Unity", "Unity Relay", "NFT", "Multiplayer"],
+    highlights: [
+      "NFT avatar integration",
+      "Real-time multiplayer",
+      "Friend & random matchmaking",
+      "Pay-to-earn rewards",
+    ],
+    myRole: [
+      "Developed the NFT avatar spawning system",
+      "Ensured compatibility with various NFT standards",
+      "Designed and implemented core 3D Rummy gameplay mechanics",
+      "Utilized Unity Relay and Lobby system for reliable multiplayer",
+      "Implemented matchmaking for friends and random players",
+      "Created a pay-to-earn model with balanced in-game rewards",
+    ],
+    fullDescription: `Rummy 3D is a multiplayer card game that brings the classic Rummy experience into an immersive 3D environment. Players can use their NFT avatars to represent themselves at the table, adding a layer of personalization and ownership.
+
+The game features robust multiplayer infrastructure using Unity Relay and Lobby systems, supporting both friend invites and random matchmaking. A carefully balanced pay-to-earn model rewards skilled players while maintaining fair gameplay.`,
+    gallery: [rummy3dImg],
+  },
+  "monster-mayhem": {
+    title: "Monster Mayhem",
+    subtitle: "Co-op Tower Defense • Totality Corp",
+    description:
+      "A cooperative PVE zombie game where players defend the Taj Mahal from hordes of undead. Built enemy AI, wave systems, and multiplayer.",
+    image: monsterMayhemImg,
+    tags: ["Unity", "Photon PUN 2", "AI", "Co-op"],
+    highlights: [
+      "Co-op zombie defense",
+      "Dynamic wave scaling",
+      "Boss & mini-boss fights",
+      "75% FPS optimization",
+    ],
+    myRole: [
+      "Developed game features, gameplay mechanics, and premise for a new tower defense experience",
+      "Modelled and wrote the game design document",
+      "Integrated Photon PUN 2 multiplayer system",
+      "Developed minions, mini-bosses, and bosses with unique behavior and attack patterns",
+      "Formulated dynamic wave system that scales with player count",
+      "Devised spawn algorithms for collectables (ammo, health, throwables) and special weapons",
+      "Balanced enemy, weapon, and player stats through playtesting",
+      "Improved AI navigation with strategic spawn points and obstacle placement",
+      "Bumped in-game FPS by 75% through LODs, occlusion culling, and optimized settings",
+    ],
+    fullDescription: `The zombies have taken over but humans are fighting back. After successfully capturing the first-turned zombie, a group of 5 friends thought they stood a chance in finding the cure. They are about to be taken by surprise as groups of zombies respond to their alpha's call and bring down Taj Mahal in an attempt to rescue him.
+
+Monster Mayhem is a cooperative PVE game where players fight hordes of zombies while protecting the Taj Mahal. Features dynamic wave scaling, diverse enemy types including bosses, and strategic resource spawning to keep gameplay fresh and challenging.`,
+    gallery: [monsterMayhemImg],
+  },
 };
 
 // Project list for the main projects page (order matters)
@@ -268,6 +324,14 @@ export const projectsList = [
   {
     slug: "looper",
     ...projectsData["looper"],
+  },
+  {
+    slug: "rummy-3d",
+    ...projectsData["rummy-3d"],
+  },
+  {
+    slug: "monster-mayhem",
+    ...projectsData["monster-mayhem"],
   },
   {
     slug: "mini-golf",
