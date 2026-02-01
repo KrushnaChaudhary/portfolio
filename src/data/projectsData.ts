@@ -28,8 +28,7 @@ import boardingRush1 from "@/assets/boarding-rush-1.webp";
 import boardingRush2 from "@/assets/boarding-rush-2.webp";
 import boardingRush3 from "@/assets/boarding-rush-3.webp";
 import boardingRush4 from "@/assets/boarding-rush-4.webp";
-import boardingRushVideo1 from "@/assets/boarding-rush-video-1.mp4";
-import boardingRushVideo2 from "@/assets/boarding-rush-video-2.mp4";
+// Video imports removed - not needed currently
 
 export interface ProjectData {
   title: string;
@@ -84,7 +83,6 @@ Technical highlights include authoritative server logic with Photon PUN 2, state
       "Competitive leaderboards",
       "Train your brain mechanics",
       "Clean, satisfying UX",
-      "Cross-platform support",
     ],
     fullDescription: `Grid Filler: Shikaku Tiles is a clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning.
 
@@ -143,7 +141,6 @@ Owned the full UI/UX design and implementation, along with deep Analytics integr
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.boardingrush" },
     ],
     gallery: [boardingRush1, boardingRush2, boardingRush3, boardingRush4],
-    videos: [boardingRushVideo1, boardingRushVideo2],
   },
   "dominoes-logic": {
     title: "Dominoes Logic",
