@@ -90,7 +90,7 @@ const Contact = () => {
                 </h3>
                 <div className="flex gap-4 mb-8">
                   <a
-                    href="https://linkedin.com/in/krushnachaudhary"
+                    href="https://www.linkedin.com/in/krushna-chaudhary/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 p-4 rounded-xl border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all duration-300 hover:box-glow-cyan"
@@ -156,7 +156,7 @@ const Contact = () => {
       {/* Simple copyright */}
       <div className="mt-12 pb-8 text-center">
         <p className="text-sm text-muted-foreground/60">
-          © 2024 Krushna Chaudhary
+          © 2026 Krushna Chaudhary
         </p>
       </div>
     </section>

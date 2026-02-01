@@ -79,7 +79,7 @@ const Hero = () => {
             transition={{ delay: 0.8 }}
           >
             <a
-              href="https://linkedin.com/in/krushnachaudhary"
+              href="https://www.linkedin.com/in/krushna-chaudhary/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all duration-300 hover:box-glow-cyan"
