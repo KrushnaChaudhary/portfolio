@@ -5,6 +5,7 @@ import rannBhumiImg from "@/assets/rann-bhumi.jpg";
 import miniGolfImg from "@/assets/mini-golf.png";
 import looperScreenshot from "@/assets/looper-screenshot.png";
 import dominoesScreenshot from "@/assets/dominoes-logic-screenshot.png";
+import gridFillerScreenshot from "@/assets/grid-filler-screenshot.png";
 
 const projects = [
   {
@@ -43,7 +44,7 @@ const projects = [
     subtitle: "Logic Puzzle Game",
     description:
       "A clean and satisfying logic puzzle built around filling grids with perfect rectangles using pure reasoning. Features 1000+ levels, daily puzzles, and competitive leaderboards.",
-    image: null,
+    image: gridFillerScreenshot,
     tags: ["Unity", "Puzzle", "Mobile", "LiveOps"],
     highlights: [
       "1000+ levels",
