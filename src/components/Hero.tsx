@@ -94,9 +94,14 @@ const Hero = () => {
             </a>
           </motion.div>
 
-          <motion.a
-            href="#projects"
-            className="inline-flex flex-col items-center text-muted-foreground hover:text-neon-cyan transition-colors"
+          <motion.button
+            onClick={() => {
+              const projectsSection = document.getElementById('projects');
+              if (projectsSection) {
+                projectsSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="inline-flex flex-col items-center text-muted-foreground hover:text-neon-cyan transition-colors cursor-pointer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
@@ -108,7 +113,7 @@ const Hero = () => {
             >
               <ChevronDown className="w-6 h-6" />
             </motion.div>
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>
