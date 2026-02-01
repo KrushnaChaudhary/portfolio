@@ -109,6 +109,7 @@ Features include 1000+ levels, daily puzzles, competitive leaderboards, and a sp
     fullDescription: `Developed core meta-systems for this LiveOps mobile game, focusing on Shop, Economy, and Procedural Logic systems.
 
 Built robust LiveOps pipelines using remote-configurable data, enabling safe updates without requiring new app builds. This approach significantly reduced deployment risk and accelerated feature iteration.`,
+    youtubeId: "6MYYo47iuLM",
     gallery: [],
   },
   "dominoes-logic": {
