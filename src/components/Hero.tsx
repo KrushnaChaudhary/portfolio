@@ -95,7 +95,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.a
-            href="#experience"
+            href="#projects"
             className="inline-flex flex-col items-center text-muted-foreground hover:text-neon-cyan transition-colors"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Linkedin, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Phone, Linkedin, ArrowUpRight, Gamepad2 } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -110,19 +110,77 @@ const Contact = () => {
             </motion.div>
           </div>
         </div>
-
-        {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center mt-24 pt-8 border-t border-border"
-        >
-          <p className="text-sm text-muted-foreground">
-            © 2024 Krushna Chaudhary. Crafted with passion for games.
-          </p>
-        </motion.div>
       </div>
+
+      {/* Footer - Full width, separate from container */}
+      <motion.footer
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        className="mt-24 border-t border-border bg-card/30"
+      >
+        <div className="container px-6 py-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            {/* Logo & Tagline */}
+            <div className="flex items-center gap-4">
+              <div className="p-3 rounded-xl bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 border border-border">
+                <Gamepad2 className="w-8 h-8 text-neon-cyan" />
+              </div>
+              <div>
+                <h3 className="font-display font-bold text-xl">
+                  <span className="text-neon-cyan">K</span>
+                  <span className="text-foreground">RUSHNA</span>
+                </h3>
+                <p className="text-sm text-muted-foreground">Game Developer</p>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div className="flex items-center gap-8">
+              <a href="#projects" className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors">
+                Projects
+              </a>
+              <a href="#experience" className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors">
+                Experience
+              </a>
+              <a href="#skills" className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors">
+                Skills
+              </a>
+              <a href="#contact" className="text-sm text-muted-foreground hover:text-neon-cyan transition-colors">
+                Contact
+              </a>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex items-center gap-4">
+              <a
+                href="https://linkedin.com/in/krushnachaudhary"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all"
+              >
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a
+                href="mailto:krushnachaudhary.kc@gmail.com"
+                className="p-2 rounded-lg border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all"
+              >
+                <Mail className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Bottom bar */}
+          <div className="mt-8 pt-8 border-t border-border/50 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-sm text-muted-foreground">
+              © 2024 Krushna Chaudhary. Crafted with passion for games.
+            </p>
+            <p className="text-xs text-muted-foreground/60">
+              4+ years of game development experience
+            </p>
+          </div>
+        </div>
+      </motion.footer>
     </section>
   );
 };
