@@ -1,11 +1,46 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { projectsData } from "@/data/projectsData";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const project = slug ? projectsData[slug] : null;
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-scroll gallery effect
+  useEffect(() => {
+    if (!project?.gallery || project.gallery.length === 0) return;
+    
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+
+    let animationId: number;
+    let scrollPosition = 0;
+    const scrollSpeed = 0.5; // pixels per frame
+
+    const animate = () => {
+      if (!isPaused && gallery) {
+        scrollPosition += scrollSpeed;
+        
+        // Reset to start when reaching the end (seamless loop)
+        if (scrollPosition >= gallery.scrollWidth - gallery.clientWidth) {
+          scrollPosition = 0;
+        }
+        
+        gallery.scrollLeft = scrollPosition;
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+
+    animationId = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, [project?.gallery, isPaused]);
 
   if (!project) {
     return (
@@ -50,7 +85,7 @@ const ProjectDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="max-w-4xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
             <span className="text-neon-cyan font-display text-sm tracking-wider mb-4 block">
               {project.subtitle}
@@ -72,65 +107,134 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Gallery Section - Horizontal Scrolling */}
-      {((project.gallery && project.gallery.length > 0) || (project.videos && project.videos.length > 0)) && (
-        <section className="pb-12">
-          <div className="container px-6">
-            <div className="max-w-6xl mx-auto">
-              <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
-                Gallery
-              </h2>
-              <div className="overflow-x-auto pb-4 -mx-6 px-6">
-                <div className="flex gap-4" style={{ width: 'max-content' }}>
-                  {/* Videos first */}
-                  {project.videos?.map((video, idx) => (
-                    <motion.div 
-                      key={`video-${idx}`} 
-                      className="flex-shrink-0 w-64 md:w-80 aspect-[9/16] rounded-xl overflow-hidden border border-border bg-card"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: idx * 0.1 }}
-                    >
-                      <video 
-                        src={video}
-                        className="w-full h-full object-contain bg-card"
-                        controls
-                        muted
-                        playsInline
-                      />
-                    </motion.div>
-                  ))}
-                  {/* Screenshots */}
-                  {project.gallery?.map((img, idx) => (
-                    <motion.div 
-                      key={`img-${idx}`} 
-                      className="flex-shrink-0 w-64 md:w-80 aspect-[9/16] rounded-xl overflow-hidden border border-border"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: (project.videos?.length || 0) * 0.1 + idx * 0.1 }}
-                    >
-                      <img 
-                        src={img} 
-                        alt={`${project.title} screenshot ${idx + 1}`} 
-                        className="w-full h-full object-contain bg-card" 
-                      />
-                    </motion.div>
-                  ))}
+      {/* Main Content - Gallery + About Side by Side */}
+      <section className="pb-12">
+        <div className="container px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 items-start">
+              {/* Auto-scrolling Gallery */}
+              {project.gallery && project.gallery.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="lg:sticky lg:top-24"
+                >
+                  <h2 className="font-display text-2xl font-bold text-foreground mb-6">
+                    Gallery
+                  </h2>
+                  <div 
+                    ref={galleryRef}
+                    className="overflow-hidden rounded-2xl border border-border bg-card/30"
+                    onMouseEnter={() => setIsPaused(true)}
+                    onMouseLeave={() => setIsPaused(false)}
+                    onTouchStart={() => setIsPaused(true)}
+                    onTouchEnd={() => setIsPaused(false)}
+                  >
+                    <div className="flex gap-4 p-4" style={{ width: 'max-content' }}>
+                      {project.gallery.map((img, idx) => (
+                        <div 
+                          key={idx} 
+                          className="flex-shrink-0 w-48 md:w-56 aspect-[9/16] rounded-xl overflow-hidden border border-border/50"
+                        >
+                          <img 
+                            src={img} 
+                            alt={`${project.title} screenshot ${idx + 1}`} 
+                            className="w-full h-full object-contain bg-card" 
+                          />
+                        </div>
+                      ))}
+                      {/* Duplicate images for seamless loop */}
+                      {project.gallery.map((img, idx) => (
+                        <div 
+                          key={`dup-${idx}`} 
+                          className="flex-shrink-0 w-48 md:w-56 aspect-[9/16] rounded-xl overflow-hidden border border-border/50"
+                        >
+                          <img 
+                            src={img} 
+                            alt={`${project.title} screenshot ${idx + 1}`} 
+                            className="w-full h-full object-contain bg-card" 
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-2 text-center">
+                    Hover to pause
+                  </p>
+                </motion.div>
+              )}
+
+              {/* About + Features */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="space-y-8"
+              >
+                {/* About */}
+                <div>
+                  <h2 className="font-display text-2xl font-bold text-foreground mb-6">
+                    About the Project
+                  </h2>
+                  <div className="prose prose-invert max-w-none">
+                    {project.fullDescription.split('\n\n').map((paragraph, idx) => (
+                      <p key={idx} className="text-muted-foreground mb-4 leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
                 </div>
-              </div>
+
+                {/* Key Features */}
+                <div>
+                  <h2 className="font-display text-2xl font-bold text-foreground mb-6">
+                    Key Features
+                  </h2>
+                  <ul className="space-y-3">
+                    {project.highlights.map((highlight) => (
+                      <li
+                        key={highlight}
+                        className="flex items-start gap-3 text-muted-foreground"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-neon-purple mt-2 flex-shrink-0" />
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Store Links */}
+                {project.storeLinks && project.storeLinks.length > 0 && (
+                  <div className="flex flex-wrap gap-4">
+                    {project.storeLinks.map((link) => (
+                      <a
+                        key={link.platform}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-display font-semibold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 hover:bg-neon-cyan/20 transition-colors"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                        {link.platform}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </motion.div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* YouTube Video - After Gallery */}
+      {/* YouTube Video */}
       {project.youtubeId && (
         <section className="pb-12">
           <div className="container px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.4 }}
               className="max-w-5xl mx-auto"
             >
               <h2 className="font-display text-2xl font-bold text-foreground mb-8 text-center">
@@ -149,76 +253,6 @@ const ProjectDetail = () => {
           </div>
         </section>
       )}
-
-      {/* Store Links */}
-      {project.storeLinks && project.storeLinks.length > 0 && (
-        <section className="pb-8">
-          <div className="container px-6">
-            <div className="max-w-5xl mx-auto flex flex-wrap gap-4 justify-center">
-              {project.storeLinks.map((link) => (
-                <a
-                  key={link.platform}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-display font-semibold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 hover:bg-neon-cyan/20 transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  {link.platform}
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Content */}
-      <section className="pb-24">
-        <div className="container px-6">
-          <div className="max-w-4xl mx-auto grid md:grid-cols-3 gap-12">
-            {/* Description */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="md:col-span-2"
-            >
-              <h2 className="font-display text-2xl font-bold text-foreground mb-6">
-                About the Project
-              </h2>
-              <div className="prose prose-invert max-w-none">
-                {project.fullDescription.split('\n\n').map((paragraph, idx) => (
-                  <p key={idx} className="text-muted-foreground mb-4 leading-relaxed">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Highlights */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <h2 className="font-display text-2xl font-bold text-foreground mb-6">
-                Key Features
-              </h2>
-              <ul className="space-y-3">
-                {project.highlights.map((highlight) => (
-                  <li
-                    key={highlight}
-                    className="flex items-start gap-3 text-muted-foreground"
-                  >
-                    <span className="w-2 h-2 rounded-full bg-neon-purple mt-2 flex-shrink-0" />
-                    {highlight}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="pb-24">
