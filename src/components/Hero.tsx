@@ -1,5 +1,9 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ChevronDown, Linkedin, Mail } from "lucide-react";
+import { projectsList } from "@/data/projectsData";
+
+const showcaseGames = [...projectsList, ...projectsList];
 
 const Hero = () => {
   return (
@@ -68,12 +72,13 @@ const Hero = () => {
           >
             4+ years crafting immersive gameplay experiences. Specializing in{" "}
             <span className="text-neon-cyan">Gameplay Programming</span>,{" "}
-            <span className="text-neon-purple">AI Systems</span>, and{" "}
-            <span className="text-neon-gold">Designer-Friendly Architecture</span>.
+            <span className="text-neon-purple">AI Systems</span>,{" "}
+            <span className="text-neon-gold">Designer-Friendly Architecture</span>, and{" "}
+            <span className="text-neon-pink">AI Agent Tooling</span>.
           </motion.p>
 
           <motion.div
-            className="flex items-center justify-center gap-6 mb-12"
+            className="flex items-center justify-center gap-6 mb-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
@@ -93,7 +98,45 @@ const Hero = () => {
               <Mail className="w-5 h-5" />
             </a>
           </motion.div>
+        </motion.div>
 
+        <motion.div
+          className="relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden mb-10"
+          style={{
+            WebkitMaskImage:
+              "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            maskImage:
+              "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9 }}
+        >
+          <div className="flex gap-4 w-max animate-marquee hover:[animation-play-state:paused]">
+            {showcaseGames.map((game, index) => (
+              <Link
+                key={`${game.slug}-${index}`}
+                to={`/project/${game.slug}`}
+                className="group relative flex-shrink-0 w-52 sm:w-64 aspect-video rounded-xl overflow-hidden border border-border hover:border-neon-cyan/50 transition-colors duration-300"
+              >
+                {game.image && (
+                  <img
+                    src={game.image}
+                    alt={game.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
+                <span className="absolute bottom-2 left-3 right-3 font-display text-xs md:text-sm tracking-wide text-foreground truncate">
+                  {game.title}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+
+        <div className="text-center">
           <motion.button
             onClick={() => {
               const projectsSection = document.getElementById('projects');
@@ -114,7 +157,7 @@ const Hero = () => {
               <ChevronDown className="w-6 h-6" />
             </motion.div>
           </motion.button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

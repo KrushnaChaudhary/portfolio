@@ -4,8 +4,9 @@ import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "Work", href: "#projects" },
-  { label: "Skills", href: "#skills" },
+  { label: "Agent Skills", href: "#agentic-skills" },
   { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ];
 
