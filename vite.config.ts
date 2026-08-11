@@ -5,9 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // GitHub Pages serves this project from a /krushnachaudharyportfolio/ subpath;
+  // GitHub Pages serves this project from a /portfolio/ subpath;
   // Lovable serves it from the domain root. Only the Pages CI build sets this env var.
-  base: process.env.GITHUB_PAGES ? "/krushnachaudharyportfolio/" : "/",
+  base: process.env.GITHUB_PAGES ? "/portfolio/" : "/",
   server: {
     host: "::",
     port: 8080,
