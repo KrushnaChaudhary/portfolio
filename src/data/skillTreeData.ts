@@ -16,9 +16,9 @@ export interface SkillNode {
 }
 
 const BRANCH_ACCENT: Record<SkillBranch, Accent> = {
-  engine: "cyan",
-  systems: "gold",
-  tools: "purple",
+  engine: "primary",
+  systems: "warm",
+  tools: "neutral",
 };
 
 export const skillTreeData: SkillNode[] = [

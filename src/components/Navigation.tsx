@@ -35,7 +35,7 @@ const Navigation = () => {
           <div className="flex items-center justify-between h-16 md:h-20">
             {/* Logo */}
             <a href="#" className="font-display font-bold text-xl tracking-wider">
-              <span className="text-neon-cyan">K</span>
+              <span className="text-primary">K</span>
               <span className="text-foreground">C</span>
             </a>
 
@@ -45,14 +45,14 @@ const Navigation = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="font-display text-sm tracking-wider text-muted-foreground hover:text-neon-cyan transition-colors"
+                  className="font-display text-sm tracking-wider text-muted-foreground hover:text-primary transition-colors"
                 >
                   {item.label}
                 </a>
               ))}
               <a
                 href="mailto:krushnachaudhary.kc@gmail.com"
-                className="px-4 py-2 rounded-lg font-display text-sm tracking-wider border border-neon-cyan text-neon-cyan hover:bg-neon-cyan/10 transition-all"
+                className="px-4 py-2 rounded-lg font-display text-sm tracking-wider border border-primary text-primary hover:bg-primary/10 transition-all"
               >
                 HIRE ME
               </a>
@@ -85,14 +85,14 @@ const Navigation = () => {
                     key={item.label}
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="font-display text-2xl tracking-wider text-foreground hover:text-neon-cyan transition-colors"
+                    className="font-display text-2xl tracking-wider text-foreground hover:text-primary transition-colors"
                   >
                     {item.label}
                   </a>
                 ))}
                 <a
                   href="mailto:krushnachaudhary.kc@gmail.com"
-                  className="mt-4 py-4 px-6 rounded-xl font-display text-center bg-gradient-to-r from-neon-cyan to-neon-purple text-primary-foreground"
+                  className="mt-4 py-4 px-6 rounded-xl font-display text-center bg-primary text-primary-foreground"
                 >
                   HIRE ME
                 </a>

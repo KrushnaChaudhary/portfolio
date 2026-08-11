@@ -47,7 +47,7 @@ const WorkShowcase = () => {
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
             <span className="text-foreground">{copy.eyebrow}</span>{" "}
-            <span className="text-neon-purple text-glow-purple">{copy.accent}</span>
+            <span className="text-primary ">{copy.accent}</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">{copy.sub}</p>
         </motion.div>
@@ -59,7 +59,7 @@ const WorkShowcase = () => {
               onClick={() => setTab("work")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-display text-sm tracking-wider transition-all duration-300 ${
                 tab === "work"
-                  ? "bg-neon-cyan/10 text-neon-cyan box-glow-cyan"
+                  ? "bg-primary/10 text-primary shadow-e2"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -71,7 +71,7 @@ const WorkShowcase = () => {
               onClick={() => setTab("skills")}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-full font-display text-sm tracking-wider transition-all duration-300 ${
                 tab === "skills"
-                  ? "bg-neon-purple/10 text-neon-purple box-glow-purple"
+                  ? "bg-primary/10 text-primary shadow-e2"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >

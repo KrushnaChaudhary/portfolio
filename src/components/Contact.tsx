@@ -7,7 +7,7 @@ const Contact = () => {
       <div className="absolute inset-0 grid-pattern opacity-50" />
       
       {/* Glow effects */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-neon-cyan/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/10 rounded-full blur-3xl" />
       
       <div className="container relative z-10 px-6">
         <motion.div
@@ -17,7 +17,7 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            <span className="text-neon-cyan text-glow-cyan">HIRE</span>{" "}
+            <span className="text-primary ">HIRE</span>{" "}
             <span className="text-foreground">ME</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
@@ -36,39 +36,39 @@ const Contact = () => {
             >
               <a
                 href="mailto:krushnachaudhary.kc@gmail.com"
-                className="group flex items-center gap-4 p-4 rounded-xl border border-border bg-card/50 hover:border-neon-cyan/50 transition-all duration-300"
+                className="group flex items-center gap-4 p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 transition-all duration-300"
               >
-                <div className="p-3 rounded-lg bg-neon-cyan/10">
-                  <Mail className="w-6 h-6 text-neon-cyan" />
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="text-foreground font-medium group-hover:text-neon-cyan transition-colors">
+                  <p className="text-foreground font-medium group-hover:text-primary transition-colors">
                     krushnachaudhary.kc@gmail.com
                   </p>
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-neon-cyan transition-colors" />
+                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
 
               <a
                 href="tel:+919637128787"
-                className="group flex items-center gap-4 p-4 rounded-xl border border-border bg-card/50 hover:border-neon-purple/50 transition-all duration-300"
+                className="group flex items-center gap-4 p-4 rounded-xl border border-border bg-card/50 hover:border-primary/50 transition-all duration-300"
               >
-                <div className="p-3 rounded-lg bg-neon-purple/10">
-                  <Phone className="w-6 h-6 text-neon-purple" />
+                <div className="p-3 rounded-lg bg-primary/10">
+                  <Phone className="w-6 h-6 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-muted-foreground">Phone</p>
-                  <p className="text-foreground font-medium group-hover:text-neon-purple transition-colors">
+                  <p className="text-foreground font-medium group-hover:text-primary transition-colors">
                     +91 9637128787
                   </p>
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-neon-purple transition-colors" />
+                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </a>
 
               <div className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card/50">
-                <div className="p-3 rounded-lg bg-neon-gold/10">
-                  <MapPin className="w-6 h-6 text-neon-gold" />
+                <div className="p-3 rounded-lg bg-warning/10">
+                  <MapPin className="w-6 h-6 text-warning" />
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Location</p>
@@ -93,7 +93,7 @@ const Contact = () => {
                     href="https://www.linkedin.com/in/krushna-chaudhary/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 p-4 rounded-xl border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all duration-300 hover:box-glow-cyan"
+                    className="flex-1 flex items-center justify-center gap-2 p-4 rounded-xl border border-border hover:border-primary hover:text-primary transition-all duration-300 hover:shadow-e2"
                   >
                     <Linkedin className="w-5 h-5" />
                     <span className="font-medium">LinkedIn</span>
@@ -102,7 +102,7 @@ const Contact = () => {
 
                 <a
                   href="mailto:krushnachaudhary.kc@gmail.com"
-                  className="block w-full py-4 px-6 rounded-xl font-display font-semibold text-center bg-gradient-to-r from-neon-cyan to-neon-purple text-primary-foreground hover:opacity-90 transition-opacity"
+                  className="block w-full py-4 px-6 rounded-xl font-display font-semibold text-center bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
                 >
                   GET IN TOUCH
                 </a>
@@ -123,7 +123,7 @@ const Contact = () => {
           onClick={() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="group relative p-6 rounded-full border border-border bg-card/80 backdrop-blur-sm hover:border-neon-cyan transition-all duration-500 cursor-pointer"
+          className="group relative p-6 rounded-full border border-border bg-card/80 backdrop-blur-sm hover:border-primary transition-all duration-500 cursor-pointer"
           whileHover={{ 
             scale: 1.1,
             boxShadow: "0 0 40px rgba(0, 255, 255, 0.3)"
@@ -132,12 +132,12 @@ const Contact = () => {
         >
           {/* Animated rings */}
           <motion.div
-            className="absolute inset-0 rounded-full border border-neon-cyan/30"
+            className="absolute inset-0 rounded-full border border-primary/30"
             animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute inset-0 rounded-full border border-neon-purple/20"
+            className="absolute inset-0 rounded-full border border-primary/20"
             animate={{ scale: [1, 1.8, 1], opacity: [0.3, 0, 0.3] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
           />
@@ -148,7 +148,7 @@ const Contact = () => {
             animate={{ y: [0, -4, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
           >
-            <ArrowUpRight className="w-8 h-8 text-foreground group-hover:text-neon-cyan transition-colors rotate-[-45deg]" />
+            <ArrowUpRight className="w-8 h-8 text-foreground group-hover:text-primary transition-colors rotate-[-45deg]" />
           </motion.div>
         </motion.button>
       </motion.div>

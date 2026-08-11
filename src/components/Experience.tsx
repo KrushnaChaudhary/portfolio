@@ -16,7 +16,7 @@ const Experience = () => {
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
             <span className="text-foreground">WORK</span>{" "}
-            <span className="text-neon-gold">EXPERIENCE</span>
+            <span className="text-warning">EXPERIENCE</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
             5+ years of professional game development
@@ -25,7 +25,7 @@ const Experience = () => {
 
         <div className="relative max-w-4xl mx-auto">
           {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-gold transform md:-translate-x-1/2" />
+          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary to-warning transform md:-translate-x-1/2" />
 
           {careerData.map((exp, index) => (
             <motion.div
@@ -42,15 +42,15 @@ const Experience = () => {
               <div
                 className={`absolute ${
                   index % 2 === 0 ? "left-0 md:-right-3" : "left-0 md:-left-3"
-                } top-0 w-6 h-6 rounded-full bg-background border-2 border-neon-cyan flex items-center justify-center`}
+                } top-0 w-6 h-6 rounded-full bg-background border-2 border-primary flex items-center justify-center`}
               >
-                <div className="w-2 h-2 rounded-full bg-neon-cyan animate-pulse-glow" />
+                <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               </div>
 
-              <div className="p-6 rounded-xl border border-border bg-card/50 hover:border-neon-cyan/50 transition-all duration-300">
+              <div className="p-6 rounded-xl border border-border bg-card/50 hover:border-primary/50 transition-all duration-300">
                 <div className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
-                  <Briefcase className="w-4 h-4 text-neon-cyan" />
-                  <span className="text-neon-cyan font-display text-sm tracking-wider">
+                  <Briefcase className="w-4 h-4 text-primary" />
+                  <span className="text-primary font-display text-sm tracking-wider">
                     {exp.role}
                   </span>
                 </div>
@@ -80,7 +80,7 @@ const Experience = () => {
                       key={achievement}
                       className={`flex items-center gap-2 text-sm text-foreground/80 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-neon-purple flex-shrink-0" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                       {achievement}
                     </li>
                   ))}

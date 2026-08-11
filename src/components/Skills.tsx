@@ -16,7 +16,7 @@ const Skills = () => {
         >
           <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
             <span className="text-foreground">TECHNICAL</span>{" "}
-            <span className="text-neon-cyan text-glow-cyan">ARSENAL</span>
+            <span className="text-primary ">ARSENAL</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
             The tools and technologies I wield to bring games to life
@@ -36,7 +36,7 @@ const Skills = () => {
                 className="group relative"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-card to-background rounded-xl" />
-                <div className="relative p-6 rounded-xl border border-border hover:border-neon-cyan/50 transition-all duration-500 gradient-border">
+                <div className="relative p-6 rounded-xl border border-border hover:border-primary/50 transition-all duration-500 edge-highlight">
                   <div className={`inline-flex p-3 rounded-lg ${accent.wash} mb-4`}>
                     <skill.icon className={`w-6 h-6 ${accent.icon}`} />
                   </div>

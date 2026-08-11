@@ -1,32 +1,22 @@
 // Static Tailwind class map. Never build class names from data with template
 // literals (`bg-${x}/10`) — Tailwind's scanner can't see those and drops them
 // from the production build. Every branch here must be a literal string.
-//
-// NOTE: these reference the current neon-* palette (src/index.css /
-// tailwind.config.ts). The design-token rewrite replaces that palette wholesale
-// and this map gets updated alongside it — the point of this file is that the
-// classes stay literal and grep-able through that change, not frozen forever.
-export type Accent = "cyan" | "purple" | "gold" | "pink";
+export type Accent = "primary" | "neutral" | "warm";
 
 export const ACCENT: Record<Accent, { icon: string; wash: string; chip: string }> = {
-  cyan: {
-    icon: "text-neon-cyan",
-    wash: "bg-neon-cyan/10",
-    chip: "bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20",
+  primary: {
+    icon: "text-primary",
+    wash: "bg-primary/10",
+    chip: "bg-primary/10 text-primary border border-primary/20",
   },
-  purple: {
-    icon: "text-neon-purple",
-    wash: "bg-neon-purple/10",
-    chip: "bg-neon-purple/10 text-neon-purple border border-neon-purple/20",
+  neutral: {
+    icon: "text-muted-foreground",
+    wash: "bg-surface-2",
+    chip: "bg-surface-2 text-muted-foreground border border-border",
   },
-  gold: {
-    icon: "text-neon-gold",
-    wash: "bg-neon-gold/10",
-    chip: "bg-neon-gold/10 text-neon-gold border border-neon-gold/20",
-  },
-  pink: {
-    icon: "text-neon-pink",
-    wash: "bg-neon-pink/10",
-    chip: "bg-neon-pink/10 text-neon-pink border border-neon-pink/20",
+  warm: {
+    icon: "text-warning",
+    wash: "bg-warning/10",
+    chip: "bg-warning/10 text-warning border border-warning/20",
   },
 };

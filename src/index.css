@@ -1,70 +1,120 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Cyberpunk Gaming Design System */
+/* Modern Console UI design system */
+
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/fonts/sora-var.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/sora-var.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/inter-var.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/inter-var.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('./assets/fonts/inter-var.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 @layer base {
   :root {
-    --background: 220 20% 6%;
-    --foreground: 210 40% 98%;
+    /* Surfaces: a 4-step elevation ramp, same hue throughout for calm */
+    --background: 222 24% 7%;
+    --surface-1: 222 20% 10%;
+    --surface-2: 222 18% 14%;
+    --surface-3: 222 16% 19%;
 
-    --card: 220 25% 10%;
-    --card-foreground: 210 40% 98%;
+    --card: 222 20% 10%;
+    --card-foreground: 210 20% 96%;
 
-    --popover: 220 25% 10%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 222 16% 19%;
+    --popover-foreground: 210 20% 96%;
 
-    --primary: 185 100% 50%;
-    --primary-foreground: 220 20% 6%;
+    /* Type */
+    --foreground: 210 20% 96%;
+    --muted-foreground: 215 14% 64%;
+    --subtle-foreground: 215 12% 45%;
 
-    --secondary: 280 100% 60%;
-    --secondary-foreground: 210 40% 98%;
+    /* Lines */
+    --border: 220 14% 19%;
+    --border-strong: 220 12% 28%;
+    --input: 220 14% 19%;
+    --ring: 214 95% 62%;
 
-    --muted: 220 20% 15%;
-    --muted-foreground: 215 20% 65%;
+    /* The single accent */
+    --primary: 214 95% 62%;
+    --primary-foreground: 222 40% 8%;
+    --primary-soft: 214 70% 20%;
 
-    --accent: 45 100% 55%;
-    --accent-foreground: 220 20% 6%;
+    /* Semantics: status chips only, never decoration */
+    --success: 152 52% 46%;
+    --warning: 38 92% 56%;
+    --destructive: 358 68% 58%;
+    --destructive-foreground: 210 20% 96%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    /* shadcn compat aliases: --accent is the neutral hover surface, not the brand accent */
+    --secondary: 222 18% 14%;
+    --secondary-foreground: 210 20% 96%;
+    --muted: 222 18% 14%;
+    --accent: 222 16% 19%;
+    --accent-foreground: 210 20% 96%;
 
-    --border: 220 20% 18%;
-    --input: 220 20% 18%;
-    --ring: 185 100% 50%;
+    --radius: 0.875rem;
 
-    --radius: 0.75rem;
+    /* Depth: shadow, not glow */
+    --shadow-1: 0 1px 2px hsl(222 40% 3% / .40);
+    --shadow-2: 0 4px 16px -4px hsl(222 40% 3% / .55);
+    --shadow-3: 0 16px 48px -12px hsl(222 40% 3% / .70);
 
-    /* Custom gaming tokens */
-    --neon-cyan: 185 100% 50%;
-    --neon-pink: 330 100% 60%;
-    --neon-purple: 280 100% 60%;
-    --neon-gold: 45 100% 55%;
-    --dark-surface: 220 25% 8%;
-    --darker-surface: 220 20% 4%;
+    --ease-out: cubic-bezier(.16, 1, .3, 1);
+    --dur-fast: 140ms;
+    --dur-base: 240ms;
+    --dur-slow: 420ms;
 
-    --gradient-neon: linear-gradient(135deg, hsl(var(--neon-cyan)), hsl(var(--neon-purple)));
-    --gradient-gold: linear-gradient(135deg, hsl(var(--neon-gold)), hsl(330 100% 50%));
-    --gradient-dark: linear-gradient(180deg, hsl(var(--background)), hsl(var(--darker-surface)));
+    --font-display: 'Sora', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
 
-    --glow-cyan: 0 0 20px hsl(var(--neon-cyan) / 0.5), 0 0 40px hsl(var(--neon-cyan) / 0.3);
-    --glow-pink: 0 0 20px hsl(var(--neon-pink) / 0.5), 0 0 40px hsl(var(--neon-pink) / 0.3);
-    --glow-purple: 0 0 20px hsl(var(--neon-purple) / 0.5), 0 0 40px hsl(var(--neon-purple) / 0.3);
-
-    --font-display: 'Orbitron', sans-serif;
-    --font-body: 'Inter', sans-serif;
-
-    --sidebar-background: 220 25% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 185 100% 50%;
-    --sidebar-primary-foreground: 220 20% 6%;
-    --sidebar-accent: 220 20% 15%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 220 20% 18%;
-    --sidebar-ring: 185 100% 50%;
+    --sidebar-background: 222 20% 10%;
+    --sidebar-foreground: 210 20% 96%;
+    --sidebar-primary: 214 95% 62%;
+    --sidebar-primary-foreground: 222 40% 8%;
+    --sidebar-accent: 222 18% 14%;
+    --sidebar-accent-foreground: 210 20% 96%;
+    --sidebar-border: 220 14% 19%;
+    --sidebar-ring: 214 95% 62%;
   }
 }
 
@@ -84,47 +134,39 @@
 }
 
 @layer components {
-  .text-glow-cyan {
-    text-shadow: var(--glow-cyan);
+  .panel {
+    @apply bg-surface-1 border border-border rounded-[var(--radius)];
+    box-shadow: var(--shadow-1);
   }
 
-  .text-glow-pink {
-    text-shadow: var(--glow-pink);
+  .panel-raised {
+    @apply bg-surface-1 border border-border rounded-[var(--radius)];
+    box-shadow: var(--shadow-2);
   }
 
-  .text-glow-purple {
-    text-shadow: var(--glow-purple);
+  .stat-num {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
   }
 
-  .box-glow-cyan {
-    box-shadow: var(--glow-cyan);
+  .focus-ring {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 
-  .box-glow-pink {
-    box-shadow: var(--glow-pink);
+  .hairline {
+    @apply border-border;
   }
 
-  .box-glow-purple {
-    box-shadow: var(--glow-purple);
-  }
-
-  .gradient-text {
-    background: var(--gradient-neon);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .gradient-border {
+  .edge-highlight {
     position: relative;
   }
 
-  .gradient-border::before {
+  .edge-highlight::before {
     content: '';
     position: absolute;
     inset: 0;
     padding: 1px;
-    background: var(--gradient-neon);
+    background: linear-gradient(180deg, hsl(0 0% 100% / 0.08), transparent 40%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -134,26 +176,11 @@
   }
 
   .grid-pattern {
-    background-image: 
-      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
-
-  .scanline {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .scanline::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      transparent 50%,
-      hsl(var(--neon-cyan) / 0.02) 50%
-    );
-    background-size: 100% 4px;
-    pointer-events: none;
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.16) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.16) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
   }
 }

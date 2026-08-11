@@ -52,7 +52,7 @@ const Projects = () => {
         <motion.div key={project.title} variants={cardVariants} className="group">
           <Link to={`/project/${project.slug}`}>
             <motion.div
-              className="relative rounded-2xl border border-border bg-card/50 overflow-hidden transition-colors duration-300 cursor-pointer hover:border-neon-cyan/50"
+              className="relative rounded-2xl border border-border bg-card/50 overflow-hidden transition-colors duration-300 cursor-pointer hover:border-primary/50"
               whileHover={{
                 scale: 1.01,
                 transition: { duration: 0.3 },
@@ -70,13 +70,13 @@ const Projects = () => {
                       />
                     </motion.div>
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-neon-purple/20 via-card to-neon-cyan/10 flex items-center justify-center">
+                    <div className="w-full h-full bg-surface-2 flex items-center justify-center">
                       <motion.div
                         initial={{ rotate: 0 }}
                         whileHover={{ rotate: 15, scale: 1.1 }}
                         transition={{ duration: 0.3 }}
                       >
-                        <Gamepad2 className="w-20 h-20 text-neon-purple/40" />
+                        <Gamepad2 className="w-20 h-20 text-primary/40" />
                       </motion.div>
                     </div>
                   )}
@@ -94,11 +94,11 @@ const Projects = () => {
                     transition={{ delay: 0.2, duration: 0.5 }}
                   >
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-neon-cyan font-display text-sm tracking-wider">
+                      <span className="text-primary font-display text-sm tracking-wider">
                         {project.subtitle}
                       </span>
                     </div>
-                    <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-neon-cyan transition-colors duration-300">
+                    <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors duration-300">
                       {project.title}
                     </h3>
                     <p className="text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
@@ -111,7 +111,7 @@ const Projects = () => {
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.3 + tagIndex * 0.05 }}
-                          className="px-3 py-1 text-xs font-medium rounded-full bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20"
+                          className="px-3 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
                         >
                           {tag}
                         </motion.span>
@@ -128,14 +128,14 @@ const Projects = () => {
                           transition={{ delay: 0.4 + hIndex * 0.05 }}
                           className="flex items-center gap-2 text-sm text-muted-foreground"
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-neon-purple flex-shrink-0" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                           {highlight}
                         </motion.li>
                       ))}
                     </ul>
 
                     <motion.div
-                      className="flex items-center gap-2 text-neon-cyan font-display text-sm tracking-wider"
+                      className="flex items-center gap-2 text-primary font-display text-sm tracking-wider"
                       whileHover={{ x: 10 }}
                       transition={{ duration: 0.2 }}
                     >

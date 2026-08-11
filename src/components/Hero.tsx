@@ -11,7 +11,7 @@ const Hero = () => {
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-neon-cyan/5 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -19,7 +19,7 @@ const Hero = () => {
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-neon-purple/5 rounded-full blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.3, 0.5, 0.3],
@@ -31,7 +31,7 @@ const Hero = () => {
       {/* Scan line effect */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
-          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-cyan/50 to-transparent"
+          className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"
           animate={{ y: ["-100vh", "100vh"] }}
           transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
         />
@@ -45,7 +45,7 @@ const Hero = () => {
           className="text-center"
         >
           <motion.p
-            className="text-neon-cyan font-display text-sm md:text-base tracking-[0.3em] uppercase mb-4"
+            className="text-primary font-display text-sm md:text-base tracking-[0.3em] uppercase mb-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
@@ -61,7 +61,7 @@ const Hero = () => {
           >
             <span className="text-foreground">KRUSHNA</span>
             <br />
-            <span className="gradient-text text-glow-cyan">CHAUDHARY</span>
+            <span className="text-foreground">CHAUDHARY</span>
           </motion.h1>
 
           <motion.p
@@ -70,11 +70,11 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            5+ years shipping mobile games: <span className="text-neon-cyan">gameplay programming</span>,{" "}
-            <span className="text-neon-purple">AI systems</span>, and{" "}
-            <span className="text-neon-gold">designer-friendly architecture</span> across a dozen+ titles.
+            5+ years shipping mobile games: <span className="text-primary">gameplay programming</span>,{" "}
+            <span className="text-primary">AI systems</span>, and{" "}
+            <span className="text-warning">designer-friendly architecture</span> across a dozen+ titles.
             Lately I've also been building{" "}
-            <span className="text-neon-pink">AI agent skills</span> that turn a one-line prompt into a
+            <span className="text-warning">AI agent skills</span> that turn a one-line prompt into a
             playable HTML5 game, then using them to prototype real games solo.
           </motion.p>
 
@@ -88,13 +88,13 @@ const Hero = () => {
               href="https://www.linkedin.com/in/krushna-chaudhary/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-3 rounded-full border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all duration-300 hover:box-glow-cyan"
+              className="p-3 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300 hover:shadow-e2"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <a
               href="mailto:krushnachaudhary.kc@gmail.com"
-              className="p-3 rounded-full border border-border hover:border-neon-cyan hover:text-neon-cyan transition-all duration-300 hover:box-glow-cyan"
+              className="p-3 rounded-full border border-border hover:border-primary hover:text-primary transition-all duration-300 hover:shadow-e2"
             >
               <Mail className="w-5 h-5" />
             </a>
@@ -118,7 +118,7 @@ const Hero = () => {
               <Link
                 key={`${game.slug}-${index}`}
                 to={`/project/${game.slug}`}
-                className="group relative flex-shrink-0 w-52 sm:w-64 aspect-video rounded-xl overflow-hidden border border-border hover:border-neon-cyan/50 transition-colors duration-300"
+                className="group relative flex-shrink-0 w-52 sm:w-64 aspect-video rounded-xl overflow-hidden border border-border hover:border-primary/50 transition-colors duration-300"
               >
                 {game.image && (
                   <img
@@ -145,7 +145,7 @@ const Hero = () => {
                 projectsSection.scrollIntoView({ behavior: 'smooth' });
               }
             }}
-            className="inline-flex flex-col items-center text-muted-foreground hover:text-neon-cyan transition-colors cursor-pointer"
+            className="inline-flex flex-col items-center text-muted-foreground hover:text-primary transition-colors cursor-pointer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}

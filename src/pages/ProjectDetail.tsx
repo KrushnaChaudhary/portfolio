@@ -46,7 +46,7 @@ const ProjectDetail = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-display text-foreground mb-4">Project Not Found</h1>
-          <Link to="/#projects" className="text-neon-cyan hover:underline">
+          <Link to="/#projects" className="text-primary hover:underline">
             ← Back to Projects
           </Link>
         </div>
@@ -65,13 +65,13 @@ const ProjectDetail = () => {
         <div className="container px-6 h-16 flex items-center justify-between">
           <Link
             to="/#projects"
-            className="flex items-center gap-2 text-muted-foreground hover:text-neon-cyan transition-colors"
+            className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="font-display text-sm tracking-wider">BACK TO PROJECTS</span>
           </Link>
           <Link to="/" className="font-display font-bold text-xl">
-            <span className="text-neon-cyan">K</span>
+            <span className="text-primary">K</span>
             <span className="text-foreground">C</span>
           </Link>
         </div>
@@ -86,7 +86,7 @@ const ProjectDetail = () => {
             transition={{ delay: 0.1 }}
             className="max-w-6xl mx-auto"
           >
-            <span className="text-neon-cyan font-display text-sm tracking-wider mb-4 block">
+            <span className="text-primary font-display text-sm tracking-wider mb-4 block">
               {project.subtitle}
             </span>
             <h1 className="font-display text-4xl md:text-6xl font-bold text-foreground mb-6">
@@ -96,7 +96,7 @@ const ProjectDetail = () => {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-4 py-2 text-sm font-medium rounded-full bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20"
+                  className="px-4 py-2 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
                 >
                   {tag}
                 </span>
@@ -199,9 +199,9 @@ const ProjectDetail = () => {
                 </div>
 
                 {/* My Role - Clear contribution section */}
-                <div className="p-6 rounded-2xl bg-neon-purple/5 border border-neon-purple/20">
+                <div className="p-6 rounded-2xl bg-primary/5 border border-primary/20">
                   <h2 className="font-display text-xl font-bold text-foreground mb-4 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-neon-purple" />
+                    <span className="w-2 h-2 rounded-full bg-primary" />
                     What I Worked On
                   </h2>
                   <ul className="space-y-2">
@@ -210,7 +210,7 @@ const ProjectDetail = () => {
                         key={idx}
                         className="flex items-start gap-3 text-muted-foreground text-sm"
                       >
-                        <span className="text-neon-cyan mt-1">→</span>
+                        <span className="text-primary mt-1">→</span>
                         {item}
                       </li>
                     ))}
@@ -243,7 +243,7 @@ const ProjectDetail = () => {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-display font-semibold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 hover:bg-neon-cyan/20 transition-colors"
+                        className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-display font-semibold bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
                       >
                         <ExternalLink className="w-4 h-4" />
                         {link.platform}
@@ -298,7 +298,7 @@ const ProjectDetail = () => {
             </h3>
             <Link
               to="/#contact"
-              className="inline-block py-3 px-8 rounded-xl font-display font-semibold bg-gradient-to-r from-neon-cyan to-neon-purple text-primary-foreground hover:opacity-90 transition-opacity"
+              className="inline-block py-3 px-8 rounded-xl font-display font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
             >
               HIRE ME
             </Link>
