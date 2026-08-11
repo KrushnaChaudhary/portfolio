@@ -310,9 +310,9 @@ Monster Mayhem is a cooperative PVE game where players fight hordes of zombies w
   },
   "animal-park": {
     title: "Animal Park",
-    subtitle: "H5 Prototype → Live on Google Play",
+    subtitle: "H5 Prototype • Kwalee",
     description:
-      "A color-sorting crowd puzzle: guide animal visitors onto matching train carts before the waiting carousel jams. Rapid-prototyped at work using my own H5 Game Builder and Level Lab agent skills, then taken to a full release on Google Play.",
+      "A color-sorting crowd puzzle: guide animal visitors onto matching train carts before the waiting carousel jams. Rapid-prototyped at Kwalee using my own H5 Game Builder and Level Lab agent skills, then taken to a full release on Google Play.",
     image: animalParkCover,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "Published"],
     highlights: [
@@ -322,14 +322,14 @@ Monster Mayhem is a cooperative PVE game where players fight hordes of zombies w
       "Built with H5 Game Builder",
     ],
     myRole: [
-      "Rapid-prototyped the game using my own H5 Game Builder and Level Lab agent skills",
+      "Rapid-prototyped the game at Kwalee using my own H5 Game Builder and Level Lab agent skills",
       "Took it from a one-line prompt to a playable build in a single session",
       "Tuned the difficulty curve with Level Lab",
       "Prototype was taken forward to a full release on Google Play",
     ],
     fullDescription: `Animal Park is a color-sorting puzzle: cute animal visitors line up at the gates waiting to board a train, but each cart only accepts its matching color. Tap the gates to move animals forward. If the right cart isn't ready, they wait on a central carousel with limited seats. Fill the carousel with nowhere left to go, and it's a jam.
 
-This started as a same-day prototype, built using the H5 Game Builder and Level Lab skills I built myself, and went on to become a fully shipped release on Google Play.`,
+This started as a same-day prototype at Kwalee, built using the H5 Game Builder and Level Lab skills I built myself, and went on to become a fully shipped release on Google Play.`,
     storeLinks: [
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pocketspark.animalpark&hl=en" },
     ],
@@ -337,9 +337,9 @@ This started as a same-day prototype, built using the H5 Game Builder and Level 
   },
   "color-water-trip": {
     title: "Color Water Trip",
-    subtitle: "H5 Prototype • In Development",
+    subtitle: "H5 Prototype • Kwalee",
     description:
-      "A color-matching river puzzle: steer boats of colored passengers along a winding waterway and dock each one at its matching color before the docks run out. Prototyped at work using my own H5 Game Builder and Level Lab agent skills.",
+      "A color-matching river puzzle: steer boats of colored passengers along a winding waterway and dock each one at its matching color before the docks run out. Prototyped at Kwalee using my own H5 Game Builder and Level Lab agent skills.",
     image: colorWaterTripCover,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "In Development"],
     highlights: [
@@ -349,21 +349,21 @@ This started as a same-day prototype, built using the H5 Game Builder and Level 
       "Built with H5 Game Builder",
     ],
     myRole: [
-      "Rapid-prototyped the game using my own H5 Game Builder and Level Lab agent skills",
+      "Rapid-prototyped the game at Kwalee using my own H5 Game Builder and Level Lab agent skills",
       "Authored the level set and difficulty ramp using Level Lab's generator",
       "Took it from concept to a playable build quickly",
       "Currently in active development",
     ],
     fullDescription: `Color Water Trip sends boats of colored passengers down a winding river. Guide each boat to the dock matching its passengers' color before space runs out. Misjudge the routing and the river backs up fast.
 
-Prototyped using the H5 Game Builder and Level Lab agent skills I built myself, to go from concept to a playable build quickly. Still in active development.`,
+Prototyped at Kwalee using the H5 Game Builder and Level Lab agent skills I built myself, to go from concept to a playable build quickly. Still in active development.`,
     gallery: [colorWaterTrip1, colorWaterTrip2, colorWaterTrip3],
   },
   "planetation": {
     title: "Planetation",
-    subtitle: "H5 Prototype • In Development",
+    subtitle: "H5 Prototype • Kwalee",
     description:
-      "A tiny-planet driving game: race a car around the curved surface of a miniature world, weaving through village roads to the checkered flag. Prototyped at work using my own H5 Game Builder and Level Lab agent skills.",
+      "A tiny-planet driving game: race a car around the curved surface of a miniature world, weaving through village roads to the checkered flag. Prototyped at Kwalee using my own H5 Game Builder and Level Lab agent skills.",
     image: planetation1,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Racing", "In Development"],
     highlights: [
@@ -373,14 +373,14 @@ Prototyped using the H5 Game Builder and Level Lab agent skills I built myself, 
       "Built with H5 Game Builder",
     ],
     myRole: [
-      "Rapid-prototyped the game using my own H5 Game Builder and Level Lab agent skills",
+      "Rapid-prototyped the game at Kwalee using my own H5 Game Builder and Level Lab agent skills",
       "Built the course and level progression using Level Lab",
       "Took it from concept to a playable build quickly",
       "Currently in active development",
     ],
     fullDescription: `Planetation is a driving game set on tiny, fully-navigable planets: steer a car around the curved surface of a miniature world, past houses and trees, chasing the checkered flag along winding village roads.
 
-Prototyped using the H5 Game Builder and Level Lab agent skills I built myself. Still in active development.`,
+Prototyped at Kwalee using the H5 Game Builder and Level Lab agent skills I built myself. Still in active development.`,
     gallery: [planetation1, planetation2, planetation3],
   },
 };
