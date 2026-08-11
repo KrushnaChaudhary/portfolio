@@ -104,6 +104,10 @@
     box-shadow: var(--glow-pink);
   }
 
+  .box-glow-purple {
+    box-shadow: var(--glow-purple);
+  }
+
   .gradient-text {
     background: var(--gradient-neon);
     -webkit-background-clip: text;

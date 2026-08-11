@@ -30,6 +30,15 @@ import boardingRush1 from "@/assets/boarding-rush-1.webp";
 import boardingRush2 from "@/assets/boarding-rush-2.webp";
 import boardingRush3 from "@/assets/boarding-rush-3.webp";
 import boardingRush4 from "@/assets/boarding-rush-4.webp";
+import animalPark1 from "@/assets/animal-park-1.jpg";
+import animalPark2 from "@/assets/animal-park-2.jpg";
+import animalPark3 from "@/assets/animal-park-3.jpg";
+import colorWaterTrip1 from "@/assets/color-water-trip-1.jpg";
+import colorWaterTrip2 from "@/assets/color-water-trip-2.jpg";
+import colorWaterTrip3 from "@/assets/color-water-trip-3.jpg";
+import planetation1 from "@/assets/planetation-1.jpg";
+import planetation2 from "@/assets/planetation-2.jpg";
+import planetation3 from "@/assets/planetation-3.jpg";
 
 export interface ProjectData {
   title: string;
@@ -297,6 +306,81 @@ The game features robust multiplayer infrastructure using Unity Relay and Lobby 
 Monster Mayhem is a cooperative PVE game where players fight hordes of zombies while protecting the Taj Mahal. Features dynamic wave scaling, diverse enemy types including bosses, and strategic resource spawning to keep gameplay fresh and challenging.`,
     gallery: [monsterMayhemImg],
   },
+  "animal-park": {
+    title: "Animal Park",
+    subtitle: "H5 Prototype → Live on Google Play",
+    description:
+      "A color-sorting crowd puzzle — guide animal visitors onto matching train carts before the waiting carousel jams. Prototyped solo with the H5 Game Builder and Level Lab agent skills, then shipped to Google Play.",
+    image: animalPark1,
+    tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "Published"],
+    highlights: [
+      "Live on Google Play",
+      "Color-matching sort puzzle",
+      "Carousel jam-avoidance mechanic",
+      "Solo art, music & gameplay",
+    ],
+    myRole: [
+      "Designed, built, and shipped the entire game solo — every line of gameplay, all art, and all audio",
+      "Prototyped end-to-end using my own H5 Game Builder and Level Lab agent skills",
+      "Took it from a one-line prompt to a playable build in a single rapid session",
+      "Tuned the difficulty curve with Level Lab and shipped it live to Google Play",
+    ],
+    fullDescription: `Animal Park is a color-sorting puzzle: cute animal visitors line up at the gates waiting to board a train, but each cart only accepts its matching color. Tap the gates to move animals forward — if the right cart isn't ready, they wait on a central carousel with limited seats. Fill the carousel with nowhere left to go, and it's a jam.
+
+Every part of this game — gameplay, art, music, and sound — was built solo, as a rapid prototype using the H5 Game Builder and Level Lab skills I built myself. What started as a same-day prototype went on to become a fully shipped release on Google Play.`,
+    storeLinks: [
+      { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pocketspark.animalpark&hl=en" },
+    ],
+    gallery: [animalPark1, animalPark2, animalPark3],
+  },
+  "color-water-trip": {
+    title: "Color Water Trip",
+    subtitle: "H5 Prototype • In Development",
+    description:
+      "A color-matching river puzzle — steer boats of colored passengers along a winding waterway and dock each one at its matching color before the docks run out.",
+    image: colorWaterTrip1,
+    tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "In Development"],
+    highlights: [
+      "Winding river sorting puzzle",
+      "Color-matched boat docking",
+      "Extra Dock power-up",
+      "Solo art, music & gameplay",
+    ],
+    myRole: [
+      "Designed and built the entire prototype solo — gameplay, art, and audio",
+      "Prototyped with my own H5 Game Builder and Level Lab agent skills",
+      "Authored the level set and difficulty ramp using Level Lab's generator",
+      "Currently in active development ahead of a planned release",
+    ],
+    fullDescription: `Color Water Trip sends boats of colored passengers down a winding river. Guide each boat to the dock matching its passengers' color before space runs out — misjudge the routing and the river backs up fast.
+
+Built solo as a rapid H5 prototype — gameplay, art, and music all my own work — using the H5 Game Builder and Level Lab agent skills to go from concept to a playable build quickly. Still in active development.`,
+    gallery: [colorWaterTrip1, colorWaterTrip2, colorWaterTrip3],
+  },
+  "planetation": {
+    title: "Planetation",
+    subtitle: "H5 Prototype • In Development",
+    description:
+      "A tiny-planet driving game — race a car around the curved surface of a miniature world, weaving through village roads to the checkered flag.",
+    image: planetation1,
+    tags: ["H5 Game Builder", "Level Lab", "Prototype", "Racing", "In Development"],
+    highlights: [
+      "Tiny-planet driving mechanic",
+      "Curved-surface 3D navigation",
+      "Village-road race courses",
+      "Solo art, music & gameplay",
+    ],
+    myRole: [
+      "Designed and built the entire prototype solo — gameplay, art, and audio",
+      "Prototyped with my own H5 Game Builder and Level Lab agent skills",
+      "Built the course/level progression using Level Lab",
+      "Currently in active development ahead of a planned release",
+    ],
+    fullDescription: `Planetation is a driving game set on tiny, fully-navigable planets — steer a car around the curved surface of a miniature world, past houses and trees, chasing the checkered flag along winding village roads.
+
+Built solo as a rapid H5 prototype — gameplay, art, and music all my own work — using the H5 Game Builder and Level Lab agent skills. Still in active development.`,
+    gallery: [planetation1, planetation2, planetation3],
+  },
 };
 
 // Project list for the main projects page (order matters)
@@ -336,5 +420,17 @@ export const projectsList = [
   {
     slug: "mini-golf",
     ...projectsData["mini-golf"],
+  },
+  {
+    slug: "animal-park",
+    ...projectsData["animal-park"],
+  },
+  {
+    slug: "color-water-trip",
+    ...projectsData["color-water-trip"],
+  },
+  {
+    slug: "planetation",
+    ...projectsData["planetation"],
   },
 ];

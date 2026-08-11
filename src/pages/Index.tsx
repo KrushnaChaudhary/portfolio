@@ -1,7 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
-import Projects from "@/components/Projects";
-import AgenticSkills from "@/components/AgenticSkills";
+import WorkShowcase from "@/components/WorkShowcase";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
@@ -11,12 +10,9 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Navigation />
       <Hero />
-      <div id="projects">
-        <Projects />
-      </div>
-      <div id="agentic-skills">
-        <AgenticSkills />
-      </div>
+      <div id="projects" className="scroll-mt-20" />
+      <div id="agentic-skills" className="scroll-mt-20" />
+      <WorkShowcase />
       <div id="experience">
         <Experience />
       </div>
