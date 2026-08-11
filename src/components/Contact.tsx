@@ -124,10 +124,7 @@ const Contact = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           className="group relative p-6 rounded-full border border-border bg-card/80 backdrop-blur-sm hover:border-primary transition-all duration-500 cursor-pointer"
-          whileHover={{ 
-            scale: 1.1,
-            boxShadow: "0 0 40px rgba(0, 255, 255, 0.3)"
-          }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
         >
           {/* Animated rings */}
@@ -152,13 +149,6 @@ const Contact = () => {
           </motion.div>
         </motion.button>
       </motion.div>
-
-      {/* Simple copyright */}
-      <div className="mt-12 pb-8 text-center">
-        <p className="text-sm text-muted-foreground/60">
-          © 2026 Krushna Chaudhary
-        </p>
-      </div>
     </section>
   );
 };
