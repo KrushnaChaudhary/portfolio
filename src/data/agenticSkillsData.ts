@@ -1,4 +1,5 @@
 import { LucideIcon, Gamepad2, Puzzle } from "lucide-react";
+import { Accent } from "@/lib/accents";
 
 export interface AgenticSkill {
   icon: LucideIcon;
@@ -6,7 +7,7 @@ export interface AgenticSkill {
   tagline: string;
   description: string;
   tags: string[];
-  color: "neon-cyan" | "neon-purple" | "neon-gold" | "neon-pink";
+  accent: Accent;
   githubUrl: string;
   npmUrl: string;
   siteUrl: string;
@@ -21,7 +22,7 @@ export const agenticSkills: AgenticSkill[] = [
     description:
       "Turns a one-line prompt into a mobile-first HTML5 game: a single .html file with 2D Phaser or 3D Three.js gameplay, art, audio, and levels. Every build is gated by a lint pass and a browser QA harness before it ships.",
     tags: ["Claude Code", "Cursor", "Copilot CLI", "Phaser", "Three.js"],
-    color: "neon-cyan",
+    accent: "cyan",
     githubUrl: "https://github.com/KrushnaChaudhary/h5-game-builder-skill",
     npmUrl: "https://www.npmjs.com/package/@krackzzz/h5-game-builder",
     siteUrl: "https://krushnachaudhary.github.io/h5-game-builder-skill/",
@@ -34,7 +35,7 @@ export const agenticSkills: AgenticSkill[] = [
     description:
       "Adds a level generator and an in-browser level editor to any single-file HTML5 game: a difficulty-ramped level set, per-level hand editing with live validity checks, and JSON/ZIP import-export.",
     tags: ["Claude Code", "Cursor", "Copilot CLI", "Level Design"],
-    color: "neon-purple",
+    accent: "purple",
     githubUrl: "https://github.com/KrushnaChaudhary/level-lab-skill",
     npmUrl: "https://www.npmjs.com/package/@krackzzz/level-lab",
     siteUrl: "https://krushnachaudhary.github.io/level-lab-skill/",

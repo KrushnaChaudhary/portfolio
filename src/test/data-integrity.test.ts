@@ -22,6 +22,14 @@ describe("projectsData integrity", () => {
     }
   });
 
+  it("every project has meta with a non-empty genre and platforms", () => {
+    for (const [slug, project] of Object.entries(projectsData)) {
+      expect(project.meta, `${slug} is missing meta`).toBeDefined();
+      expect(project.meta?.genre, `${slug}.meta.genre is empty`).toBeTruthy();
+      expect(project.meta?.platforms.length, `${slug}.meta.platforms is empty`).toBeGreaterThan(0);
+    }
+  });
+
   it("projectsList has no duplicate slugs", () => {
     const slugs = projectsList.map((p) => p.slug);
     expect(new Set(slugs).size).toBe(slugs.length);

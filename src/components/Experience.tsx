@@ -1,50 +1,6 @@
 import { motion } from "framer-motion";
 import { Briefcase, MapPin, Calendar } from "lucide-react";
-
-const experiences = [
-  {
-    company: "Kwalee",
-    role: "Game Developer",
-    location: "Bangalore, India",
-    period: "Apr 2024 – Present",
-    description:
-      "Architecting complete game prototypes every 2–3 weeks with full ownership of core gameplay, UI, SFX, and custom designer tools.",
-    achievements: [
-      "Rapid prototyping cycles (2-3 weeks)",
-      "Built automated build distribution pipeline via n8n (30% reduction in overhead)",
-      "Led Looper's Hyper-casual to Hybrid-casual transition",
-      "Developed core meta-systems for Puzzles & Cats",
-    ],
-  },
-  {
-    company: "Totality Corp",
-    role: "Game Developer",
-    location: "Gurugram, India",
-    period: "Jan 2021 – Oct 2023",
-    description:
-      "Created modular Unity templates and frameworks that accelerated studio-wide production cycles.",
-    achievements: [
-      "Developed Rann Bhumi (5v5 combat) with Photon PUN 2",
-      "Built authoritative server logic and state synchronization",
-      "Maintained 60 FPS on mid-range devices",
-      "Created reusable Unity frameworks",
-    ],
-  },
-  {
-    company: "Totality Corp (Roblox)",
-    role: "Roblox Game Developer",
-    location: "Gurugram, India",
-    period: "Oct 2020 – Jan 2021",
-    description:
-      "Solo-developed a multiplayer Mini Golf title from scratch, managing physics, networking, and UX.",
-    achievements: [
-      "58K+ unique plays achieved",
-      "Full-stack Roblox development",
-      "Live player data-driven iteration",
-      "Custom physics implementation",
-    ],
-  },
-];
+import { careerData } from "@/data/careerData";
 
 const Experience = () => {
   return (
@@ -71,9 +27,9 @@ const Experience = () => {
           {/* Timeline line */}
           <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neon-cyan via-neon-purple to-neon-gold transform md:-translate-x-1/2" />
 
-          {experiences.map((exp, index) => (
+          {careerData.map((exp, index) => (
             <motion.div
-              key={exp.company + exp.period}
+              key={exp.id}
               initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -115,11 +71,11 @@ const Experience = () => {
                 </div>
                 
                 <p className="text-muted-foreground text-sm mb-4">
-                  {exp.description}
+                  {exp.summary}
                 </p>
-                
+
                 <ul className={`space-y-2 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                  {exp.achievements.map((achievement) => (
+                  {exp.objectives.map((achievement) => (
                     <li
                       key={achievement}
                       className={`flex items-center gap-2 text-sm text-foreground/80 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}

@@ -42,6 +42,16 @@ import planetation1 from "@/assets/planetation-1.jpg";
 import planetation2 from "@/assets/planetation-2.jpg";
 import planetation3 from "@/assets/planetation-3.jpg";
 
+export interface ProjectMeta {
+  studio: "Kwalee" | "Totality Corp";
+  genre: string;
+  year: string;
+  platforms: ("iOS" | "Android" | "Roblox" | "Web")[];
+  engine: "Unity" | "Roblox Studio" | "H5 / Web";
+  status: "Shipped" | "In Development" | "Prototype";
+  stat?: { label: string; value: string };
+}
+
 export interface ProjectData {
   title: string;
   subtitle: string;
@@ -54,6 +64,7 @@ export interface ProjectData {
   youtubeId?: string;
   storeLinks?: { platform: string; url: string }[];
   gallery?: string[];
+  meta?: ProjectMeta;
 }
 
 export const projectsData: Record<string, ProjectData> = {
@@ -85,6 +96,14 @@ export const projectsData: Record<string, ProjectData> = {
 The game features a killstreak system similar to Call of Duty, but themed around classical Indian godly weapons like the Brahmastra and Sudarshana Chakra. Each class offers distinct combat mechanics that require different playstyles and strategies.`,
     youtubeId: "6MYYo47iuLM",
     gallery: [],
+    meta: {
+      studio: "Totality Corp",
+      genre: "5v5 Combat",
+      year: "2021–2023",
+      platforms: ["Android", "iOS"],
+      engine: "Unity",
+      status: "Prototype",
+    },
   },
   "grid-filler": {
     title: "Grid Filler: Shikaku Tiles",
@@ -113,6 +132,14 @@ Features 1000+ levels, daily puzzles, competitive leaderboards, and a satisfying
       { platform: "App Store", url: "https://apps.apple.com/vn/app/grid-filler-shikaku-tiles/id6756872108" },
     ],
     gallery: [gridFiller1, gridFiller2, gridFiller3, gridFiller4],
+    meta: {
+      studio: "Kwalee",
+      genre: "Logic Puzzle",
+      year: "2024",
+      platforms: ["iOS"],
+      engine: "Unity",
+      status: "Shipped",
+    },
   },
   "puzzles-and-cats": {
     title: "Puzzles & Cats",
@@ -139,6 +166,14 @@ Features 1000+ levels, daily puzzles, competitive leaderboards, and a satisfying
 The game features robust LiveOps infrastructure allowing the team to push content updates, balance changes, and new events without requiring app store updates.`,
     youtubeId: "gnA_2x3F1SU",
     gallery: [puzzlesCats1, puzzlesCats2, puzzlesCats4, puzzlesCats5, puzzlesCats6, puzzlesCats8, puzzlesCats9],
+    meta: {
+      studio: "Kwalee",
+      genre: "Match-3 / LiveOps",
+      year: "2024",
+      platforms: ["Android", "iOS"],
+      engine: "Unity",
+      status: "Shipped",
+    },
   },
   "boarding-rush": {
     title: "Boarding Rush",
@@ -168,6 +203,14 @@ The game features a relaxing beach theme with smooth animations and cheerful vis
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.boardingrush" },
     ],
     gallery: [boardingRush1, boardingRush2, boardingRush3, boardingRush4],
+    meta: {
+      studio: "Kwalee",
+      genre: "Sorting Puzzle",
+      year: "2024",
+      platforms: ["Android"],
+      engine: "Unity",
+      status: "Shipped",
+    },
   },
   "dominoes-logic": {
     title: "Dominoes Logic",
@@ -197,6 +240,14 @@ Each level challenges you to read the grid, plan your moves, and fit the right t
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.dominodrop" },
     ],
     gallery: [dominoesStore1, dominoesStore2, dominoesStore3],
+    meta: {
+      studio: "Kwalee",
+      genre: "Number Puzzle",
+      year: "2024",
+      platforms: ["Android"],
+      engine: "Unity",
+      status: "Shipped",
+    },
   },
   "looper": {
     title: "Looper",
@@ -225,6 +276,15 @@ With 10Cr+ downloads, the game successfully transitioned from Hyper-casual to Hy
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.kwalee.looper" },
     ],
     gallery: [looperStore1, looperStore2, looperStore3],
+    meta: {
+      studio: "Kwalee",
+      genre: "Rhythm Puzzle",
+      year: "2024",
+      platforms: ["Android"],
+      engine: "Unity",
+      status: "Shipped",
+      stat: { label: "Downloads", value: "10Cr+" },
+    },
   },
   "mini-golf": {
     title: "Mini Golf",
@@ -252,6 +312,15 @@ With 10Cr+ downloads, the game successfully transitioned from Hyper-casual to Hy
 
 Achieved 58K+ unique plays through continuous iteration based on live player feedback, improving UX and course designs over time.`,
     gallery: [],
+    meta: {
+      studio: "Totality Corp",
+      genre: "Mini Golf",
+      year: "2020–2021",
+      platforms: ["Roblox"],
+      engine: "Roblox Studio",
+      status: "Shipped",
+      stat: { label: "Unique plays", value: "58K+" },
+    },
   },
   "rummy-3d": {
     title: "Rummy 3D",
@@ -278,6 +347,14 @@ Achieved 58K+ unique plays through continuous iteration based on live player fee
 
 The game features robust multiplayer infrastructure using Unity Relay and Lobby systems, supporting both friend invites and random matchmaking. A carefully balanced pay-to-earn model rewards skilled players while maintaining fair gameplay.`,
     gallery: [rummy3dImg],
+    meta: {
+      studio: "Totality Corp",
+      genre: "Card Game",
+      year: "2021–2023",
+      platforms: ["Android", "iOS"],
+      engine: "Unity",
+      status: "Prototype",
+    },
   },
   "monster-mayhem": {
     title: "Monster Mayhem",
@@ -307,6 +384,15 @@ The game features robust multiplayer infrastructure using Unity Relay and Lobby 
 
 Monster Mayhem is a cooperative PVE game where players fight hordes of zombies while protecting the Taj Mahal. Features dynamic wave scaling, diverse enemy types including bosses, and strategic resource spawning to keep gameplay fresh and challenging.`,
     gallery: [monsterMayhemImg],
+    meta: {
+      studio: "Totality Corp",
+      genre: "Co-op Tower Defense",
+      year: "2021–2023",
+      platforms: ["Android", "iOS"],
+      engine: "Unity",
+      status: "Prototype",
+      stat: { label: "FPS boost", value: "+75%" },
+    },
   },
   "animal-park": {
     title: "Animal Park",
@@ -334,6 +420,14 @@ This started as a same-day prototype at Kwalee, built using the H5 Game Builder 
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pocketspark.animalpark&hl=en" },
     ],
     gallery: [animalPark1, animalPark2, animalPark3],
+    meta: {
+      studio: "Kwalee",
+      genre: "Sorting Puzzle",
+      year: "2024",
+      platforms: ["Android"],
+      engine: "H5 / Web",
+      status: "Shipped",
+    },
   },
   "color-water-trip": {
     title: "Color Water Trip",
@@ -358,6 +452,14 @@ This started as a same-day prototype at Kwalee, built using the H5 Game Builder 
 
 Prototyped at Kwalee using the H5 Game Builder and Level Lab agent skills I built myself, to go from concept to a playable build quickly. Still in active development.`,
     gallery: [colorWaterTrip1, colorWaterTrip2, colorWaterTrip3],
+    meta: {
+      studio: "Kwalee",
+      genre: "Sorting Puzzle",
+      year: "2024",
+      platforms: ["Web"],
+      engine: "H5 / Web",
+      status: "In Development",
+    },
   },
   "planetation": {
     title: "Planetation",
@@ -382,6 +484,14 @@ Prototyped at Kwalee using the H5 Game Builder and Level Lab agent skills I buil
 
 Prototyped at Kwalee using the H5 Game Builder and Level Lab agent skills I built myself. Still in active development.`,
     gallery: [planetation1, planetation2, planetation3],
+    meta: {
+      studio: "Kwalee",
+      genre: "Racing",
+      year: "2024",
+      platforms: ["Web"],
+      engine: "H5 / Web",
+      status: "In Development",
+    },
   },
 };
 

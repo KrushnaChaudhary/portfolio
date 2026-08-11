@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Github, Package, ExternalLink, Copy, Check } from "lucide-react";
 import { agenticSkills } from "@/data/agenticSkillsData";
+import { ACCENT } from "@/lib/accents";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,13 +30,15 @@ const AgenticSkills = () => {
       animate="visible"
       className="grid grid-cols-1 lg:grid-cols-2 gap-6"
     >
-      {agenticSkills.map((skill, index) => (
+      {agenticSkills.map((skill, index) => {
+        const accent = ACCENT[skill.accent];
+        return (
         <motion.div key={skill.title} variants={cardVariants} className="group relative">
           <div className="absolute inset-0 bg-gradient-to-br from-card to-background rounded-2xl" />
           <div className="relative p-6 md:p-8 rounded-2xl border border-border hover:border-neon-cyan/50 transition-all duration-500 gradient-border h-full flex flex-col">
             <div className="flex items-start justify-between mb-4">
-              <div className={`inline-flex p-3 rounded-lg bg-${skill.color}/10`}>
-                <skill.icon className={`w-6 h-6 text-${skill.color}`} />
+              <div className={`inline-flex p-3 rounded-lg ${accent.wash}`}>
+                <skill.icon className={`w-6 h-6 ${accent.icon}`} />
               </div>
               <span className="text-xs font-display tracking-wider text-muted-foreground uppercase pt-2">
                 {skill.tagline}
@@ -50,7 +53,7 @@ const AgenticSkills = () => {
               {skill.tags.map((tag) => (
                 <span
                   key={tag}
-                  className={`px-3 py-1 text-xs font-medium rounded-full bg-${skill.color}/10 text-${skill.color} border border-${skill.color}/20`}
+                  className={`px-3 py-1 text-xs font-medium rounded-full ${accent.chip}`}
                 >
                   {tag}
                 </span>
@@ -104,7 +107,8 @@ const AgenticSkills = () => {
             </div>
           </div>
         </motion.div>
-      ))}
+        );
+      })}
     </motion.div>
   );
 };
