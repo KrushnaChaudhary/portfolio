@@ -312,24 +312,24 @@ Monster Mayhem is a cooperative PVE game where players fight hordes of zombies w
     title: "Animal Park",
     subtitle: "H5 Prototype → Live on Google Play",
     description:
-      "A color-sorting crowd puzzle: guide animal visitors onto matching train carts before the waiting carousel jams. Prototyped solo with the H5 Game Builder and Level Lab agent skills, then shipped to Google Play.",
+      "A color-sorting crowd puzzle: guide animal visitors onto matching train carts before the waiting carousel jams. Rapid-prototyped at work using my own H5 Game Builder and Level Lab agent skills, then taken to a full release on Google Play.",
     image: animalParkCover,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "Published"],
     highlights: [
       "Live on Google Play",
       "Color-matching sort puzzle",
       "Carousel jam-avoidance mechanic",
-      "Solo art, music & gameplay",
+      "Built with H5 Game Builder",
     ],
     myRole: [
-      "Designed, built, and shipped the entire game solo: every line of gameplay, all art, and all audio",
-      "Prototyped end-to-end using my own H5 Game Builder and Level Lab agent skills",
-      "Took it from a one-line prompt to a playable build in a single rapid session",
-      "Tuned the difficulty curve with Level Lab and shipped it live to Google Play",
+      "Rapid-prototyped the game using my own H5 Game Builder and Level Lab agent skills",
+      "Took it from a one-line prompt to a playable build in a single session",
+      "Tuned the difficulty curve with Level Lab",
+      "Prototype was taken forward to a full release on Google Play",
     ],
     fullDescription: `Animal Park is a color-sorting puzzle: cute animal visitors line up at the gates waiting to board a train, but each cart only accepts its matching color. Tap the gates to move animals forward. If the right cart isn't ready, they wait on a central carousel with limited seats. Fill the carousel with nowhere left to go, and it's a jam.
 
-Every part of this game (gameplay, art, music, and sound) was built solo, as a rapid prototype using the H5 Game Builder and Level Lab skills I built myself. What started as a same-day prototype went on to become a fully shipped release on Google Play.`,
+This started as a same-day prototype, built using the H5 Game Builder and Level Lab skills I built myself, and went on to become a fully shipped release on Google Play.`,
     storeLinks: [
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pocketspark.animalpark&hl=en" },
     ],
@@ -339,48 +339,48 @@ Every part of this game (gameplay, art, music, and sound) was built solo, as a r
     title: "Color Water Trip",
     subtitle: "H5 Prototype • In Development",
     description:
-      "A color-matching river puzzle: steer boats of colored passengers along a winding waterway and dock each one at its matching color before the docks run out.",
+      "A color-matching river puzzle: steer boats of colored passengers along a winding waterway and dock each one at its matching color before the docks run out. Prototyped at work using my own H5 Game Builder and Level Lab agent skills.",
     image: colorWaterTripCover,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "In Development"],
     highlights: [
       "Winding river sorting puzzle",
       "Color-matched boat docking",
       "Extra Dock power-up",
-      "Solo art, music & gameplay",
+      "Built with H5 Game Builder",
     ],
     myRole: [
-      "Designed and built the entire prototype solo: gameplay, art, and audio",
-      "Prototyped with my own H5 Game Builder and Level Lab agent skills",
+      "Rapid-prototyped the game using my own H5 Game Builder and Level Lab agent skills",
       "Authored the level set and difficulty ramp using Level Lab's generator",
-      "Currently in active development ahead of a planned release",
+      "Took it from concept to a playable build quickly",
+      "Currently in active development",
     ],
     fullDescription: `Color Water Trip sends boats of colored passengers down a winding river. Guide each boat to the dock matching its passengers' color before space runs out. Misjudge the routing and the river backs up fast.
 
-Built solo as a rapid H5 prototype (gameplay, art, and music all my own work) using the H5 Game Builder and Level Lab agent skills to go from concept to a playable build quickly. Still in active development.`,
+Prototyped using the H5 Game Builder and Level Lab agent skills I built myself, to go from concept to a playable build quickly. Still in active development.`,
     gallery: [colorWaterTrip1, colorWaterTrip2, colorWaterTrip3],
   },
   "planetation": {
     title: "Planetation",
     subtitle: "H5 Prototype • In Development",
     description:
-      "A tiny-planet driving game: race a car around the curved surface of a miniature world, weaving through village roads to the checkered flag.",
+      "A tiny-planet driving game: race a car around the curved surface of a miniature world, weaving through village roads to the checkered flag. Prototyped at work using my own H5 Game Builder and Level Lab agent skills.",
     image: planetation1,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Racing", "In Development"],
     highlights: [
       "Tiny-planet driving mechanic",
       "Curved-surface 3D navigation",
       "Village-road race courses",
-      "Solo art, music & gameplay",
+      "Built with H5 Game Builder",
     ],
     myRole: [
-      "Designed and built the entire prototype solo: gameplay, art, and audio",
-      "Prototyped with my own H5 Game Builder and Level Lab agent skills",
-      "Built the course/level progression using Level Lab",
-      "Currently in active development ahead of a planned release",
+      "Rapid-prototyped the game using my own H5 Game Builder and Level Lab agent skills",
+      "Built the course and level progression using Level Lab",
+      "Took it from concept to a playable build quickly",
+      "Currently in active development",
     ],
     fullDescription: `Planetation is a driving game set on tiny, fully-navigable planets: steer a car around the curved surface of a miniature world, past houses and trees, chasing the checkered flag along winding village roads.
 
-Built solo as a rapid H5 prototype (gameplay, art, and music all my own work) using the H5 Game Builder and Level Lab agent skills. Still in active development.`,
+Prototyped using the H5 Game Builder and Level Lab agent skills I built myself. Still in active development.`,
     gallery: [planetation1, planetation2, planetation3],
   },
 };
