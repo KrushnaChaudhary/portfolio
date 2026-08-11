@@ -70,7 +70,7 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            4+ years shipping mobile games — <span className="text-neon-cyan">gameplay programming</span>,{" "}
+            5+ years shipping mobile games: <span className="text-neon-cyan">gameplay programming</span>,{" "}
             <span className="text-neon-purple">AI systems</span>, and{" "}
             <span className="text-neon-gold">designer-friendly architecture</span> across a dozen+ titles.
             Lately I've also been building{" "}

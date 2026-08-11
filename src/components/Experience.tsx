@@ -63,7 +63,7 @@ const Experience = () => {
             <span className="text-neon-gold">EXPERIENCE</span>
           </h2>
           <p className="text-muted-foreground max-w-xl mx-auto">
-            4+ years of professional game development
+            5+ years of professional game development
           </p>
         </motion.div>
 

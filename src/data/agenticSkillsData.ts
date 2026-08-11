@@ -19,7 +19,7 @@ export const agenticSkills: AgenticSkill[] = [
     title: "H5 Game Builder",
     tagline: "Prompt in, playable game out",
     description:
-      "Turns a one-line prompt into a mobile-first HTML5 game — a single .html file with 2D Phaser or 3D Three.js gameplay, art, audio, and levels. Every build is gated by a lint pass and a browser QA harness before it ships.",
+      "Turns a one-line prompt into a mobile-first HTML5 game: a single .html file with 2D Phaser or 3D Three.js gameplay, art, audio, and levels. Every build is gated by a lint pass and a browser QA harness before it ships.",
     tags: ["Claude Code", "Cursor", "Copilot CLI", "Phaser", "Three.js"],
     color: "neon-cyan",
     githubUrl: "https://github.com/KrushnaChaudhary/h5-game-builder-skill",
@@ -32,7 +32,7 @@ export const agenticSkills: AgenticSkill[] = [
     title: "Level Lab",
     tagline: "Any H5 game, real levels",
     description:
-      "Adds a level generator and an in-browser level editor to any single-file HTML5 game — a difficulty-ramped level set, per-level hand editing with live validity checks, and JSON/ZIP import-export.",
+      "Adds a level generator and an in-browser level editor to any single-file HTML5 game: a difficulty-ramped level set, per-level hand editing with live validity checks, and JSON/ZIP import-export.",
     tags: ["Claude Code", "Cursor", "Copilot CLI", "Level Design"],
     color: "neon-purple",
     githubUrl: "https://github.com/KrushnaChaudhary/level-lab-skill",

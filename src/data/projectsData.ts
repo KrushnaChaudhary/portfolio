@@ -106,7 +106,7 @@ The game features a killstreak system similar to Call of Duty, but themed around
       "Optimized grid performance and visual feedback",
       "Implemented spin-the-wheel reward system",
     ],
-    fullDescription: `Grid Filler is a clean logic puzzle where players divide grids into perfect rectangles, ensuring each section matches its number exactly. Simple rules, but every decision matters—one misplaced tile can block the entire board.
+    fullDescription: `Grid Filler is a clean logic puzzle where players divide grids into perfect rectangles, ensuring each section matches its number exactly. Simple rules, but every decision matters: one misplaced tile can block the entire board.
 
 Features 1000+ levels, daily puzzles, competitive leaderboards, and a satisfying reward system. The game focuses on training your brain through meaningful logic rather than random guessing.`,
     storeLinks: [
@@ -190,7 +190,7 @@ The game features a relaxing beach theme with smooth animations and cheerful vis
       "Integrated comprehensive analytics for player behavior tracking",
       "Maintained and updated the live title",
     ],
-    fullDescription: `Dominoes Logic is a clean number puzzle where players place domino tiles to match numbers and clear the board. Every move matters—think ahead to find smooth, elegant solutions.
+    fullDescription: `Dominoes Logic is a clean number puzzle where players place domino tiles to match numbers and clear the board. Every move matters: think ahead to find smooth, elegant solutions.
 
 Each level challenges you to read the grid, plan your moves, and fit the right tiles together. The game features a minimal design focused on satisfying puzzle-solving.`,
     storeLinks: [
@@ -312,7 +312,7 @@ Monster Mayhem is a cooperative PVE game where players fight hordes of zombies w
     title: "Animal Park",
     subtitle: "H5 Prototype → Live on Google Play",
     description:
-      "A color-sorting crowd puzzle — guide animal visitors onto matching train carts before the waiting carousel jams. Prototyped solo with the H5 Game Builder and Level Lab agent skills, then shipped to Google Play.",
+      "A color-sorting crowd puzzle: guide animal visitors onto matching train carts before the waiting carousel jams. Prototyped solo with the H5 Game Builder and Level Lab agent skills, then shipped to Google Play.",
     image: animalParkCover,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "Published"],
     highlights: [
@@ -322,14 +322,14 @@ Monster Mayhem is a cooperative PVE game where players fight hordes of zombies w
       "Solo art, music & gameplay",
     ],
     myRole: [
-      "Designed, built, and shipped the entire game solo — every line of gameplay, all art, and all audio",
+      "Designed, built, and shipped the entire game solo: every line of gameplay, all art, and all audio",
       "Prototyped end-to-end using my own H5 Game Builder and Level Lab agent skills",
       "Took it from a one-line prompt to a playable build in a single rapid session",
       "Tuned the difficulty curve with Level Lab and shipped it live to Google Play",
     ],
-    fullDescription: `Animal Park is a color-sorting puzzle: cute animal visitors line up at the gates waiting to board a train, but each cart only accepts its matching color. Tap the gates to move animals forward — if the right cart isn't ready, they wait on a central carousel with limited seats. Fill the carousel with nowhere left to go, and it's a jam.
+    fullDescription: `Animal Park is a color-sorting puzzle: cute animal visitors line up at the gates waiting to board a train, but each cart only accepts its matching color. Tap the gates to move animals forward. If the right cart isn't ready, they wait on a central carousel with limited seats. Fill the carousel with nowhere left to go, and it's a jam.
 
-Every part of this game — gameplay, art, music, and sound — was built solo, as a rapid prototype using the H5 Game Builder and Level Lab skills I built myself. What started as a same-day prototype went on to become a fully shipped release on Google Play.`,
+Every part of this game (gameplay, art, music, and sound) was built solo, as a rapid prototype using the H5 Game Builder and Level Lab skills I built myself. What started as a same-day prototype went on to become a fully shipped release on Google Play.`,
     storeLinks: [
       { platform: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pocketspark.animalpark&hl=en" },
     ],
@@ -339,7 +339,7 @@ Every part of this game — gameplay, art, music, and sound — was built solo, 
     title: "Color Water Trip",
     subtitle: "H5 Prototype • In Development",
     description:
-      "A color-matching river puzzle — steer boats of colored passengers along a winding waterway and dock each one at its matching color before the docks run out.",
+      "A color-matching river puzzle: steer boats of colored passengers along a winding waterway and dock each one at its matching color before the docks run out.",
     image: colorWaterTripCover,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "In Development"],
     highlights: [
@@ -349,21 +349,21 @@ Every part of this game — gameplay, art, music, and sound — was built solo, 
       "Solo art, music & gameplay",
     ],
     myRole: [
-      "Designed and built the entire prototype solo — gameplay, art, and audio",
+      "Designed and built the entire prototype solo: gameplay, art, and audio",
       "Prototyped with my own H5 Game Builder and Level Lab agent skills",
       "Authored the level set and difficulty ramp using Level Lab's generator",
       "Currently in active development ahead of a planned release",
     ],
-    fullDescription: `Color Water Trip sends boats of colored passengers down a winding river. Guide each boat to the dock matching its passengers' color before space runs out — misjudge the routing and the river backs up fast.
+    fullDescription: `Color Water Trip sends boats of colored passengers down a winding river. Guide each boat to the dock matching its passengers' color before space runs out. Misjudge the routing and the river backs up fast.
 
-Built solo as a rapid H5 prototype — gameplay, art, and music all my own work — using the H5 Game Builder and Level Lab agent skills to go from concept to a playable build quickly. Still in active development.`,
+Built solo as a rapid H5 prototype (gameplay, art, and music all my own work) using the H5 Game Builder and Level Lab agent skills to go from concept to a playable build quickly. Still in active development.`,
     gallery: [colorWaterTrip1, colorWaterTrip2, colorWaterTrip3],
   },
   "planetation": {
     title: "Planetation",
     subtitle: "H5 Prototype • In Development",
     description:
-      "A tiny-planet driving game — race a car around the curved surface of a miniature world, weaving through village roads to the checkered flag.",
+      "A tiny-planet driving game: race a car around the curved surface of a miniature world, weaving through village roads to the checkered flag.",
     image: planetation1,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Racing", "In Development"],
     highlights: [
@@ -373,14 +373,14 @@ Built solo as a rapid H5 prototype — gameplay, art, and music all my own work 
       "Solo art, music & gameplay",
     ],
     myRole: [
-      "Designed and built the entire prototype solo — gameplay, art, and audio",
+      "Designed and built the entire prototype solo: gameplay, art, and audio",
       "Prototyped with my own H5 Game Builder and Level Lab agent skills",
       "Built the course/level progression using Level Lab",
       "Currently in active development ahead of a planned release",
     ],
-    fullDescription: `Planetation is a driving game set on tiny, fully-navigable planets — steer a car around the curved surface of a miniature world, past houses and trees, chasing the checkered flag along winding village roads.
+    fullDescription: `Planetation is a driving game set on tiny, fully-navigable planets: steer a car around the curved surface of a miniature world, past houses and trees, chasing the checkered flag along winding village roads.
 
-Built solo as a rapid H5 prototype — gameplay, art, and music all my own work — using the H5 Game Builder and Level Lab agent skills. Still in active development.`,
+Built solo as a rapid H5 prototype (gameplay, art, and music all my own work) using the H5 Game Builder and Level Lab agent skills. Still in active development.`,
     gallery: [planetation1, planetation2, planetation3],
   },
 };

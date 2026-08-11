@@ -15,7 +15,7 @@ const tabCopy: Record<Tab, { eyebrow: string; accent: string; sub: string }> = {
   skills: {
     eyebrow: "AGENTIC",
     accent: "SKILLS",
-    sub: "Installable AI agent skills I've built and published — for Claude Code, Cursor, and GitHub Copilot CLI",
+    sub: "Installable AI agent skills I've built and published for Claude Code, Cursor, and GitHub Copilot CLI",
   },
 };
 
