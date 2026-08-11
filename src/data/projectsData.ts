@@ -30,9 +30,11 @@ import boardingRush1 from "@/assets/boarding-rush-1.webp";
 import boardingRush2 from "@/assets/boarding-rush-2.webp";
 import boardingRush3 from "@/assets/boarding-rush-3.webp";
 import boardingRush4 from "@/assets/boarding-rush-4.webp";
+import animalParkCover from "@/assets/animal-park-cover.jpg";
 import animalPark1 from "@/assets/animal-park-1.jpg";
 import animalPark2 from "@/assets/animal-park-2.jpg";
 import animalPark3 from "@/assets/animal-park-3.jpg";
+import colorWaterTripCover from "@/assets/color-water-trip-cover.jpg";
 import colorWaterTrip1 from "@/assets/color-water-trip-1.jpg";
 import colorWaterTrip2 from "@/assets/color-water-trip-2.jpg";
 import colorWaterTrip3 from "@/assets/color-water-trip-3.jpg";
@@ -311,7 +313,7 @@ Monster Mayhem is a cooperative PVE game where players fight hordes of zombies w
     subtitle: "H5 Prototype → Live on Google Play",
     description:
       "A color-sorting crowd puzzle — guide animal visitors onto matching train carts before the waiting carousel jams. Prototyped solo with the H5 Game Builder and Level Lab agent skills, then shipped to Google Play.",
-    image: animalPark1,
+    image: animalParkCover,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "Published"],
     highlights: [
       "Live on Google Play",
@@ -338,7 +340,7 @@ Every part of this game — gameplay, art, music, and sound — was built solo, 
     subtitle: "H5 Prototype • In Development",
     description:
       "A color-matching river puzzle — steer boats of colored passengers along a winding waterway and dock each one at its matching color before the docks run out.",
-    image: colorWaterTrip1,
+    image: colorWaterTripCover,
     tags: ["H5 Game Builder", "Level Lab", "Prototype", "Puzzle", "In Development"],
     highlights: [
       "Winding river sorting puzzle",
@@ -386,6 +388,18 @@ Built solo as a rapid H5 prototype — gameplay, art, and music all my own work 
 // Project list for the main projects page (order matters)
 export const projectsList = [
   {
+    slug: "color-water-trip",
+    ...projectsData["color-water-trip"],
+  },
+  {
+    slug: "planetation",
+    ...projectsData["planetation"],
+  },
+  {
+    slug: "animal-park",
+    ...projectsData["animal-park"],
+  },
+  {
     slug: "puzzles-and-cats",
     ...projectsData["puzzles-and-cats"],
   },
@@ -420,17 +434,5 @@ export const projectsList = [
   {
     slug: "mini-golf",
     ...projectsData["mini-golf"],
-  },
-  {
-    slug: "animal-park",
-    ...projectsData["animal-park"],
-  },
-  {
-    slug: "color-water-trip",
-    ...projectsData["color-water-trip"],
-  },
-  {
-    slug: "planetation",
-    ...projectsData["planetation"],
   },
 ];

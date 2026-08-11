@@ -70,11 +70,12 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            4+ years crafting immersive gameplay experiences. Specializing in{" "}
-            <span className="text-neon-cyan">Gameplay Programming</span>,{" "}
-            <span className="text-neon-purple">AI Systems</span>,{" "}
-            <span className="text-neon-gold">Designer-Friendly Architecture</span>, and{" "}
-            <span className="text-neon-pink">AI Agent Tooling</span>.
+            4+ years shipping mobile games — <span className="text-neon-cyan">gameplay programming</span>,{" "}
+            <span className="text-neon-purple">AI systems</span>, and{" "}
+            <span className="text-neon-gold">designer-friendly architecture</span> across a dozen+ titles.
+            Lately I've also been building{" "}
+            <span className="text-neon-pink">AI agent skills</span> that turn a one-line prompt into a
+            playable HTML5 game, then using them to prototype real games solo.
           </motion.p>
 
           <motion.div
