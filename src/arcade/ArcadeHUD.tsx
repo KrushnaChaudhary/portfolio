@@ -20,7 +20,7 @@ const ArcadeHUD = () => {
         </span>
       </div>
       <div className="hidden md:block absolute bottom-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-surface-1/60 text-xs text-subtle-foreground pointer-events-none">
-        WASD / ARROWS TO MOVE · E TO ENTER · ESC TO EXIT
+        WASD / ARROWS MOVE · SPACE JUMP · E ENTER · ESC EXIT
       </div>
     </>
   );

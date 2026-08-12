@@ -12,16 +12,21 @@ import {
   WORLD_H,
 } from "./scene3d";
 import { InputController } from "./input";
+import { createCat, CatRig } from "./cat";
 
 const PLAYER_SPEED = 6.2; // world units/sec
 const PLAYER_HALF = 10; // px, matches the tested tilemap collision box
+// Apex ~0.85 units, airtime ~0.65s — high enough to read clearly under the
+// pitched camera without feeling floaty.
+const JUMP_VELOCITY = 5.2;
+const GRAVITY = 16.0;
 const FIXED_STEP = 1 / 60;
 const MAX_CATCHUP_STEPS = 5;
-const CAMERA_OFFSET = new THREE.Vector3(0, 16, 10);
+const CAMERA_OFFSET = new THREE.Vector3(0, 12.5, 8.5);
 // How far ahead of the camera the look-at point sits. Tuned with the height
 // above so the frustum's top edge lands on nearby ground — a shallower pitch
 // puts the horizon on screen and wastes the top third of the frame on sky.
-const LOOK_AHEAD = 9.5;
+const LOOK_AHEAD = 7.5;
 const SLOW_FRAME_MS = 24;
 const SLOW_FRAME_LIMIT = 30;
 
@@ -57,7 +62,10 @@ export class HubEngine3D {
   // pixel space so the already-tested resolveCollision/nearestBuilding apply.
   private pos = { x: SPAWN_WORLD.x, z: SPAWN_WORLD.y };
   private facing = 0;
-  private walkTime = 0;
+  private cat!: CatRig;
+  private y = 0;
+  private vy = 0;
+  private grounded = true;
 
   private nearestSlug: string | null = null;
   private loadedPosters = new Set<string>();
@@ -90,7 +98,9 @@ export class HubEngine3D {
     this.camera = new THREE.PerspectiveCamera(50, 1, 0.1, 200);
 
     this.refs = buildScene(this.palette);
-    this.refs.player.position.set(this.pos.x, 0, this.pos.z);
+    this.cat = createCat(this.palette);
+    this.cat.root.position.set(this.pos.x, 0, this.pos.z);
+    this.refs.scene.add(this.cat.root);
 
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(canvas);
@@ -118,6 +128,10 @@ export class HubEngine3D {
 
   triggerInteract() {
     this.input.queueInteract();
+  }
+
+  triggerJump() {
+    this.input.queueJump();
   }
 
   private pause() {
@@ -186,15 +200,34 @@ export class HubEngine3D {
     this.pos.x = Math.max(0.5, Math.min(WORLD_W - 0.5, nextPx.x / TILE_SIZE));
     this.pos.z = Math.max(0.5, Math.min(WORLD_H - 0.5, nextPx.y / TILE_SIZE));
 
-    const moving = ix !== 0 || iy !== 0;
-    if (moving) {
-      this.walkTime += dt;
-      this.facing = Math.atan2(ix, iy);
+    const speed01 = Math.min(1, Math.hypot(ix, iy));
+    if (speed01 > 0) this.facing = Math.atan2(ix, iy);
+
+    // Vertical motion is independent of collision: x/z resolution above always
+    // runs, so jumping can never carry the player over a wall or into a
+    // building. There is no roof geometry to land on, so allowing that would
+    // drop them inside a solid box.
+    if (this.input.consumeJump() && this.grounded) {
+      this.vy = JUMP_VELOCITY;
+      this.grounded = false;
+    }
+    if (!this.grounded) {
+      this.vy -= GRAVITY * dt;
+      this.y += this.vy * dt;
+      if (this.y <= 0) {
+        this.y = 0;
+        this.vy = 0;
+        this.grounded = true;
+      }
     }
 
-    const player = this.refs.player;
-    player.position.set(this.pos.x, moving ? Math.abs(Math.sin(this.walkTime * 9)) * 0.09 : 0, this.pos.z);
-    player.rotation.y = this.facing;
+    this.cat.root.position.set(this.pos.x, this.y, this.pos.z);
+    this.cat.update(dt, {
+      speed01,
+      facing: this.facing,
+      grounded: this.grounded,
+      verticalVel: this.vy,
+    });
 
     // Camera always follows the player (no bounds clamp): the ground plane
     // extends well past the playable area, so there is no void to frame, and
@@ -270,6 +303,7 @@ export class HubEngine3D {
     }
     this.refs.posterMeshes.clear();
 
+    this.cat.dispose();
     disposeOwned(this.refs.owned);
     this.refs.scene.clear();
 

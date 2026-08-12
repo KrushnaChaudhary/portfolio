@@ -4,9 +4,10 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 interface JoystickProps {
   onVector: (vec: { x: number; y: number } | null) => void;
   onInteract: () => void;
+  onJump: () => void;
 }
 
-const Joystick = ({ onVector, onInteract }: JoystickProps) => {
+const Joystick = ({ onVector, onInteract, onJump }: JoystickProps) => {
   const baseRef = useRef<HTMLDivElement>(null);
   const knobRef = useRef<HTMLDivElement>(null);
   const activePointerId = useRef<number | null>(null);
@@ -65,15 +66,28 @@ const Joystick = ({ onVector, onInteract }: JoystickProps) => {
           className="absolute left-1/2 top-1/2 w-12 h-12 -ml-6 -mt-6 rounded-full bg-primary/60"
         />
       </div>
-      <button
-        type="button"
-        onPointerDown={onInteract}
-        className="w-16 h-16 rounded-full bg-primary text-primary-foreground font-display font-bold pointer-events-auto"
-        style={{ touchAction: "none" }}
-        aria-label="Interact"
-      >
-        A
-      </button>
+      {/* Stacked so one right thumb reaches both. onPointerDown rather than
+          onClick: some mobile browsers add ~300ms to click. */}
+      <div className="flex flex-col items-end gap-3 pointer-events-none">
+        <button
+          type="button"
+          onPointerDown={onJump}
+          className="w-14 h-14 rounded-full bg-surface-1/80 border border-border text-foreground font-display text-xs font-bold pointer-events-auto"
+          style={{ touchAction: "none" }}
+          aria-label="Jump"
+        >
+          JUMP
+        </button>
+        <button
+          type="button"
+          onPointerDown={onInteract}
+          className="w-16 h-16 rounded-full bg-primary text-primary-foreground font-display font-bold pointer-events-auto"
+          style={{ touchAction: "none" }}
+          aria-label="Interact"
+        >
+          A
+        </button>
+      </div>
     </div>
   );
 };

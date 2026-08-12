@@ -61,6 +61,7 @@ const HubWorldCanvas = () => {
       <Joystick
         onVector={(vec) => engineRef.current?.setJoystickVector(vec)}
         onInteract={() => engineRef.current?.triggerInteract()}
+        onJump={() => engineRef.current?.triggerJump()}
       />
     </div>
   );

@@ -1,7 +1,9 @@
 import { Vec2 } from "./types";
 
 const MOVE_KEYS = new Set(["arrowup", "arrowdown", "arrowleft", "arrowright", "w", "a", "s", "d"]);
-const INTERACT_KEYS = new Set(["e", "enter", " "]);
+// Space moved from interact to jump; E and Enter remain interact.
+const INTERACT_KEYS = new Set(["e", "enter"]);
+const JUMP_KEYS = new Set([" ", "spacebar"]);
 
 export class InputController {
   x = 0;
@@ -10,6 +12,7 @@ export class InputController {
   private keys = new Set<string>();
   private joystickVec: Vec2 | null = null;
   private interactQueued = false;
+  private jumpQueued = false;
   private escapeQueued = false;
 
   private handleKeyDown = (e: KeyboardEvent) => {
@@ -23,6 +26,10 @@ export class InputController {
     } else if (INTERACT_KEYS.has(key)) {
       e.preventDefault();
       this.interactQueued = true;
+    } else if (JUMP_KEYS.has(key)) {
+      // preventDefault stops Space scrolling the page behind the canvas.
+      e.preventDefault();
+      this.jumpQueued = true;
     } else if (key === "escape") {
       this.escapeQueued = true;
     }
@@ -48,9 +55,20 @@ export class InputController {
     this.joystickVec = vec;
   }
 
-  // Touch "A" button — one-shot, mirrors the E/Enter/Space keyboard path.
+  // Touch "A" button — one-shot, mirrors the E/Enter keyboard path.
   queueInteract() {
     this.interactQueued = true;
+  }
+
+  // Touch "JUMP" button — one-shot, mirrors the Space keyboard path.
+  queueJump() {
+    this.jumpQueued = true;
+  }
+
+  consumeJump(): boolean {
+    const value = this.jumpQueued;
+    this.jumpQueued = false;
+    return value;
   }
 
   consumeInteract(): boolean {

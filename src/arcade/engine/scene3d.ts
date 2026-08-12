@@ -33,7 +33,8 @@ export interface OwnedResources {
 
 export interface SceneRefs {
   scene: THREE.Scene;
-  player: THREE.Group;
+  // The player character is built and owned by cat.ts, not by buildScene, so
+  // it disposes its own resources independently of the world's.
   buildingMeshes: Map<string, THREE.Mesh>;
   posterMeshes: Map<string, THREE.Mesh>;
   sun: THREE.DirectionalLight;
@@ -312,35 +313,6 @@ export function buildScene(palette: ScenePalette): SceneRefs {
     }
   }
 
-  // Player
-  const player = new THREE.Group();
-  const body = new THREE.Mesh(
-    new THREE.CapsuleGeometry(0.3, 0.5, 6, 12),
-    new THREE.MeshStandardMaterial({
-      color: new THREE.Color(palette.primary),
-      roughness: 0.35,
-      metalness: 0.2,
-      emissive: new THREE.Color(palette.primary),
-      emissiveIntensity: 0.25,
-    })
-  );
-  body.position.y = 0.55;
-  body.castShadow = true;
-  player.add(body);
-
-  const visor = new THREE.Mesh(
-    new THREE.SphereGeometry(0.13, 12, 12),
-    new THREE.MeshStandardMaterial({
-      color: new THREE.Color(palette.foreground),
-      emissive: new THREE.Color(palette.foreground),
-      emissiveIntensity: 0.5,
-      roughness: 0.2,
-    })
-  );
-  visor.position.set(0, 0.8, 0.24);
-  player.add(visor);
-  scene.add(player);
-
   const owned: OwnedResources = {
     geometries: new Set(),
     materials: new Set(),
@@ -348,7 +320,7 @@ export function buildScene(palette: ScenePalette): SceneRefs {
   };
   collectOwned(scene, owned);
 
-  return { scene, player, buildingMeshes, posterMeshes, sun, baseEmissive, owned };
+  return { scene, buildingMeshes, posterMeshes, sun, baseEmissive, owned };
 }
 
 export function makePoster(url: string, building: HubBuilding): THREE.Mesh {
