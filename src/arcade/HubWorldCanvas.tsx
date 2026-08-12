@@ -1,6 +1,6 @@
 import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { HubEngine } from "./engine/HubEngine";
+import { HubEngine3D } from "./engine/HubEngine3D";
 import { BUILDINGS } from "@/data/hubMapData";
 import { projectsData } from "@/data/projectsData";
 import Joystick from "./Joystick";
@@ -9,7 +9,7 @@ import ArcadeHUD from "./ArcadeHUD";
 
 const HubWorldCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const engineRef = useRef<HubEngine | null>(null);
+  const engineRef = useRef<HubEngine3D | null>(null);
   const navigate = useNavigate();
   const [nearestSlug, setNearestSlug] = useState<string | null>(null);
 
@@ -26,7 +26,7 @@ const HubWorldCanvas = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const engine = new HubEngine(canvas, {
+    const engine = new HubEngine3D(canvas, {
       onProximityChange: setNearestSlug,
       onNavigate: (target) => navigate(target),
       posterSources,

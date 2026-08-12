@@ -45,7 +45,9 @@ function buildMap(): string[] {
 
 export const HUB_MAP = buildMap();
 
-export const SPAWN_TILE = { x: SPINE_COL, y: MAIN_STREET_ROW };
+// Spawn mid-plaza (not on the main street) so the camera has world in every
+// direction rather than looking straight off the map's north edge.
+export const SPAWN_TILE = { x: SPINE_COL, y: 20 };
 
 export type BuildingKind = "arcade" | "kiosk" | "portal";
 
