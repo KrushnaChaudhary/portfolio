@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { skillTreeData } from "@/data/skillTreeData";
+import { projectsData } from "@/data/projectsData";
 
 describe("skillTreeData integrity", () => {
   it("has no duplicate ids", () => {
@@ -20,6 +21,14 @@ describe("skillTreeData integrity", () => {
     for (const node of skillTreeData) {
       expect(node.level).toBeGreaterThanOrEqual(1);
       expect(node.level).toBeLessThanOrEqual(5);
+    }
+  });
+
+  it("every relatedSlugs entry resolves to a real project", () => {
+    for (const node of skillTreeData) {
+      for (const slug of node.relatedSlugs ?? []) {
+        expect(projectsData[slug], `${node.id} references unknown project "${slug}"`).toBeDefined();
+      }
     }
   });
 });

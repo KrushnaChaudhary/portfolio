@@ -13,6 +13,8 @@ export interface SkillNode {
   icon: LucideIcon;
   accent: Accent;
   requires?: string[];
+  blurb: string;
+  relatedSlugs?: string[];
 }
 
 const BRANCH_ACCENT: Record<SkillBranch, Accent> = {
@@ -31,6 +33,8 @@ export const skillTreeData: SkillNode[] = [
     items: ["Unity 3D/2D", "Unreal Engine", "Roblox Studio"],
     icon: Gamepad2,
     accent: BRANCH_ACCENT.engine,
+    blurb: "Primary engine on every Unity mobile title, plus solo Roblox Studio development.",
+    relatedSlugs: ["rann-bhumi", "grid-filler", "mini-golf"],
   },
   {
     id: "networking",
@@ -42,6 +46,8 @@ export const skillTreeData: SkillNode[] = [
     icon: Network,
     accent: BRANCH_ACCENT.systems,
     requires: ["game-engines"],
+    blurb: "Authoritative server logic and state sync for real-time multiplayer combat and card games.",
+    relatedSlugs: ["rann-bhumi", "monster-mayhem", "rummy-3d"],
   },
   {
     id: "core-systems",
@@ -53,6 +59,8 @@ export const skillTreeData: SkillNode[] = [
     icon: Cpu,
     accent: BRANCH_ACCENT.systems,
     requires: ["game-engines"],
+    blurb: "Enemy AI and wave systems, class-based combat, and custom physics for ball-roll gameplay.",
+    relatedSlugs: ["monster-mayhem", "rann-bhumi", "mini-golf"],
   },
   {
     id: "development",
@@ -63,6 +71,7 @@ export const skillTreeData: SkillNode[] = [
     items: ["C#", "Visual Studio", "JetBrains Rider", "Git"],
     icon: Wrench,
     accent: BRANCH_ACCENT.tools,
+    blurb: "Day-to-day C# gameplay and tooling work across every shipped and prototyped title.",
   },
   {
     id: "productivity",
@@ -74,6 +83,7 @@ export const skillTreeData: SkillNode[] = [
     icon: Zap,
     accent: BRANCH_ACCENT.tools,
     requires: ["development"],
+    blurb: "Built an n8n build-distribution pipeline at Kwalee that cut release overhead by 30%.",
   },
   {
     id: "creative-tools",
@@ -85,5 +95,6 @@ export const skillTreeData: SkillNode[] = [
     icon: Palette,
     accent: BRANCH_ACCENT.tools,
     requires: ["development"],
+    blurb: "Prop and environment art, UI mockups, and trailer edits to support solo prototyping.",
   },
 ];
