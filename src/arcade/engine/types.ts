@@ -10,16 +10,6 @@ export interface Rect {
   h: number;
 }
 
-export interface EnginePalette {
-  background: string;
-  surface1: string;
-  surface2: string;
-  border: string;
-  primary: string;
-  foreground: string;
-  mutedForeground: string;
-}
-
 export interface HubEngineOptions {
   onProximityChange: (buildingSlug: string | null) => void;
   onNavigate: (target: string) => void;

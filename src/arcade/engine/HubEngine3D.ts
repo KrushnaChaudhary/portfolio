@@ -1,8 +1,16 @@
 import * as THREE from "three";
-import { SPAWN_TILE, TILE_SIZE, BUILDINGS } from "@/data/hubMapData";
+import { SPAWN_WORLD, TILE_SIZE, BUILDINGS } from "@/data/hubMapData";
 import { HubEngineOptions, Vec2 } from "./types";
 import { resolveCollision, nearestBuilding } from "./tilemap";
-import { buildScene, makePoster, SceneRefs, ScenePalette, WORLD_W, WORLD_H } from "./scene3d";
+import {
+  buildScene,
+  makePoster,
+  disposeOwned,
+  SceneRefs,
+  ScenePalette,
+  WORLD_W,
+  WORLD_H,
+} from "./scene3d";
 import { InputController } from "./input";
 
 const PLAYER_SPEED = 6.2; // world units/sec
@@ -43,11 +51,11 @@ export class HubEngine3D {
   private refs: SceneRefs;
   private options: HubEngineOptions;
   private input = new InputController();
-  private palette: EnginePalette;
+  private palette: ScenePalette;
 
   // Player position is tracked in world units; collision runs in the tilemap's
   // pixel space so the already-tested resolveCollision/nearestBuilding apply.
-  private pos = { x: SPAWN_TILE.x, z: SPAWN_TILE.y };
+  private pos = { x: SPAWN_WORLD.x, z: SPAWN_WORLD.y };
   private facing = 0;
   private walkTime = 0;
 
@@ -59,6 +67,7 @@ export class HubEngine3D {
   private running = false;
   private slowFrames = 0;
   private degraded = false;
+  private destroyed = false;
 
   private resizeObserver: ResizeObserver;
   private canvas: HTMLCanvasElement;
@@ -156,8 +165,12 @@ export class HubEngine3D {
   private degrade() {
     this.degraded = true;
     this.renderer.setPixelRatio(1);
-    this.renderer.shadowMap.enabled = false;
+    // Turning off sun.castShadow is what actually skips the shadow pass.
+    // Setting renderer.shadowMap.enabled = false after materials have compiled
+    // is a no-op without flagging needsUpdate on every material, so it is not
+    // worth doing; autoUpdate = false stops re-rendering the shadow map.
     this.refs.sun.castShadow = false;
+    this.renderer.shadowMap.autoUpdate = false;
   }
 
   private update(dt: number) {
@@ -237,19 +250,33 @@ export class HubEngine3D {
   }
 
   destroy() {
+    // React StrictMode mounts, unmounts and remounts in development, so this
+    // runs twice; disposing twice would throw on an already-released context.
+    if (this.destroyed) return;
+    this.destroyed = true;
+
     this.running = false;
     cancelAnimationFrame(this.rafId);
     this.resizeObserver.disconnect();
     this.input.detach();
     document.removeEventListener("visibilitychange", this.visibilityHandler);
 
-    this.refs.scene.traverse((obj) => {
-      const mesh = obj as THREE.Mesh;
-      if (mesh.geometry) mesh.geometry.dispose();
-      const mat = mesh.material as THREE.Material | THREE.Material[] | undefined;
-      if (Array.isArray(mat)) mat.forEach((m) => m.dispose());
-      else mat?.dispose();
-    });
+    // Lazily-created poster resources are not part of buildScene's registry.
+    for (const poster of this.refs.posterMeshes.values()) {
+      poster.geometry.dispose();
+      const mat = poster.material as THREE.MeshBasicMaterial;
+      mat.map?.dispose();
+      mat.dispose();
+    }
+    this.refs.posterMeshes.clear();
+
+    disposeOwned(this.refs.owned);
+    this.refs.scene.clear();
+
     this.renderer.dispose();
+    // Without this the WebGL context stays alive; browsers cap concurrent
+    // contexts (~8-16), so repeated visits to /arcade would eventually fail
+    // to acquire one.
+    this.renderer.forceContextLoss();
   }
 }

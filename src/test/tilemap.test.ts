@@ -54,11 +54,16 @@ describe("resolveCollision", () => {
 });
 
 describe("nearestBuilding", () => {
-  it("finds the building whose padded trigger contains the point", () => {
+  // Probe from directly in front of the building on the walkable street, not
+  // from its centre: a footprint centre is solid and unreachable, so asserting
+  // there proves nothing about whether a player can trigger it. Full street
+  // sweeps live in hub-trigger.test.ts.
+  it("selects a building when standing in front of it on the street", () => {
     const b = BUILDINGS.find((building) => building.slug === "grid-filler")!;
-    const centerX = (b.x + b.w / 2) * TILE_SIZE;
-    const centerY = (b.y + b.h / 2) * TILE_SIZE;
-    expect(nearestBuilding(centerX, centerY)?.slug).toBe("grid-filler");
+    const px = (b.x + b.w / 2) * TILE_SIZE;
+    const py = (b.y + b.h + 1) * TILE_SIZE;
+    expect(isSolidWorld(px, py), "probe must be reachable").toBe(false);
+    expect(nearestBuilding(px, py)?.slug).toBe("grid-filler");
   });
 
   it("returns null far from every building", () => {

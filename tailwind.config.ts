@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 export default {
   darkMode: ["class"],
@@ -103,5 +104,15 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    // `pointer-fine:` / `pointer-coarse:` were already in use by the arcade
+    // touch controls but had never been defined, so Tailwind emitted nothing
+    // for them — the on-screen joystick rendered on desktop and the keyboard
+    // hint never rendered at all.
+    plugin(({ addVariant }) => {
+      addVariant("pointer-fine", "@media (pointer: fine)");
+      addVariant("pointer-coarse", "@media (pointer: coarse)");
+    }),
+  ],
 } satisfies Config;

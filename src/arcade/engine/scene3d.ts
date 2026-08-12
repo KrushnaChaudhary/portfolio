@@ -18,6 +18,19 @@ export interface ScenePalette {
   warning: string;
 }
 
+/**
+ * Everything buildScene allocated, so teardown can dispose exactly what it
+ * owns. Previously destroy() walked the whole scene graph and disposed every
+ * geometry and material it found, which also destroyed shared resources (a
+ * single BoxGeometry backs all 15 buildings) and anything a future module
+ * might cache across mounts.
+ */
+export interface OwnedResources {
+  geometries: Set<THREE.BufferGeometry>;
+  materials: Set<THREE.Material>;
+  textures: Set<THREE.Texture>;
+}
+
 export interface SceneRefs {
   scene: THREE.Scene;
   player: THREE.Group;
@@ -25,6 +38,40 @@ export interface SceneRefs {
   posterMeshes: Map<string, THREE.Mesh>;
   sun: THREE.DirectionalLight;
   baseEmissive: Map<string, number>;
+  owned: OwnedResources;
+}
+
+/**
+ * Register every geometry/material/texture reachable from `root`.
+ *
+ * Called once at the end of buildScene, before any other module adds to the
+ * scene, so it captures exactly what buildScene allocated and nothing else.
+ * Modules added later (the player rig, holograms) own and dispose their own
+ * resources — that separation is the point, since disposing a shared or cached
+ * resource on unmount leaves a later mount rendering a destroyed object.
+ */
+export function collectOwned(root: THREE.Object3D, owned: OwnedResources) {
+  root.traverse((obj) => {
+    const mesh = obj as THREE.Mesh & { material?: THREE.Material | THREE.Material[] };
+    if (mesh.geometry) owned.geometries.add(mesh.geometry);
+    const mat = mesh.material;
+    const mats = Array.isArray(mat) ? mat : mat ? [mat] : [];
+    for (const m of mats) {
+      owned.materials.add(m);
+      for (const value of Object.values(m)) {
+        if (value instanceof THREE.Texture) owned.textures.add(value);
+      }
+    }
+  });
+}
+
+export function disposeOwned(owned: OwnedResources) {
+  owned.geometries.forEach((g) => g.dispose());
+  owned.materials.forEach((m) => m.dispose());
+  owned.textures.forEach((t) => t.dispose());
+  owned.geometries.clear();
+  owned.materials.clear();
+  owned.textures.clear();
 }
 
 function makeLabelTexture(text: string, color: string): THREE.CanvasTexture {
@@ -294,7 +341,14 @@ export function buildScene(palette: ScenePalette): SceneRefs {
   player.add(visor);
   scene.add(player);
 
-  return { scene, player, buildingMeshes, posterMeshes, sun, baseEmissive };
+  const owned: OwnedResources = {
+    geometries: new Set(),
+    materials: new Set(),
+    textures: new Set(),
+  };
+  collectOwned(scene, owned);
+
+  return { scene, player, buildingMeshes, posterMeshes, sun, baseEmissive, owned };
 }
 
 export function makePoster(url: string, building: HubBuilding): THREE.Mesh {
