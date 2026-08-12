@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Gamepad2 } from "lucide-react";
+import { usePreferredMode, useArcadeAvailable } from "@/hooks/usePreferredMode";
+import { preloadArcade } from "@/lib/preloadArcade";
 
 const SECTIONS = [
   { id: "main", label: "MAIN" },
@@ -14,6 +17,8 @@ const SECTIONS = [
 const TopRail = () => {
   const [activeId, setActiveId] = useState<string>(SECTIONS[0].id);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { markArcade } = usePreferredMode();
+  const arcadeAvailable = useArcadeAvailable();
 
   useEffect(() => {
     const elements = SECTIONS.map((s) => document.getElementById(s.id)).filter(
@@ -69,7 +74,21 @@ const TopRail = () => {
               ))}
             </div>
 
-            <div className="hidden md:block">
+            <div className="hidden md:flex items-center gap-3">
+              {arcadeAvailable ? (
+                <Link
+                  to="/arcade"
+                  onClick={markArcade}
+                  onMouseEnter={preloadArcade}
+                  onFocus={preloadArcade}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg font-display text-xs tracking-wider border border-border text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                >
+                  <Gamepad2 className="w-3.5 h-3.5" />
+                  ARCADE MODE
+                </Link>
+              ) : (
+                <span className="text-xs text-subtle-foreground">Arcade mode is off (reduced motion)</span>
+              )}
               <a
                 href="mailto:krushnachaudhary.kc@gmail.com"
                 className="px-4 py-2 rounded-lg font-display text-xs tracking-wider border border-primary text-primary hover:bg-primary/10 transition-all"
@@ -111,6 +130,19 @@ const TopRail = () => {
                     {section.label}
                   </a>
                 ))}
+                {arcadeAvailable && (
+                  <Link
+                    to="/arcade"
+                    onClick={() => {
+                      markArcade();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="py-3 font-display text-xl tracking-wider text-foreground flex items-center gap-2"
+                  >
+                    <Gamepad2 className="w-5 h-5" />
+                    ARCADE MODE
+                  </Link>
+                )}
                 <a
                   href="mailto:krushnachaudhary.kc@gmail.com"
                   className="mt-4 py-4 px-6 rounded-xl font-display text-center bg-primary text-primary-foreground"

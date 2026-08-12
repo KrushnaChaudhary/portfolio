@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import TopRail from "./TopRail";
 import SystemFooter from "./SystemFooter";
+import ArcadeResumeChip from "./ArcadeResumeChip";
 
 const ConsoleShell = ({ children }: { children: ReactNode }) => {
   return (
@@ -8,6 +9,7 @@ const ConsoleShell = ({ children }: { children: ReactNode }) => {
       <TopRail />
       {children}
       <SystemFooter />
+      <ArcadeResumeChip />
     </div>
   );
 };
