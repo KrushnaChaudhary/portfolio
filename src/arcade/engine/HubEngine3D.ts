@@ -22,11 +22,25 @@ const JUMP_VELOCITY = 5.2;
 const GRAVITY = 16.0;
 const FIXED_STEP = 1 / 60;
 const MAX_CATCHUP_STEPS = 5;
-const CAMERA_OFFSET = new THREE.Vector3(0, 12.5, 8.5);
+// Pulled back and raised from the original (12.5, 8.5) so more of the street
+// — several buildings, not just the nearest one or two — is in frame at once.
+// Walking between buildings previously meant losing sight of where you'd come
+// from; this keeps the whole block visible.
+const CAMERA_OFFSET = new THREE.Vector3(0, 19, 13);
 // How far ahead of the camera the look-at point sits. Tuned with the height
 // above so the frustum's top edge lands on nearby ground — a shallower pitch
 // puts the horizon on screen and wastes the top third of the frame on sky.
-const LOOK_AHEAD = 7.5;
+const LOOK_AHEAD = 11.5;
+const CAMERA_FOV = 58; // wider than the default 50 to fit more street width
+
+// Opening shot: camera starts close, in front of the cat's face, then eases
+// out to the standard gameplay framing. The cat's neck/head sit toward local
+// +Z, so a camera further along +Z than the cat and looking back at it is a
+// face-on shot.
+const INTRO_CAMERA_OFFSET = new THREE.Vector3(0, 1.15, 2.3);
+const INTRO_LOOK_HEIGHT = 0.95;
+const INTRO_DURATION = 1.6; // seconds
+const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
 const SLOW_FRAME_MS = 24;
 const SLOW_FRAME_LIMIT = 30;
 
@@ -66,6 +80,8 @@ export class HubEngine3D {
   private y = 0;
   private vy = 0;
   private grounded = true;
+  private introActive = true;
+  private introElapsed = 0;
 
   private nearestSlug: string | null = null;
   private loadedPosters = new Set<string>();
@@ -95,7 +111,7 @@ export class HubEngine3D {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-    this.camera = new THREE.PerspectiveCamera(50, 1, 0.1, 200);
+    this.camera = new THREE.PerspectiveCamera(CAMERA_FOV, 1, 0.1, 200);
 
     this.refs = buildScene(this.palette);
     this.cat = createCat(this.palette);
@@ -191,6 +207,11 @@ export class HubEngine3D {
     this.input.update();
     const { x: ix, y: iy } = this.input;
 
+    if (this.introActive) {
+      this.updateIntro(dt, ix, iy);
+      return;
+    }
+
     // Collision in pixel space, reusing the tested tilemap helpers.
     const startPx = { x: this.pos.x * TILE_SIZE, y: this.pos.z * TILE_SIZE };
     const dxPx = ix * PLAYER_SPEED * dt * TILE_SIZE;
@@ -258,6 +279,40 @@ export class HubEngine3D {
     if (this.input.consumeInteract() && building) {
       this.options.onNavigate(building.target);
     }
+    if (this.input.consumeEscape()) {
+      this.options.onNavigate("/");
+    }
+  }
+
+  /**
+   * Opening shot: camera starts face-on and close, then eases out to the
+   * standard gameplay framing while the cat idles. Movement/interact/jump
+   * input is read only to let the player skip the shot early — pressing
+   * anything jumps straight to the end of the transition rather than being
+   * queued up and firing the moment control is handed back, which would feel
+   * like an accidental building-enter or jump right as the cutscene ends.
+   */
+  private updateIntro(dt: number, ix: number, iy: number) {
+    const skipRequested = Math.hypot(ix, iy) > 0.05 || this.input.consumeInteract() || this.input.consumeJump();
+    this.introElapsed = skipRequested ? INTRO_DURATION : this.introElapsed + dt;
+
+    const t = Math.min(1, this.introElapsed / INTRO_DURATION);
+    const eased = easeInOutCubic(t);
+
+    this.cat.root.position.set(this.pos.x, 0, this.pos.z);
+    this.cat.update(dt, { speed01: 0, facing: this.facing, grounded: true, verticalVel: 0 });
+
+    const fromPos = new THREE.Vector3(this.pos.x, 0, this.pos.z).add(INTRO_CAMERA_OFFSET);
+    const toPos = new THREE.Vector3(this.pos.x + CAMERA_OFFSET.x, CAMERA_OFFSET.y, this.pos.z + CAMERA_OFFSET.z);
+    this.camera.position.lerpVectors(fromPos, toPos, eased);
+
+    const fromLook = new THREE.Vector3(this.pos.x, INTRO_LOOK_HEIGHT, this.pos.z);
+    const toLook = new THREE.Vector3(this.pos.x, 0.6, this.pos.z + CAMERA_OFFSET.z - LOOK_AHEAD);
+    this.camera.lookAt(fromLook.lerp(toLook, eased));
+
+    if (t >= 1) this.introActive = false;
+
+    // Don't trap the player in the cutscene if they came here by mistake.
     if (this.input.consumeEscape()) {
       this.options.onNavigate("/");
     }
