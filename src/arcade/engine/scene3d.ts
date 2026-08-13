@@ -33,10 +33,10 @@ export interface OwnedResources {
 
 export interface SceneRefs {
   scene: THREE.Scene;
-  // The player character is built and owned by cat.ts, not by buildScene, so
-  // it disposes its own resources independently of the world's.
+  // The player character (cat.ts) and the holograms (hologram.ts) are built
+  // and owned outside buildScene, so each disposes its own resources
+  // independently of the world's.
   buildingMeshes: Map<string, THREE.Mesh>;
-  posterMeshes: Map<string, THREE.Mesh>;
   sun: THREE.DirectionalLight;
   baseEmissive: Map<string, number>;
   owned: OwnedResources;
@@ -75,22 +75,6 @@ export function disposeOwned(owned: OwnedResources) {
   owned.textures.clear();
 }
 
-function makeLabelTexture(text: string, color: string): THREE.CanvasTexture {
-  const canvas = document.createElement("canvas");
-  canvas.width = 512;
-  canvas.height = 96;
-  const ctx = canvas.getContext("2d")!;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.font = "bold 44px Sora, Inter, sans-serif";
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillStyle = color;
-  ctx.fillText(text, canvas.width / 2, canvas.height / 2, canvas.width - 24);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.anisotropy = 4;
-  return texture;
-}
-
 // Vertical gradient so the space above the horizon reads as a deliberate sky
 // rather than dead flat background.
 function makeSkyTexture(palette: ScenePalette): THREE.CanvasTexture {
@@ -109,21 +93,53 @@ function makeSkyTexture(palette: ScenePalette): THREE.CanvasTexture {
   return texture;
 }
 
-const BUILDING_HEIGHT: Record<string, number> = {
-  arcade: 2.6,
-  kiosk: 1.5,
-  portal: 0.35,
-};
+// Arcade buildings no longer render a box (hologram.ts owns their visual
+// presence) and portals use their own arch geometry, so this now only sizes
+// kiosk boxes.
+const KIOSK_HEIGHT = 1.5;
 
 // Colour-code buildings by project status so the world reads as information,
 // not just decoration — same semantics as the library grid's status badges.
 function buildingColor(b: HubBuilding, palette: ScenePalette): string {
-  if (b.kind === "portal") return palette.primary;
   if (b.kind === "kiosk") return palette.surface3;
   const status = projectsData[b.slug]?.meta?.status;
   if (status === "Shipped") return palette.success;
   if (status === "In Development") return palette.warning;
   return palette.primary;
+}
+
+// A small always-billboarded text sign for kiosk/portal buildings — cheaper
+// and simpler than the full project-hologram rig (no image slot, no beam,
+// no per-frame quaternion copy needed since sprites billboard for free).
+function makeSignTexture(text: string, palette: ScenePalette): THREE.CanvasTexture {
+  const W = 512;
+  const H = 128;
+  const canvas = document.createElement("canvas");
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext("2d")!;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = `${palette.background}cc`;
+  const r = 18;
+  ctx.beginPath();
+  ctx.moveTo(r, 4);
+  ctx.arcTo(W - 4, 4, W - 4, H - 4, r);
+  ctx.arcTo(W - 4, H - 4, 4, H - 4, r);
+  ctx.arcTo(4, H - 4, 4, 4, r);
+  ctx.arcTo(4, 4, W - 4, 4, r);
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = palette.primary;
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillStyle = palette.foreground;
+  ctx.font = "700 46px Sora, Inter, sans-serif";
+  ctx.fillText(text.toUpperCase(), W / 2, H / 2 + 2, W - 40);
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
 }
 
 export function buildScene(palette: ScenePalette): SceneRefs {
@@ -239,14 +255,79 @@ export function buildScene(palette: ScenePalette): SceneRefs {
 
   // Buildings
   const buildingMeshes = new Map<string, THREE.Mesh>();
-  const posterMeshes = new Map<string, THREE.Mesh>();
   const baseEmissive = new Map<string, number>();
   const boxGeo = new THREE.BoxGeometry(1, 1, 1);
 
   for (const b of BUILDINGS) {
-    const height = BUILDING_HEIGHT[b.kind] ?? 2;
+    // Arcade (project) buildings render nothing here — hologram.ts builds
+    // their entire visual presence (ground pad, corner emitters, projector
+    // beam, floating panel) in the same footprint, so the "building" is now
+    // an open-air projection stage rather than a solid box.
+    if (b.kind === "arcade") continue;
+
+    const cx = b.x + b.w / 2;
+    const cz = b.y + b.h / 2;
+
+    if (b.kind === "portal") {
+      // A flat emissive box here used to read as a stray "blue square" sitting
+      // on the ground with nothing explaining it. A ring-and-pillar portal —
+      // glowing floor ring, two uprights, an arch bar — reads unambiguously
+      // as a gateway instead of decoration or a mistake.
+      const portalColor = new THREE.Color(palette.primary);
+      const ringMesh = new THREE.Mesh(
+        new THREE.TorusGeometry(Math.min(b.w, b.h) * 0.42, 0.05, 12, 32),
+        new THREE.MeshStandardMaterial({
+          color: portalColor,
+          emissive: portalColor,
+          emissiveIntensity: 1.1,
+          roughness: 0.3,
+          metalness: 0.4,
+        })
+      );
+      ringMesh.rotation.x = -Math.PI / 2;
+      ringMesh.position.set(cx, 0.04, cz);
+      scene.add(ringMesh);
+      buildingMeshes.set(b.slug, ringMesh);
+      baseEmissive.set(b.slug, 1.1);
+
+      const pillarMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(palette.surface3),
+        emissive: portalColor,
+        emissiveIntensity: 0.5,
+        roughness: 0.4,
+        metalness: 0.3,
+      });
+      const archHeight = 1.9;
+      const archHalfW = Math.min(b.w, b.h) * 0.36;
+      for (const side of [-1, 1]) {
+        const pillar = new THREE.Mesh(boxGeo, pillarMat);
+        pillar.scale.set(0.12, archHeight, 0.12);
+        pillar.position.set(cx + side * archHalfW, archHeight / 2, cz);
+        pillar.castShadow = true;
+        scene.add(pillar);
+      }
+      const archBar = new THREE.Mesh(boxGeo, pillarMat);
+      archBar.scale.set(archHalfW * 2 + 0.12, 0.12, 0.12);
+      archBar.position.set(cx, archHeight, cz);
+      archBar.castShadow = true;
+      scene.add(archBar);
+
+      const portalLight = new THREE.PointLight(portalColor, 2.4, 8, 2);
+      portalLight.position.set(cx, 1.4, cz);
+      scene.add(portalLight);
+
+      const sign = new THREE.Sprite(
+        new THREE.SpriteMaterial({ map: makeSignTexture(b.sign, palette), transparent: true, depthWrite: false })
+      );
+      sign.scale.set(1.7, 0.42, 1);
+      sign.position.set(cx, archHeight + 0.4, cz);
+      scene.add(sign);
+      continue;
+    }
+
+    const height = KIOSK_HEIGHT;
     const color = buildingColor(b, palette);
-    const glow = b.kind === "portal" ? 0.6 : 0.12;
+    const glow = 0.12;
 
     const mesh = new THREE.Mesh(
       boxGeo,
@@ -259,34 +340,31 @@ export function buildScene(palette: ScenePalette): SceneRefs {
       })
     );
     mesh.scale.set(b.w, height, b.h);
-    mesh.position.set(b.x + b.w / 2, height / 2, b.y + b.h / 2);
-    mesh.castShadow = b.kind !== "portal";
+    mesh.position.set(cx, height / 2, cz);
+    mesh.castShadow = true;
     mesh.receiveShadow = true;
     scene.add(mesh);
     buildingMeshes.set(b.slug, mesh);
     baseEmissive.set(b.slug, glow);
 
     // Roof cap in a neutral tone keeps the coloured volumes from reading flat
-    if (b.kind !== "portal") {
-      const cap = new THREE.Mesh(
-        boxGeo,
-        new THREE.MeshStandardMaterial({ color: new THREE.Color(palette.surface2), roughness: 0.85 })
-      );
-      cap.scale.set(b.w + 0.16, 0.16, b.h + 0.16);
-      cap.position.set(b.x + b.w / 2, height + 0.08, b.y + b.h / 2);
-      cap.castShadow = true;
-      scene.add(cap);
-    }
-
-    const sprite = new THREE.Sprite(
-      new THREE.SpriteMaterial({
-        map: makeLabelTexture(b.sign, palette.foreground),
-        transparent: true,
-      })
+    const cap = new THREE.Mesh(
+      boxGeo,
+      new THREE.MeshStandardMaterial({ color: new THREE.Color(palette.surface2), roughness: 0.85 })
     );
-    sprite.position.set(b.x + b.w / 2, height + 0.85, b.y + b.h / 2);
-    sprite.scale.set(3.0, 0.56, 1);
-    scene.add(sprite);
+    cap.scale.set(b.w + 0.16, 0.16, b.h + 0.16);
+    cap.position.set(cx, height + 0.08, cz);
+    cap.castShadow = true;
+    scene.add(cap);
+
+    // Kiosks are plain boxes with no hologram of their own now, so they need
+    // their own always-billboarded sign to stay legible from a distance.
+    const sign = new THREE.Sprite(
+      new THREE.SpriteMaterial({ map: makeSignTexture(b.sign, palette), transparent: true, depthWrite: false })
+    );
+    sign.scale.set(1.7, 0.42, 1);
+    sign.position.set(cx, height + 0.5, cz);
+    scene.add(sign);
   }
 
   // Lamp posts along the two streets for depth cues
@@ -320,24 +398,5 @@ export function buildScene(palette: ScenePalette): SceneRefs {
   };
   collectOwned(scene, owned);
 
-  return { scene, buildingMeshes, posterMeshes, sun, baseEmissive, owned };
-}
-
-export function makePoster(url: string, building: HubBuilding): THREE.Mesh {
-  const texture = new THREE.TextureLoader().load(url);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  const height = (BUILDING_HEIGHT[building.kind] ?? 2) * 0.5;
-  const width = Math.min(building.w * 0.82, height * (16 / 9));
-  const mesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(width, height),
-    new THREE.MeshBasicMaterial({ map: texture, toneMapped: false })
-  );
-  // Mounted on the south facade: both building bands sit north of their street,
-  // so that is the face the player actually walks up to.
-  mesh.position.set(
-    building.x + building.w / 2,
-    (BUILDING_HEIGHT[building.kind] ?? 2) * 0.52,
-    building.y + building.h + 0.03
-  );
-  return mesh;
+  return { scene, buildingMeshes, sun, baseEmissive, owned };
 }

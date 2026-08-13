@@ -1,18 +1,19 @@
 import * as THREE from "three";
-import { SPAWN_WORLD, TILE_SIZE, BUILDINGS } from "@/data/hubMapData";
+import { SPAWN_WORLD, TILE_SIZE } from "@/data/hubMapData";
 import { HubEngineOptions, Vec2 } from "./types";
 import { resolveCollision, nearestBuilding } from "./tilemap";
-import {
-  buildScene,
-  makePoster,
-  disposeOwned,
-  SceneRefs,
-  ScenePalette,
-  WORLD_W,
-  WORLD_H,
-} from "./scene3d";
+import { buildScene, disposeOwned, SceneRefs, ScenePalette, WORLD_W, WORLD_H } from "./scene3d";
 import { InputController } from "./input";
 import { createCat, CatRig } from "./cat";
+import { createHolograms, HologramField } from "./hologram";
+import { CoverLoader } from "./holoTextures";
+
+// All hologram art loads up front rather than being distance-gated: with
+// arcade buildings capped at 3 images apiece and each one downscaled to a
+// 256x256 canvas by CoverLoader, the full set is only a few MB of GPU memory
+// — cheap enough that every project should be visible from across the map,
+// not just the one the player has walked up to.
+const COVER_POLL_INTERVAL = 0.25; // seconds, not per-frame — see holoTextures.ts
 
 const PLAYER_SPEED = 6.2; // world units/sec
 const PLAYER_HALF = 10; // px, matches the tested tilemap collision box
@@ -84,7 +85,10 @@ export class HubEngine3D {
   private introElapsed = 0;
 
   private nearestSlug: string | null = null;
-  private loadedPosters = new Set<string>();
+  private holograms!: HologramField;
+  private coverLoader = new CoverLoader();
+  private coverApplied = new Set<string>();
+  private coverPollAccum = 0;
   private rafId = 0;
   private lastTime = 0;
   private accumulator = 0;
@@ -110,6 +114,12 @@ export class HubEngine3D {
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    // Filmic tone mapping is what actually sells the emissive holograms/beams
+    // as glowing light sources instead of flat bright-colored shapes — without
+    // it every emissive material just clips to a solid color past a low
+    // threshold, which is a large part of why the world read as "basic".
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.1;
 
     this.camera = new THREE.PerspectiveCamera(CAMERA_FOV, 1, 0.1, 200);
 
@@ -117,6 +127,22 @@ export class HubEngine3D {
     this.cat = createCat(this.palette);
     this.cat.root.position.set(this.pos.x, 0, this.pos.z);
     this.refs.scene.add(this.cat.root);
+
+    this.holograms = createHolograms(options.hologramSpecs, this.palette);
+    this.refs.scene.add(this.holograms.group);
+
+    // Request every hologram's images immediately — see the COVER_POLL_INTERVAL
+    // comment above for why this doesn't need to be distance-gated. Requests
+    // are keyed by spawn distance so the buildings nearest the player's start
+    // point (and therefore first on screen) finish decoding first.
+    for (const spec of options.hologramSpecs) {
+      const dx = SPAWN_WORLD.x - (spec.building.x + spec.building.w / 2);
+      const dz = SPAWN_WORLD.y - (spec.building.y + spec.building.h / 2);
+      const priority = Math.hypot(dx, dz);
+      spec.images.forEach((url, index) => {
+        this.coverLoader.request(`${spec.slug}#${index}`, url, priority + index * 0.01);
+      });
+    }
 
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(canvas);
@@ -201,6 +227,7 @@ export class HubEngine3D {
     // worth doing; autoUpdate = false stops re-rendering the shadow map.
     this.refs.sun.castShadow = false;
     this.renderer.shadowMap.autoUpdate = false;
+    this.holograms.setQuality("low");
   }
 
   private update(dt: number) {
@@ -266,6 +293,9 @@ export class HubEngine3D {
     this.refs.sun.target.position.set(this.pos.x, 0, this.pos.z);
     this.refs.sun.target.updateMatrixWorld();
 
+    this.holograms.update(dt, this.camera);
+    this.pollCovers(dt);
+
     const building = nearestBuilding(this.pos.x * TILE_SIZE, this.pos.z * TILE_SIZE);
     const slug = building?.slug ?? null;
     if (slug !== this.nearestSlug) {
@@ -274,7 +304,6 @@ export class HubEngine3D {
       this.nearestSlug = slug;
       this.options.onProximityChange(slug);
     }
-    if (building) this.loadPosterIfNeeded(building.slug);
 
     if (this.input.consumeInteract() && building) {
       this.options.onNavigate(building.target);
@@ -310,6 +339,10 @@ export class HubEngine3D {
     const toLook = new THREE.Vector3(this.pos.x, 0.6, this.pos.z + CAMERA_OFFSET.z - LOOK_AHEAD);
     this.camera.lookAt(fromLook.lerp(toLook, eased));
 
+    // The holograms are "always on", the cutscene shouldn't be an exception.
+    this.holograms.update(dt, this.camera);
+    this.pollCovers(dt);
+
     if (t >= 1) this.introActive = false;
 
     // Don't trap the player in the cutscene if they came here by mistake.
@@ -326,15 +359,30 @@ export class HubEngine3D {
     mat.emissiveIntensity = on ? 0.85 : this.refs.baseEmissive.get(slug) ?? 0.12;
   }
 
-  private loadPosterIfNeeded(slug: string) {
-    if (this.loadedPosters.has(slug)) return;
-    const src = this.options.posterSources[slug];
-    const building = BUILDINGS.find((b) => b.slug === slug);
-    if (!src || !building) return;
-    this.loadedPosters.add(slug);
-    const poster = makePoster(src, building);
-    this.refs.scene.add(poster);
-    this.refs.posterMeshes.set(slug, poster);
+  /**
+   * Applies any hologram images that finished decoding since the last poll.
+   * All images were already requested up front in the constructor; this just
+   * pumps the loader's queue and hands finished textures to the holograms.
+   * Runs on a timer rather than every frame — texture loading has no
+   * per-frame granularity to gain from checking 60 times a second.
+   */
+  private pollCovers(dt: number) {
+    this.coverPollAccum += dt;
+    if (this.coverPollAccum < COVER_POLL_INTERVAL) return;
+    this.coverPollAccum = 0;
+
+    this.coverLoader.pump();
+
+    for (const spec of this.options.hologramSpecs) {
+      spec.images.forEach((_url, index) => {
+        const key = `${spec.slug}#${index}`;
+        if (this.coverApplied.has(key)) return;
+        const texture = this.coverLoader.get(key);
+        if (!texture) return;
+        this.holograms.setImage(spec.slug, index, texture);
+        this.coverApplied.add(key);
+      });
+    }
   }
 
   destroy() {
@@ -349,16 +397,9 @@ export class HubEngine3D {
     this.input.detach();
     document.removeEventListener("visibilitychange", this.visibilityHandler);
 
-    // Lazily-created poster resources are not part of buildScene's registry.
-    for (const poster of this.refs.posterMeshes.values()) {
-      poster.geometry.dispose();
-      const mat = poster.material as THREE.MeshBasicMaterial;
-      mat.map?.dispose();
-      mat.dispose();
-    }
-    this.refs.posterMeshes.clear();
-
     this.cat.dispose();
+    this.holograms.dispose();
+    this.coverLoader.dispose();
     disposeOwned(this.refs.owned);
     this.refs.scene.clear();
 
