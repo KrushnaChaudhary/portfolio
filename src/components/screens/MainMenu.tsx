@@ -14,8 +14,8 @@ const STATS = [
 
 const STACK = ["Unity", "C#", "Unreal 5", "Three.js", "Phaser", "MCP", "Claude Code", "Codex", "Cursor", "Photon", "Roblox", "Multi-Agent"];
 
-const featuredGame = projectsList[0];
-const featuredAi = aiProjects.find((p) => p.image) ?? aiProjects[0];
+const featuredGame = projectsList.find((p) => p.slug === "rann-bhumi") ?? projectsList[0];
+const featuredAi = aiProjects[0];
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 18 },
@@ -78,7 +78,7 @@ const MainMenu = () => {
   return (
     <section
       ref={ref}
-      className="relative flex flex-col justify-center overflow-hidden pt-20 pb-10 md:pt-0 md:pb-0 md:min-h-[calc(100vh-3.5rem)]"
+      className="relative flex flex-col justify-center overflow-hidden pt-20 pb-10 md:pt-16 md:pb-0 md:min-h-[calc(100vh-3.5rem)]"
     >
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <Aurora />
@@ -184,8 +184,7 @@ const MainMenu = () => {
               <Float amp={9} duration={8} delay={1.2} className="mt-10">
                 <Tilt className="aspect-[3/4] lg:rotate-2">
                   <TrackCard
-                    to={featuredAi.links[0].url}
-                    external
+                    to={`/ai/${featuredAi.slug}`}
                     image={featuredAi.image}
                     label="AI"
                     title={featuredAi.title}
@@ -195,12 +194,12 @@ const MainMenu = () => {
                 </Tilt>
               </Float>
 
-              <Float amp={5} duration={5} delay={0.6} className="absolute -left-6 top-1/2 hidden sm:block z-20">
+              <Float amp={5} duration={5} delay={0.6} className="absolute -right-6 -top-4 hidden sm:block z-20">
                 <div className="px-3 py-1.5 rounded-full border border-border bg-surface-1/80 backdrop-blur text-[11px] text-muted-foreground shadow-e2 flex items-center gap-1.5">
-                  <Sparkles className="w-3 h-3 text-warning" /> prompt → playable
+                  <Sparkles className="w-3 h-3 text-warning" /> built with AI agents
                 </div>
               </Float>
-              <Float amp={6} duration={6} delay={2} className="absolute -right-4 top-2 hidden sm:block z-20">
+              <Float amp={6} duration={6} delay={2} className="absolute -left-8 bottom-24 hidden sm:block z-20">
                 <div className="px-3 py-1.5 rounded-full border border-border bg-surface-1/80 backdrop-blur text-[11px] text-muted-foreground shadow-e2 stat-num">
                   {projectsList.length + aiProjects.length} projects
                 </div>

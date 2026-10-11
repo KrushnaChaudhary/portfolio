@@ -9,6 +9,7 @@ import { preloadArcade } from "@/lib/preloadArcade";
 import Index from "./pages/Index";
 
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const AiProjectDetail = lazy(() => import("./pages/AiProjectDetail"));
 const Arcade = lazy(preloadArcade);
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -25,6 +26,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/project/:slug" element={<ProjectDetail />} />
+            <Route path="/ai/:slug" element={<AiProjectDetail />} />
             <Route path="/arcade" element={<Arcade />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

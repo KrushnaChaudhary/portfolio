@@ -29,34 +29,15 @@ const StatusChip = ({ label }: { label: string }) => (
   </span>
 );
 
-const AiCover = ({ project }: { project: AiProject }) => {
-  if (project.image) {
-    return (
-      <img
-        src={project.image}
-        alt={project.title}
-        loading="lazy"
-        decoding="async"
-        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.05]"
-      />
-    );
-  }
-  const Icon = project.poster.icon;
-  return (
-    <div
-      className="relative w-full h-full flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.05]"
-      style={{
-        background: `radial-gradient(120% 90% at 20% 10%, ${project.poster.from}, ${project.poster.to} 70%)`,
-      }}
-    >
-      <div className="absolute inset-0 grid-pattern opacity-60" />
-      <Icon className="relative w-12 h-12 text-white/85 drop-shadow-[0_6px_20px_rgba(0,0,0,0.5)]" strokeWidth={1.5} />
-      <span className="absolute bottom-2 right-3 font-display text-[10px] tracking-[0.25em] text-white/50 uppercase">
-        AI build
-      </span>
-    </div>
-  );
-};
+const AiCover = ({ project }: { project: AiProject }) => (
+  <img
+    src={project.image}
+    alt={project.title}
+    loading="lazy"
+    decoding="async"
+    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.05]"
+  />
+);
 
 const Row = ({
   index,
@@ -220,7 +201,7 @@ const AiColumn = ({ expanded }: { expanded: boolean }) => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: Math.min(i, 5) * 0.06, ease: [0.16, 1, 0.3, 1] }}
           >
-            <a href={p.links[0].url} target="_blank" rel="noopener noreferrer" className="group block h-full">
+            <Link to={`/ai/${p.slug}`} className="group block h-full">
               <Row
                 index={i}
                 title={p.title}
@@ -235,7 +216,7 @@ const AiColumn = ({ expanded }: { expanded: boolean }) => {
                   </>
                 }
               />
-            </a>
+            </Link>
           </motion.div>
         ))}
       </div>
