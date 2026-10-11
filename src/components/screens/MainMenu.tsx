@@ -46,7 +46,7 @@ const TrackCard = ({
         <img
           src={image}
           alt={title}
-          className="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+          className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
@@ -168,9 +168,9 @@ const MainMenu = () => {
             transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5"
           >
-            <div className="relative grid grid-cols-2 gap-4 max-w-md mx-auto">
-              <Float amp={7} duration={7}>
-                <Tilt className="aspect-[3/4] lg:-rotate-2">
+            <div className="relative flex flex-col gap-5 max-w-lg mx-auto">
+              <Float amp={7} duration={7} className="w-[88%]">
+                <Tilt className="aspect-video lg:-rotate-1">
                   <TrackCard
                     to={`/project/${featuredGame.slug}`}
                     image={featuredGame.image}
@@ -181,8 +181,8 @@ const MainMenu = () => {
                   />
                 </Tilt>
               </Float>
-              <Float amp={9} duration={8} delay={1.2} className="mt-10">
-                <Tilt className="aspect-[3/4] lg:rotate-2">
+              <Float amp={9} duration={8} delay={1.2} className="w-[88%] self-end">
+                <Tilt className="aspect-video lg:rotate-1">
                   <TrackCard
                     to={`/ai/${featuredAi.slug}`}
                     image={featuredAi.image}
@@ -194,12 +194,12 @@ const MainMenu = () => {
                 </Tilt>
               </Float>
 
-              <Float amp={5} duration={5} delay={0.6} className="absolute -right-6 -top-4 hidden sm:block z-20">
+              <Float amp={5} duration={5} delay={0.6} className="absolute right-8 -bottom-6 hidden sm:block z-20">
                 <div className="px-3 py-1.5 rounded-full border border-border bg-surface-1/80 backdrop-blur text-[11px] text-muted-foreground shadow-e2 flex items-center gap-1.5">
                   <Sparkles className="w-3 h-3 text-warning" /> built with AI agents
                 </div>
               </Float>
-              <Float amp={6} duration={6} delay={2} className="absolute -left-8 bottom-24 hidden sm:block z-20">
+              <Float amp={6} duration={6} delay={2} className="absolute right-0 -top-5 hidden sm:block z-20">
                 <div className="px-3 py-1.5 rounded-full border border-border bg-surface-1/80 backdrop-blur text-[11px] text-muted-foreground shadow-e2 stat-num">
                   {projectsList.length + aiProjects.length} projects
                 </div>
