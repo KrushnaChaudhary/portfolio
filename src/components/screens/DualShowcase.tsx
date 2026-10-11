@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { animate, motion, useInView } from "framer-motion";
+import { Spotlight } from "@/components/fx/Motion";
 import { ArrowUpRight, Bot, Gamepad2 } from "lucide-react";
 import { projectsList } from "@/data/projectsData";
 import { aiProjects, AiProject } from "@/data/aiProjectsData";
@@ -74,7 +75,12 @@ const Row = ({
   tags: string[];
   stat?: { label: string; value: string };
 }) => (
-  <div className="panel overflow-hidden h-full flex hover:shadow-e3 hover:-translate-y-0.5 hover:border-border-strong transition-all duration-300">
+  <Spotlight className="h-full">
+  <motion.div
+    whileHover={{ y: -4 }}
+    transition={{ type: "spring", stiffness: 300, damping: 22 }}
+    className="panel overflow-hidden h-full flex hover:shadow-e3 hover:border-border-strong transition-[box-shadow,border-color] duration-300"
+  >
     <div className="relative w-[38%] shrink-0 overflow-hidden bg-surface-2">{cover}</div>
     <div className="p-4 min-w-0 flex flex-col">
       <div className="flex items-start gap-2 mb-1">
@@ -100,8 +106,21 @@ const Row = ({
         ))}
       </div>
     </div>
-  </div>
+  </motion.div>
+  </Spotlight>
 );
+
+const Counter = ({ to }: { to: number }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
+  useEffect(() => {
+    if (!inView || !ref.current) return;
+    const node = ref.current;
+    const c = animate(0, to, { duration: 1.2, ease: "easeOut", onUpdate: (v) => (node.textContent = String(Math.round(v))) });
+    return () => c.stop();
+  }, [inView, to]);
+  return <span ref={ref}>0</span>;
+};
 
 const ColumnHeader = ({
   icon: Icon,
@@ -126,7 +145,7 @@ const ColumnHeader = ({
         <p className="text-xs text-muted-foreground">{sub}</p>
       </div>
     </div>
-    <span className="stat-num font-display text-3xl font-bold text-foreground/15">{count}</span>
+    <span className="stat-num font-display text-4xl font-bold text-foreground/15"><Counter to={count} /></span>
   </div>
 );
 
@@ -145,10 +164,10 @@ const GamesColumn = ({ expanded }: { expanded: boolean }) => {
         {list.map((p, i) => (
           <motion.div
             key={p.slug}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.4, delay: Math.min(i, 5) * 0.04 }}
+            transition={{ duration: 0.6, delay: Math.min(i, 5) * 0.06, ease: [0.16, 1, 0.3, 1] }}
           >
             <Link to={`/project/${p.slug}`} className="group block h-full">
               <Row
@@ -196,10 +215,10 @@ const AiColumn = ({ expanded }: { expanded: boolean }) => {
         {list.map((p, i) => (
           <motion.div
             key={p.slug}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.4, delay: Math.min(i, 5) * 0.04 }}
+            transition={{ duration: 0.6, delay: Math.min(i, 5) * 0.06, ease: [0.16, 1, 0.3, 1] }}
           >
             <a href={p.links[0].url} target="_blank" rel="noopener noreferrer" className="group block h-full">
               <Row
@@ -232,7 +251,13 @@ const DualShowcase = () => {
   return (
     <section className="py-24 relative">
       <div className="container px-6 relative z-10">
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-12"
+        >
           <p className="text-primary font-display text-xs tracking-[0.3em] uppercase mb-3">Selected work</p>
           <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground mb-4">
             Two tracks. <span className="text-subtle-foreground">One craft.</span>
@@ -241,7 +266,7 @@ const DualShowcase = () => {
             The games I've shipped on the left, the AI tooling that now builds them on the right. Both
             ranked by impact.
           </p>
-        </div>
+        </motion.div>
 
         {/* Mobile track switcher */}
         <div className="lg:hidden flex p-1 mb-8 rounded-full border border-border bg-surface-1 max-w-sm mx-auto">
@@ -250,11 +275,20 @@ const DualShowcase = () => {
               key={t}
               type="button"
               onClick={() => setTrack(t)}
-              className={`flex-1 py-2 rounded-full font-display text-xs tracking-wider transition-colors ${
-                track === t ? "bg-primary text-primary-foreground" : "text-muted-foreground"
+              className={`relative flex-1 py-2 rounded-full font-display text-xs tracking-wider transition-colors ${
+                track === t ? "text-primary-foreground" : "text-muted-foreground"
               }`}
             >
+              {track === t && (
+                <motion.span
+                  layoutId="track-pill"
+                  className="absolute inset-0 rounded-full bg-primary"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
+              <span className="relative">
               {t === "games" ? `GAMES · ${projectsList.length}` : `AI PROJECTS · ${aiProjects.length}`}
+              </span>
             </button>
           ))}
         </div>
