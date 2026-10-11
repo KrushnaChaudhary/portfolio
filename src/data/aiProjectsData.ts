@@ -66,6 +66,7 @@ export const aiProjects: AiProject[] = [
     image: pressureglassImg,
     gallery: [pressureglassImg, taskkeel1, taskkeel2],
     videos: [
+      { src: "videos/pressureglass.mp4", title: "Pressureglass gameplay trailer (real speed)" },
       { src: "videos/taskkeel-v2.mp4", title: "Taskkeel showcase (v2)" },
       { src: "videos/taskkeel-v1.mp4", title: "Taskkeel showcase (v1)" },
     ],
@@ -145,6 +146,7 @@ export const aiProjects: AiProject[] = [
     stat: { label: "Build time", value: "~2h" },
     image: sushiImg,
     gallery: [sushiImg],
+    videos: [{ src: "videos/sushi-stampede.mp4", title: "Sushi Stampede reel, cut in the same session" }],
     links: [],
   },
   {
@@ -193,6 +195,7 @@ export const aiProjects: AiProject[] = [
     stat: { label: "MCP toolsets unlocked", value: "52" },
     image: ueCrowdImg,
     gallery: [ueCrowdImg],
+    videos: [{ src: "videos/ue-crowd.mp4", title: "MetaHuman crowd cinematic, set up via MCP prompts" }],
     links: [{ label: "Read the write-up", url: "https://github.com/KrushnaChaudhary/unreal-mcp-crowd-gotchas" }],
   },
   {
