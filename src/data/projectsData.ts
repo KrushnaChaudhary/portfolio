@@ -495,23 +495,27 @@ Prototyped at Kwalee using the H5 Game Builder and Level Lab agent skills I buil
   },
 };
 
-// Project list for the main projects page (order matters)
+// Project list for the main projects page, ordered by impact and visuals (order matters)
 export const projectsList = [
   {
-    slug: "color-water-trip",
-    ...projectsData["color-water-trip"],
+    slug: "looper",
+    ...projectsData["looper"],
   },
   {
-    slug: "planetation",
-    ...projectsData["planetation"],
-  },
-  {
-    slug: "animal-park",
-    ...projectsData["animal-park"],
+    slug: "rann-bhumi",
+    ...projectsData["rann-bhumi"],
   },
   {
     slug: "puzzles-and-cats",
     ...projectsData["puzzles-and-cats"],
+  },
+  {
+    slug: "monster-mayhem",
+    ...projectsData["monster-mayhem"],
+  },
+  {
+    slug: "animal-park",
+    ...projectsData["animal-park"],
   },
   {
     slug: "boarding-rush",
@@ -526,23 +530,19 @@ export const projectsList = [
     ...projectsData["dominoes-logic"],
   },
   {
-    slug: "looper",
-    ...projectsData["looper"],
-  },
-  {
-    slug: "rann-bhumi",
-    ...projectsData["rann-bhumi"],
-  },
-  {
     slug: "rummy-3d",
     ...projectsData["rummy-3d"],
   },
   {
-    slug: "monster-mayhem",
-    ...projectsData["monster-mayhem"],
-  },
-  {
     slug: "mini-golf",
     ...projectsData["mini-golf"],
+  },
+  {
+    slug: "color-water-trip",
+    ...projectsData["color-water-trip"],
+  },
+  {
+    slug: "planetation",
+    ...projectsData["planetation"],
   },
 ];
