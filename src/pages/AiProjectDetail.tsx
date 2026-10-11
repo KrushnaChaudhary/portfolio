@@ -141,6 +141,35 @@ const AiProjectDetail = () => {
         </div>
       </section>
 
+      {project.videos && project.videos.length > 0 && (
+        <section className="pt-4">
+          <div className="container px-6 max-w-6xl">
+            <h2 className="font-display text-2xl font-bold mb-6">Watch</h2>
+            <div className={`grid gap-6 ${project.videos.length > 1 ? "lg:grid-cols-2" : ""}`}>
+              {project.videos.map((v) => (
+                <motion.figure
+                  key={v.src}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.7, ease }}
+                >
+                  <video
+                    src={`${import.meta.env.BASE_URL}${v.src}`}
+                    poster={project.image}
+                    controls
+                    playsInline
+                    preload="none"
+                    className="w-full rounded-2xl border border-border-strong shadow-e3 bg-black aspect-video object-contain"
+                  />
+                  <figcaption className="text-xs text-subtle-foreground mt-2">{v.title}</figcaption>
+                </motion.figure>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Body */}
       <section className="py-16">
         <div className="container px-6 max-w-6xl">

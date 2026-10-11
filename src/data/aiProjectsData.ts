@@ -30,6 +30,8 @@ export interface AiProject {
   stat?: { label: string; value: string };
   image: string;
   gallery: string[];
+  /** Videos served from public/videos (lazy-loaded on the detail page). */
+  videos?: { src: string; title: string }[];
   links: { label: string; url: string }[];
 }
 
@@ -63,6 +65,10 @@ export const aiProjects: AiProject[] = [
     stat: { label: "Parallel agent tracks", value: "3" },
     image: pressureglassImg,
     gallery: [pressureglassImg, taskkeel1, taskkeel2],
+    videos: [
+      { src: "videos/taskkeel-v2.mp4", title: "Taskkeel showcase (v2)" },
+      { src: "videos/taskkeel-v1.mp4", title: "Taskkeel showcase (v1)" },
+    ],
     links: [],
   },
   {
@@ -162,6 +168,7 @@ export const aiProjects: AiProject[] = [
     year: "2026",
     image: mosslightImg,
     gallery: [mosslightImg],
+    videos: [{ src: "videos/mosslight.mp4", title: "Mosslight first playable" }],
     links: [],
   },
   {
