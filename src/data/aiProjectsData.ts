@@ -14,6 +14,12 @@ import animalParkCover from "@/assets/animal-park-cover.jpg";
 import animalPark1 from "@/assets/animal-park-1.jpg";
 import animalPark2 from "@/assets/animal-park-2.jpg";
 import animalPark3 from "@/assets/animal-park-3.jpg";
+import aquaJamImg from "@/assets/ai/aqua-jam.webp";
+import paintByLogicImg from "@/assets/ai/paint-by-logic.webp";
+import numberPuzzleImg from "@/assets/ai/number-puzzle-blocks.webp";
+import planetation1 from "@/assets/planetation-1.jpg";
+import planetation2 from "@/assets/planetation-2.jpg";
+import planetation3 from "@/assets/planetation-3.jpg";
 import levelLabImg from "@/assets/ai/level-lab-1.webp";
 import mosslightImg from "@/assets/ai/mosslight-1.webp";
 import pressureglassImg from "@/assets/ai/pressureglass-1.webp";
@@ -163,6 +169,84 @@ export const aiProjects: AiProject[] = [
     image: animalParkCover,
     gallery: [animalParkCover, animalPark1, animalPark2, animalPark3],
     links: [{ label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pocketspark.animalpark&hl=en" }],
+  },
+  {
+    slug: "aqua-jam",
+    category: "Game",
+    title: "Aqua Jam",
+    kicker: "Colour-sorting river traffic puzzle",
+    description:
+      "Send boats around a river loop to pick up riders of their colour; no overtaking, so one bad tap jams the channel.",
+    overview:
+      "A colour-sorting traffic puzzle on a river loop, and the next version of Color Water Trip. Tap the front boat in a line to send it around the channel. At each dock, riders who don't match hop off and the boat picks up riders of its colour.\n\nA boat leaves once it's full of one colour. Boats can't overtake, so a jam ends the level. Mystery boats, two-colour docks, roped boats and locked docks come in later.",
+    howItWorks: [
+      { title: "Tap a boat", body: "The front boat in a line sets off around the channel." },
+      { title: "Swap riders", body: "At each dock, non-matching riders hop off and matching ones board." },
+      { title: "Fill and leave", body: "A boat full of one colour exits the loop." },
+      { title: "Avoid the jam", body: "Boats can't overtake, so order matters." },
+    ],
+    highlights: ["35 levels across 4 themes", "Mystery boats and two-colour docks", "Roped boats and locked docks", "Next version of Color Water Trip"],
+    stack: [],
+    tags: ["Puzzle", "Colour Sort", "Shipped"],
+    status: "Shipped",
+    year: "2026",
+    stat: { label: "Levels", value: "35" },
+    image: aquaJamImg,
+    gallery: [aquaJamImg],
+    videos: [{ src: "videos/aqua-jam.mp4", title: "Aqua Jam gameplay" }],
+    links: [],
+  },
+  {
+    slug: "paint-by-logic",
+    category: "Game",
+    title: "Paint by Logic",
+    kicker: "Shikaku logic puzzle that paints a picture",
+    description:
+      "Drag rectangles so each holds one number and covers that many cells; every solved rectangle paints in part of the artwork.",
+    overview:
+      "A Shikaku logic puzzle that reveals a painting, one section at a time. Drag rectangles so each one holds exactly one number and covers that many cells, and each rectangle paints in part of the artwork.\n\nMistakes can be tapped back out, and a hint bulb solves one number. Finish before the clock runs out. Pip the penguin is the mascot.",
+    howItWorks: [
+      { title: "Read the numbers", body: "Each number is the area its rectangle must cover." },
+      { title: "Drag rectangles", body: "Each rectangle holds exactly one number." },
+      { title: "Paint the art", body: "Every correct rectangle reveals part of the painting." },
+      { title: "Beat the clock", body: "Tap mistakes back out, or use a hint bulb." },
+    ],
+    highlights: ["Painting revealed piece by piece", "Hint bulb solves one number", "Timed levels", "25 levels, Pip the penguin mascot"],
+    stack: [],
+    tags: ["Puzzle", "Logic", "Shikaku"],
+    status: "Shipped",
+    year: "2026",
+    stat: { label: "Levels", value: "25" },
+    image: paintByLogicImg,
+    gallery: [paintByLogicImg],
+    videos: [{ src: "videos/paint-by-logic.mp4", title: "Paint by Logic gameplay" }],
+    links: [],
+  },
+  {
+    slug: "number-puzzle-blocks",
+    category: "Game",
+    title: "Number Puzzle Blocks",
+    kicker: "Shikaku puzzle with 3D bead art (Penguin Painter)",
+    description:
+      "The same Shikaku rules as Paint by Logic, but each rectangle fills with shiny 3D beads, so a finished level becomes bead pixel art.",
+    overview:
+      "Shown in-game as \"Number Puzzle Blocks\"; the project is called Penguin Painter. It uses the same Shikaku rules and levels as Paint by Logic.\n\nThe difference is the art: each rectangle fills with shiny raised 3D beads, so a finished level becomes a bead (pixel-art) picture instead of a painting.",
+    howItWorks: [
+      { title: "Read the numbers", body: "Each number is the area its rectangle must cover." },
+      { title: "Drag rectangles", body: "Each rectangle holds exactly one number." },
+      { title: "Fill with beads", body: "Correct rectangles fill with raised 3D beads." },
+      { title: "Bead picture", body: "A solved level becomes a pixel-art bead image." },
+    ],
+    highlights: ["Shiny raised 3D beads", "Pixel-art picture reveal", "Same rules as Paint by Logic", "25 levels"],
+    stack: [],
+    tags: ["Puzzle", "Logic", "Pixel Art"],
+    status: "Shipped",
+    year: "2026",
+    stat: { label: "Levels", value: "25" },
+    image: numberPuzzleImg,
+    gallery: [numberPuzzleImg],
+    videos: [{ src: "videos/number-puzzle-blocks.mp4", title: "Number Puzzle Blocks gameplay" }],
+    links: [],
   },
   {
     slug: "float-out",
@@ -424,6 +508,30 @@ export const aiProjects: AiProject[] = [
       { label: "Interactive demo", url: "https://krushnachaudhary.github.io/driftbrief/" },
       { label: "GitHub", url: "https://github.com/KrushnaChaudhary/driftbrief" },
     ],
+  },
+  {
+    slug: "planetation",
+    category: "Game",
+    title: "Planetation",
+    kicker: "Tiny-planet driving game",
+    description:
+      "Race a car around the curved surface of a miniature world, weaving through village roads to the checkered flag.",
+    overview:
+      "Planetation is a driving game set on tiny, fully navigable planets: steer a car around the curved surface of a miniature world, past houses and trees, chasing the checkered flag along winding village roads.\n\nPrototyped at Kwalee with the H5 Game Builder and Level Lab agent skills I built myself. Still in active development.",
+    howItWorks: [
+      { title: "Prompt", body: "H5 Game Builder produced the first drivable tiny planet." },
+      { title: "Courses", body: "Level Lab built the course and level progression." },
+      { title: "Drive the curve", body: "The car follows the planet's curved 3D surface." },
+      { title: "Iterate", body: "Still in active development." },
+    ],
+    highlights: ["Tiny-planet driving mechanic", "Curved-surface 3D navigation", "Village-road race courses"],
+    stack: ["H5 Game Builder", "Level Lab", "Three.js"],
+    tags: ["Racing", "H5 Game Builder", "3D"],
+    status: "Prototype",
+    year: "2024",
+    image: planetation1,
+    gallery: [planetation1, planetation2, planetation3],
+    links: [],
   },
   {
     slug: "sunset-circuit",

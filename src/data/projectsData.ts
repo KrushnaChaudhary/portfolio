@@ -533,12 +533,4 @@ export const projectsList = [
     slug: "mini-golf",
     ...projectsData["mini-golf"],
   },
-  {
-    slug: "color-water-trip",
-    ...projectsData["color-water-trip"],
-  },
-  {
-    slug: "planetation",
-    ...projectsData["planetation"],
-  },
 ];
