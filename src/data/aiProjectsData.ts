@@ -66,7 +66,6 @@ export const aiProjects: AiProject[] = [
     image: pressureglassImg,
     gallery: [pressureglassImg, taskkeel1, taskkeel2],
     videos: [
-      { src: "videos/pressureglass.mp4", title: "Pressureglass gameplay trailer (real speed)" },
       { src: "videos/taskkeel-v2.mp4", title: "Taskkeel showcase (v2)" },
       { src: "videos/taskkeel-v1.mp4", title: "Taskkeel showcase (v1)" },
     ],
