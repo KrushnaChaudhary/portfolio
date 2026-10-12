@@ -3,6 +3,13 @@ import driftbriefCover from "@/assets/ai/driftbrief-cover.webp";
 import driftbriefMap from "@/assets/ai/driftbrief-map.webp";
 import h5Agents from "@/assets/ai/h5-builder-agents.webp";
 import h5Pipeline from "@/assets/ai/h5-builder-pipeline.webp";
+import floatOutImg from "@/assets/ai/float-out.webp";
+import pourArtImg from "@/assets/ai/pour-art.webp";
+import mixJamImg from "@/assets/ai/mix-jam.webp";
+import liftOffImg from "@/assets/ai/lift-off.webp";
+import glassLightImg from "@/assets/ai/glass-and-light.webp";
+import packItShutImg from "@/assets/ai/pack-it-shut.webp";
+import paintPawsImg from "@/assets/ai/paint-paws.webp";
 import levelLabImg from "@/assets/ai/level-lab-1.webp";
 import mosslightImg from "@/assets/ai/mosslight-1.webp";
 import pressureglassImg from "@/assets/ai/pressureglass-1.webp";
@@ -124,6 +131,106 @@ export const aiProjects: AiProject[] = [
     ],
   },
   {
+    slug: "float-out",
+    title: "Float Out",
+    kicker: "Pull-the-pin water puzzle",
+    description:
+      "Pull gold pins and turn valves so real-time particle water flows tank to tank until a rubber duck floats out to its pond.",
+    overview:
+      "A pull-the-pin water puzzle with real-time particle water. Glass tanks sit in a white toy frame on a grassy island with ponds. You pull gold pins and turn valve wheels so the water flows from tank to tank until a rubber duck floats up to its door, then rides a gush of water out into a pond.\n\nLater levels add chutes, U-tube pipes, drains, a sponge, a falling crate and a two-duck finale, so the order you open things in matters.",
+    howItWorks: [
+      { title: "Pull pins", body: "Gold pins hold the water back in each glass tank." },
+      { title: "Turn valves", body: "Valve wheels route the flow between tanks." },
+      { title: "Float the duck", body: "Water lifts the rubber duck up to its door." },
+      { title: "Out to the pond", body: "The duck rides a gush of water out into the pond." },
+    ],
+    highlights: ["Real-time particle water", "Chutes, U-tubes, drains, sponge, falling crate", "Two-duck finale", "6 levels"],
+    stack: [],
+    tags: ["Puzzle", "Physics", "Water Sim"],
+    status: "Prototype",
+    year: "2026",
+    stat: { label: "Levels", value: "6" },
+    image: floatOutImg,
+    gallery: [floatOutImg],
+    videos: [{ src: "videos/float-out.mp4", title: "Float Out gameplay" }],
+    links: [],
+  },
+  {
+    slug: "pour-art",
+    title: "Pour Art",
+    kicker: "Acrylic pour-painting puzzle",
+    description:
+      "Tap paint bottles in the order the cup asks for; live marbling paint pours onto the canvas and reveals a hidden picture.",
+    overview:
+      "An acrylic pour-painting puzzle. You tap paint bottles in the colour order the cup asks for. Colours that aren't needed yet wait on a 5-slot rack, and a wrong tap when the rack is full loses the level.\n\nEach colour drops onto the canvas as live marbling paint, and after the last cup the marble turns into a hidden picture.",
+    howItWorks: [
+      { title: "Read the cup", body: "The cup asks for colours in a set order." },
+      { title: "Tap bottles", body: "Correct colours pour; others wait on a 5-slot rack." },
+      { title: "Marble the canvas", body: "Each colour lands as live marbling paint." },
+      { title: "Reveal", body: "After the last cup, the marble becomes a hidden picture." },
+    ],
+    highlights: ["Live marbling paint", "5-slot holding rack", "Hidden-picture reveal", "6 levels: heart, tulip, strawberry, sailboat, fish, sunrise"],
+    stack: [],
+    tags: ["Puzzle", "Fluid Paint", "Casual"],
+    status: "Prototype",
+    year: "2026",
+    stat: { label: "Levels", value: "6" },
+    image: pourArtImg,
+    gallery: [pourArtImg],
+    videos: [{ src: "videos/pour-art.mp4", title: "Pour Art gameplay" }],
+    links: [],
+  },
+  {
+    slug: "mix-jam",
+    title: "Mix Jam",
+    kicker: "Paint-mixing sliding block puzzle",
+    description:
+      "Slide half tanks together: matching colours fill, primaries mix into orange, green or purple with live fluid paint.",
+    overview:
+      "A sliding block puzzle about mixing paint. Slide half tanks together: matching colours fill up, and two primaries pour into their mix (orange, green or purple) with live fluid paint.\n\nA full tank gets a lid and leaves through the door of its colour. Clear the board before the timer runs out, with Freeze and Hammer as tools. Glossy toy look throughout.",
+    howItWorks: [
+      { title: "Slide tanks", body: "Push half-filled tanks across the board." },
+      { title: "Fill or mix", body: "Same colours fill up; two primaries pour into their mix." },
+      { title: "Lid and exit", body: "A full tank is lidded and leaves through its colour's door." },
+      { title: "Beat the clock", body: "Clear the board before time runs out, with Freeze and Hammer." },
+    ],
+    highlights: ["Live fluid paint mixing", "Orange, green and purple mixes", "Freeze and Hammer tools", "6 levels"],
+    stack: [],
+    tags: ["Puzzle", "Sliding Blocks", "Colour Mixing"],
+    status: "Prototype",
+    year: "2026",
+    stat: { label: "Levels", value: "6" },
+    image: mixJamImg,
+    gallery: [mixJamImg],
+    videos: [{ src: "videos/mix-jam.mp4", title: "Mix Jam gameplay" }],
+    links: [],
+  },
+  {
+    slug: "lift-off",
+    title: "Lift Off!",
+    kicker: "Colour-stacking delivery puzzle",
+    description:
+      "Drag parcel stacks onto pallets on a rooftop dock; matching neighbours hop on, and ten of a colour float away by balloon.",
+    overview:
+      "A colour-stacking puzzle on a rooftop delivery dock. Drag a parcel stack onto an empty pallet, and matching neighbours hop onto it, which can set off chain combos.\n\nWhen 10 of one colour stack up, a balloon lifts them off to fill that colour's quota. Fill every quota to win. You lose if the dock fills and you have no tools left. Each level has its own dock shape and adds one thing: taped crates, tarps, a conveyor belt or padlocks.",
+    howItWorks: [
+      { title: "Place a stack", body: "Drag a parcel stack onto an empty pallet." },
+      { title: "Neighbours hop", body: "Matching neighbours jump on, chaining combos." },
+      { title: "Lift off", body: "10 of one colour float away by balloon toward its quota." },
+      { title: "Fill every quota", body: "Win before the dock fills up." },
+    ],
+    highlights: ["Chain combos", "Unique dock shape per level", "Taped crates, tarps, conveyor, padlocks", "6 levels"],
+    stack: [],
+    tags: ["Puzzle", "Colour Sort", "Stacking"],
+    status: "Prototype",
+    year: "2026",
+    stat: { label: "Levels", value: "6" },
+    image: liftOffImg,
+    gallery: [liftOffImg],
+    videos: [{ src: "videos/lift-off.mp4", title: "Lift Off! gameplay" }],
+    links: [],
+  },
+  {
     slug: "sushi-stampede",
     title: "Sushi Stampede",
     kicker: "A 2-hour game with Codex + Unity CLI",
@@ -146,6 +253,56 @@ export const aiProjects: AiProject[] = [
     image: sushiImg,
     gallery: [sushiImg],
     videos: [{ src: "videos/sushi-stampede.mp4", title: "Sushi Stampede reel, cut in the same session" }],
+    links: [],
+  },
+  {
+    slug: "glass-and-light",
+    title: "Glass & Light",
+    kicker: "Stained-glass unscrew puzzle",
+    description:
+      "Tap rivets out of stained-glass windows; empty panes fall and shatter, letting the sunlight back into the chapel.",
+    overview:
+      "A stained-glass unscrew puzzle, at the prototype stage. Tap uncovered rivets, and they fly to the lantern of their colour, or to a holder if none matches.\n\nA pane with no rivets left falls and shatters, letting sunlight in. Remove every rivet to win (\"Light restored\"). You lose if all five holders fill up.",
+    howItWorks: [
+      { title: "Tap a rivet", body: "Only uncovered rivets can be removed." },
+      { title: "Sort by colour", body: "Rivets fly to their lantern, or to one of five holders." },
+      { title: "Shatter panes", body: "A pane with no rivets falls and lets sunlight in." },
+      { title: "Light restored", body: "Clear every rivet before the holders fill." },
+    ],
+    highlights: ["Shattering glass panes", "Light restoration reveal", "5 overflow holders", "6 levels, Morning Chapel to Great West Window"],
+    stack: [],
+    tags: ["Puzzle", "Unscrew", "Prototype"],
+    status: "Prototype",
+    year: "2026",
+    stat: { label: "Levels", value: "6" },
+    image: glassLightImg,
+    gallery: [glassLightImg],
+    videos: [{ src: "videos/glass-and-light.mp4", title: "Glass & Light gameplay" }],
+    links: [],
+  },
+  {
+    slug: "pack-it-shut",
+    title: "Pack It Shut!",
+    kicker: "Suitcase-packing puzzle",
+    description:
+      "Items arrive in a fixed order; drag each into the case and leave room for what's coming before the lid slams shut.",
+    overview:
+      "A suitcase-packing puzzle. Items arrive in a fixed order, and you drag each one into the open case, where a glow shows where it will fit.\n\nEvery level packs exactly, so the trick is leaving room for what's coming. If the next item fits nowhere, the lid slams on the overstuffed case.",
+    howItWorks: [
+      { title: "See the queue", body: "Items arrive in a fixed, visible order." },
+      { title: "Drag to place", body: "A glow previews where each item will fit." },
+      { title: "Plan ahead", body: "Every level packs exactly, so leave room for later items." },
+      { title: "Shut the case", body: "Pack everything before an item has nowhere to go." },
+    ],
+    highlights: ["Exact-fit levels", "Placement glow preview", "Cases from 3×3 to 6×5", "Plush 3D illustrated items", "6 trips"],
+    stack: [],
+    tags: ["Puzzle", "Packing", "Spatial"],
+    status: "Prototype",
+    year: "2026",
+    stat: { label: "Trips", value: "6" },
+    image: packItShutImg,
+    gallery: [packItShutImg],
+    videos: [{ src: "videos/pack-it-shut.mp4", title: "Pack It Shut! gameplay" }],
     links: [],
   },
   {
@@ -245,6 +402,30 @@ export const aiProjects: AiProject[] = [
     year: "2026",
     image: sunsetCircuitImg,
     gallery: [sunsetCircuitImg],
+    links: [],
+  },
+  {
+    slug: "paint-paws",
+    title: "Paint Paws",
+    kicker: "Colour-mixing cat puzzle (demo)",
+    description:
+      "Tap a toy cat and it runs through paint puddles that change its colour; get every cat to the door of its exact colour.",
+    overview:
+      "A single-room demo, not a full game yet. Tap a toy cat and it runs straight ahead through paint puddles that change its colour, and colours mix, so a blue cat through yellow comes out green.\n\nGet every cat through the door of its exact colour. Hitting a wall, another cat or the wrong door costs one of 3 hearts. Wet paint climbs up the cats' fur, and they leave coloured paw prints.",
+    howItWorks: [
+      { title: "Tap a cat", body: "It runs straight ahead until something stops it." },
+      { title: "Through the paint", body: "Puddles change its colour, and colours mix." },
+      { title: "Find the door", body: "Each cat must exit through its exact colour." },
+      { title: "Keep your hearts", body: "Walls, collisions and wrong doors cost one of 3 hearts." },
+    ],
+    highlights: ["Colour mixing on the move", "Paint climbing the fur", "Coloured paw prints", "Single-room demo"],
+    stack: [],
+    tags: ["Puzzle", "Colour Mixing", "Demo"],
+    status: "Prototype",
+    year: "2026",
+    image: paintPawsImg,
+    gallery: [paintPawsImg],
+    videos: [{ src: "videos/paint-paws.mp4", title: "Paint Paws gameplay" }],
     links: [],
   },
   {

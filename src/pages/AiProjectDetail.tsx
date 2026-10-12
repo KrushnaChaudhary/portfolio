@@ -160,7 +160,7 @@ const AiProjectDetail = () => {
                     controls
                     playsInline
                     preload="none"
-                    className="w-full rounded-2xl border border-border-strong shadow-e3 bg-black aspect-video object-contain"
+                    className="block mx-auto w-auto max-w-full max-h-[80vh] rounded-2xl border border-border-strong shadow-e3 bg-black"
                   />
                   <figcaption className="text-xs text-subtle-foreground mt-2">{v.title}</figcaption>
                 </motion.figure>
@@ -207,6 +207,7 @@ const AiProjectDetail = () => {
                   ))}
                 </ul>
               </div>
+              {project.stack.length > 0 && (
               <div className="panel p-6">
                 <h3 className="font-display text-sm tracking-[0.2em] uppercase text-subtle-foreground mb-4">Stack</h3>
                 <div className="flex flex-wrap gap-2">
@@ -217,6 +218,7 @@ const AiProjectDetail = () => {
                   ))}
                 </div>
               </div>
+              )}
             </motion.aside>
           </div>
 
