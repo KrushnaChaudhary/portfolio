@@ -10,6 +10,10 @@ import liftOffImg from "@/assets/ai/lift-off.webp";
 import glassLightImg from "@/assets/ai/glass-and-light.webp";
 import packItShutImg from "@/assets/ai/pack-it-shut.webp";
 import paintPawsImg from "@/assets/ai/paint-paws.webp";
+import animalParkCover from "@/assets/animal-park-cover.jpg";
+import animalPark1 from "@/assets/animal-park-1.jpg";
+import animalPark2 from "@/assets/animal-park-2.jpg";
+import animalPark3 from "@/assets/animal-park-3.jpg";
 import levelLabImg from "@/assets/ai/level-lab-1.webp";
 import mosslightImg from "@/assets/ai/mosslight-1.webp";
 import pressureglassImg from "@/assets/ai/pressureglass-1.webp";
@@ -34,7 +38,7 @@ export interface AiProject {
   tags: string[];
   /** Groups the AI column filter: games built with AI, dev tools, or one-off experiments. */
   category: "Game" | "Tool" | "Experiment";
-  status: "Open Source" | "Playable Demo" | "Prototype" | "Write-up";
+  status: "Shipped" | "Open Source" | "Playable Demo" | "Prototype" | "Write-up";
   year: string;
   stat?: { label: string; value: string };
   image: string;
@@ -134,6 +138,31 @@ export const aiProjects: AiProject[] = [
       { label: "GitHub", url: "https://github.com/KrushnaChaudhary/h5-game-builder-skill" },
       { label: "npm", url: "https://www.npmjs.com/package/@krackzzz/h5-game-builder" },
     ],
+  },
+  {
+    slug: "animal-park",
+    category: "Game",
+    title: "Animal Park",
+    kicker: "AI-prototyped, shipped on Google Play",
+    description:
+      "A colour-sorting crowd puzzle prototyped in a single session with H5 Game Builder and Level Lab, then taken to a full Google Play release.",
+    overview:
+      "Animal Park is a colour-sorting puzzle: cute animal visitors line up at the gates waiting to board a train, but each cart only accepts its matching colour. Tap the gates to move animals forward. If the right cart isn't ready, they wait on a central carousel with limited seats. Fill the carousel with nowhere left to go, and it's a jam.\n\nThis started as a same-day prototype at Kwalee, built with the H5 Game Builder and Level Lab skills I built myself, and went on to become a fully shipped release on Google Play.",
+    howItWorks: [
+      { title: "One-line prompt", body: "H5 Game Builder turned the idea into a playable build in one session." },
+      { title: "Tune levels", body: "Level Lab generated and balanced the difficulty curve." },
+      { title: "Prove the fun", body: "The prototype was played and validated at Kwalee." },
+      { title: "Ship", body: "Taken forward to a full release on Google Play." },
+    ],
+    highlights: ["Live on Google Play", "Same-day AI prototype", "Colour-matching sort puzzle", "Carousel jam-avoidance mechanic"],
+    stack: ["H5 Game Builder", "Level Lab", "HTML5"],
+    tags: ["Puzzle", "H5 Game Builder", "Shipped"],
+    status: "Shipped",
+    year: "2024",
+    stat: { label: "Prompt to playable", value: "1 day" },
+    image: animalParkCover,
+    gallery: [animalParkCover, animalPark1, animalPark2, animalPark3],
+    links: [{ label: "Google Play", url: "https://play.google.com/store/apps/details?id=com.pocketspark.animalpark&hl=en" }],
   },
   {
     slug: "float-out",

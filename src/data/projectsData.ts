@@ -514,10 +514,6 @@ export const projectsList = [
     ...projectsData["monster-mayhem"],
   },
   {
-    slug: "animal-park",
-    ...projectsData["animal-park"],
-  },
-  {
     slug: "boarding-rush",
     ...projectsData["boarding-rush"],
   },

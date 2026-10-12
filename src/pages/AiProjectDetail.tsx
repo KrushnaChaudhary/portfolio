@@ -29,6 +29,9 @@ const AiProjectDetail = () => {
   const prev = index > 0 ? aiProjects[index - 1] : null;
   const next = index < aiProjects.length - 1 ? aiProjects[index + 1] : null;
   const shot = project.gallery[active] ?? project.image;
+  // Single-image projects with gameplay footage lead with the video instead of a still.
+  const heroVideo = project.videos?.length && project.gallery.length <= 1 ? project.videos[0] : null;
+  const extraVideos = (project.videos ?? []).filter((v) => v !== heroVideo);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -105,6 +108,21 @@ const AiProjectDetail = () => {
               transition={{ duration: 0.9, delay: 0.15, ease }}
               className="lg:col-span-6"
             >
+              {heroVideo ? (
+                <video
+                  key={heroVideo.src}
+                  src={`${import.meta.env.BASE_URL}${heroVideo.src}`}
+                  poster={project.image}
+                  aria-label={heroVideo.title}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  className="block mx-auto w-auto max-w-full max-h-[75vh] rounded-2xl border border-border-strong shadow-e3 bg-black"
+                />
+              ) : (
               <div className="relative rounded-2xl overflow-hidden border border-border-strong shadow-e3 bg-surface-2">
                 <AnimatePresence mode="wait">
                   <motion.img
@@ -119,7 +137,8 @@ const AiProjectDetail = () => {
                   />
                 </AnimatePresence>
               </div>
-              {project.gallery.length > 1 && (
+              )}
+              {!heroVideo && project.gallery.length > 1 && (
                 <div className="flex gap-3 mt-4 justify-center">
                   {project.gallery.map((g, i) => (
                     <button
@@ -141,12 +160,12 @@ const AiProjectDetail = () => {
         </div>
       </section>
 
-      {project.videos && project.videos.length > 0 && (
+      {extraVideos.length > 0 && (
         <section className="pt-4">
           <div className="container px-6 max-w-6xl">
             <h2 className="font-display text-2xl font-bold mb-6">Watch</h2>
-            <div className={`grid gap-6 ${project.videos.length > 1 ? "lg:grid-cols-2" : ""}`}>
-              {project.videos.map((v) => (
+            <div className={`grid gap-6 ${extraVideos.length > 1 ? "lg:grid-cols-2" : ""}`}>
+              {extraVideos.map((v) => (
                 <motion.figure
                   key={v.src}
                   initial={{ opacity: 0, y: 20 }}
