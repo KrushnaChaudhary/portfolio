@@ -20,7 +20,7 @@ const ProjectDetail = () => {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-display text-foreground mb-4">Project Not Found</h1>
-          <Link to="/#library" className="text-primary hover:underline">
+          <Link to="/#work" className="text-primary hover:underline">
             ← Back to Library
           </Link>
         </div>
@@ -40,7 +40,7 @@ const ProjectDetail = () => {
       >
         <div className="container px-6 h-full flex items-center justify-between">
           <Link
-            to="/#library"
+            to="/#work"
             className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />

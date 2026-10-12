@@ -7,8 +7,7 @@ import { preloadArcade } from "@/lib/preloadArcade";
 
 const SECTIONS = [
   { id: "main", label: "MAIN" },
-  { id: "library", label: "LIBRARY" },
-  { id: "tools", label: "TOOLS" },
+  { id: "work", label: "WORK" },
   { id: "career", label: "CAREER" },
   { id: "skills", label: "SKILLS" },
   { id: "contact", label: "CONTACT" },
