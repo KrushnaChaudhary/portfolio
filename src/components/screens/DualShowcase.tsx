@@ -35,7 +35,7 @@ const AiCover = ({ project }: { project: AiProject }) => (
     alt={project.title}
     loading="lazy"
     decoding="async"
-    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.05]"
+    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.05]"
   />
 );
 
@@ -62,7 +62,7 @@ const Row = ({
     transition={{ type: "spring", stiffness: 300, damping: 22 }}
     className="panel overflow-hidden h-full flex hover:shadow-e3 hover:border-border-strong transition-[box-shadow,border-color] duration-300"
   >
-    <div className="relative w-[38%] shrink-0 overflow-hidden bg-surface-2">{cover}</div>
+    <div className="relative w-[38%] min-h-[150px] shrink-0 overflow-hidden bg-surface-2">{cover}</div>
     <div className="p-4 min-w-0 flex flex-col">
       <div className="flex items-start gap-2 mb-1">
         <span className="stat-num font-display text-[11px] text-subtle-foreground pt-0.5">
@@ -181,8 +181,17 @@ const GamesColumn = ({ expanded }: { expanded: boolean }) => {
   );
 };
 
+const AI_FILTERS = [
+  { key: "All", label: "All" },
+  { key: "Game", label: "Games" },
+  { key: "Tool", label: "Tools" },
+  { key: "Experiment", label: "Experiments" },
+] as const;
+
 const AiColumn = ({ expanded }: { expanded: boolean }) => {
-  const list = expanded ? aiProjects : aiProjects.slice(0, PREVIEW_COUNT);
+  const [filter, setFilter] = useState<(typeof AI_FILTERS)[number]["key"]>("All");
+  const filtered = filter === "All" ? aiProjects : aiProjects.filter((p) => p.category === filter);
+  const list = expanded ? filtered : filtered.slice(0, PREVIEW_COUNT);
   return (
     <div>
       <ColumnHeader
@@ -192,10 +201,39 @@ const AiColumn = ({ expanded }: { expanded: boolean }) => {
         count={aiProjects.length}
         accent="bg-warning/10 text-warning"
       />
+      <div className="flex flex-wrap gap-2 mb-5" role="tablist" aria-label="Filter AI projects">
+        {AI_FILTERS.map((f) => {
+          const count = f.key === "All" ? aiProjects.length : aiProjects.filter((p) => p.category === f.key).length;
+          const active = filter === f.key;
+          return (
+            <button
+              key={f.key}
+              type="button"
+              role="tab"
+              aria-selected={active}
+              onClick={() => setFilter(f.key)}
+              className={`relative px-3.5 py-1.5 rounded-full font-display text-[11px] tracking-wider uppercase border transition-colors ${
+                active ? "border-warning/40 text-warning" : "border-border text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              {active && (
+                <motion.span
+                  layoutId="ai-filter-pill"
+                  className="absolute inset-0 rounded-full bg-warning/10"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
+              <span className="relative">
+                {f.label} <span className="stat-num opacity-60">{count}</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
       <div className="grid gap-4">
         {list.map((p, i) => (
           <motion.div
-            key={p.slug}
+            key={`${filter}-${p.slug}`}
             initial={{ opacity: 0, y: 24, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}

@@ -32,6 +32,8 @@ export interface AiProject {
   highlights: string[];
   stack: string[];
   tags: string[];
+  /** Groups the AI column filter: games built with AI, dev tools, or one-off experiments. */
+  category: "Game" | "Tool" | "Experiment";
   status: "Open Source" | "Playable Demo" | "Prototype" | "Write-up";
   year: string;
   stat?: { label: string; value: string };
@@ -46,6 +48,7 @@ export interface AiProject {
 export const aiProjects: AiProject[] = [
   {
     slug: "pressureglass-taskkeel",
+    category: "Game",
     title: "Pressureglass × Taskkeel",
     kicker: "Multi-agent game development",
     description:
@@ -80,6 +83,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "break-my-game",
+    category: "Experiment",
     title: "Break My Game",
     kicker: "AI playtesting experiment",
     description:
@@ -104,6 +108,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "h5-game-builder",
+    category: "Tool",
     title: "H5 Game Builder",
     kicker: "Prompt in, playable game out",
     description:
@@ -132,6 +137,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "float-out",
+    category: "Game",
     title: "Float Out",
     kicker: "Pull-the-pin water puzzle",
     description:
@@ -157,6 +163,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "pour-art",
+    category: "Game",
     title: "Pour Art",
     kicker: "Acrylic pour-painting puzzle",
     description:
@@ -182,6 +189,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "mix-jam",
+    category: "Game",
     title: "Mix Jam",
     kicker: "Paint-mixing sliding block puzzle",
     description:
@@ -207,6 +215,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "lift-off",
+    category: "Game",
     title: "Lift Off!",
     kicker: "Colour-stacking delivery puzzle",
     description:
@@ -232,6 +241,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "sushi-stampede",
+    category: "Game",
     title: "Sushi Stampede",
     kicker: "A 2-hour game with Codex + Unity CLI",
     description:
@@ -257,6 +267,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "glass-and-light",
+    category: "Game",
     title: "Glass & Light",
     kicker: "Stained-glass unscrew puzzle",
     description:
@@ -282,6 +293,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "pack-it-shut",
+    category: "Game",
     title: "Pack It Shut!",
     kicker: "Suitcase-packing puzzle",
     description:
@@ -307,6 +319,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "mosslight",
+    category: "Game",
     title: "Mosslight",
     kicker: "Design doc → playable world",
     description:
@@ -331,6 +344,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "ue-metahuman-crowd",
+    category: "Experiment",
     title: "UE 5.8 Crowd Cinematic",
     kicker: "Claude Code driving Unreal over MCP",
     description:
@@ -356,6 +370,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "driftbrief",
+    category: "Tool",
     title: "DriftBrief",
     kicker: "A map of your game for AI agents",
     description:
@@ -383,6 +398,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "sunset-circuit",
+    category: "Game",
     title: "Sunset Circuit",
     kicker: "One-prompt racing prototype",
     description:
@@ -406,6 +422,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "paint-paws",
+    category: "Game",
     title: "Paint Paws",
     kicker: "Colour-mixing cat puzzle (demo)",
     description:
@@ -430,6 +447,7 @@ export const aiProjects: AiProject[] = [
   },
   {
     slug: "level-lab",
+    category: "Tool",
     title: "Level Lab",
     kicker: "Any H5 game, real levels",
     description:
